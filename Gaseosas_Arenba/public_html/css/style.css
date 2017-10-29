@@ -1,0 +1,84 @@
+body{
+background: #ffffff;
+
+color: black;
+/* Ubicación de la imagen */
+background-image: url(../imgs/gaseosas.jpg);
+/* Nos aseguramos que la imagen de fondo este centrada vertical y
+horizontalmente en todo momento */
+background-position: center center;
+/* La imagen de fondo no se repite */
+background-repeat: no-repeat;
+/* La imagen de fondo está fija en el viewport, de modo que no se mueva cuando
+la altura del contenido supere la altura de la imagen. */
+background-attachment: fixed;
+/* La imagen de fondo se reescala cuando se cambia el ancho de ventana
+del navegador */
+background-size: cover;
+/* Fijamos un color de fondo para que se muestre mientras se está
+cargando la imagen de fondo o si hay problemas para cargarla*/
+background-color: #464646;
+}
+
+div.well{
+height: 250px;
+} 
+
+.Absolute-Center {
+margin: auto;
+position: absolute;
+top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.Absolute-Center.is-Responsive {
+width: 50%; 
+height: 50%;
+min-width: 200px;
+max-width: 400px;
+padding: 40px;
+}
+.oculto {
+display: none;
+}
+.error {
+-webkit-boxshadow: 0 0 10px rgba(0, 0, 0, 0.3);
+-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+-o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+background: red;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+color: #fff;
+font-size: 14px;
+margin-top: -30px;
+margin-left: 240px;
+padding: 10px;
+position: absolute;                 
+}
+
+
+.navbar-inverse { 
+  background-color: #814676; 
+                
+  border-color: #080808; 
+  
+  //font-size: 250px;
+   
+  //font-family: Comic Sans MS;
+} 
+.input-group-addon{
+    
+    background-color: #3e1756;
+    
+    border-color: #080808;
+}
+
+.btn{
+    background-color: #3e1756;
+    
+    border-color: #080808;
+    
+    color: white;
+}
+.glyphicon{
+    
+    color: white;
+}
