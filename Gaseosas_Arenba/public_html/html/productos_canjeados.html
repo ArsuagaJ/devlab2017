@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>Gaseosas Arenba - Reportes</title>
+		<!-- -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel=stylesheet href="../css/style.css">
+		
+	</head>
+	<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Gaseosa Arenba</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="representante.html">Codigos informados</a></li>
+            <li><a href="productos_canjeados.html" class="active">Productos Canjeados</a></li>
+          </ul>
+        </li>
+     
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> 
+                        <strong>Usuario</strong>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong>Nombre Apellido</strong></p>
+                                        <p class="text-left small">Representante</p>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+          
+          
+        
+      </ul>
+              <li><a href="#"><span class="glyphicon glyphicon-share-alt"></span><strong>Salir</strong></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+             <div>
+                <label><h3>Canjes efectuados para el período de fechas ingresado</h3></label>
+            </div>
+	
+<div class="form-group row">
+           
+            
+            <div class="col-md-2">
+                <label>Desde</label>
+                <input class="form-control" type="date" name="fecha" required>
+            
+            </div>
+ 
+            <div class="col-md-2">
+                <label>Hasta</label>
+                <input class="form-control" type="date" name="fecha" required>
+            </div>
+        </div>
+            <div>
+                    <button type="button" class="btn">Informar</button>
+            </div>
+ 
+            
+
+</html>

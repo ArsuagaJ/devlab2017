@@ -6,6 +6,31 @@ background: #ffffff;
 
 color: black;
 /* Ubicación de la imagen */
+/*background-image: url(../imgs/gaseosas.jpg);*/
+/* Nos aseguramos que la imagen de fondo este centrada vertical y
+horizontalmente en todo momento */
+background-position: center center;
+/* La imagen de fondo no se repite */
+background-repeat: no-repeat;
+/* La imagen de fondo está fija en el viewport, de modo que no se mueva cuando
+la altura del contenido supere la altura de la imagen. */
+background-attachment: fixed;
+/* La imagen de fondo se reescala cuando se cambia el ancho de ventana
+del navegador */
+background-size: cover;
+/* Fijamos un color de fondo para que se muestre mientras se está
+cargando la imagen de fondo o si hay problemas para cargarla*/
+background-color: #464646;
+}
+
+.bodyCliente{
+   
+margin: 20px;
+
+background: #ffffff;
+
+color: black;
+/* Ubicación de la imagen */
 background-image: url(../imgs/gaseosas.jpg);
 /* Nos aseguramos que la imagen de fondo este centrada vertical y
 horizontalmente en todo momento */
@@ -84,4 +109,11 @@ position: absolute;
 .glyphicon{
     
     color: white;
+}
+
+.navbar-login-session
+{
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
 }

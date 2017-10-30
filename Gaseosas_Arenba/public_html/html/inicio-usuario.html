@@ -1,0 +1,121 @@
+<!--colores: 5e3b74   letras de botella: Segoe Print Bold -->
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="jquery-3.2.1.min.js"> </script>
+	<script type="text/javascript" src="ejercicio1_TP3.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+	<link rel="stylesheet" href="../css/style.css">
+    <!-- esto es para cuando hay internechi ->
+    <!-- Latest compiled and minified CSS -->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+
+    <!-- Optional theme -->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+
+    <!-- Latest compiled and minified JavaScript -->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+   <title>Inicio</title> 
+  </head>
+	<body>
+	
+	<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-center">
+            <li><a href="inicio-usuario.html">Inicio</a></li>
+            <li><a href="productos-usuario.html">Productos</a></li>
+            <li><a href="MiCuenta-usuario.html">Mi Cuenta</a></li>
+		</ul>	
+		<ul class="nav navbar-nav navbar-right">
+			<li class="salir"><a href="#">Salir</a></li>
+		</ul>
+    </div>
+	</nav>
+	<div class="container">
+		
+		<div class="row">
+		<div class="col-sm-9">
+		<div class="panel panel-danger">
+        
+            <h3 class="panel-title">Nuestros Productos</h3>
+        
+        <div class="panel-body">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+		<li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            
+			<img src="../imgs/botella_naranja1.png" alt="">
+            <div class="carousel-caption">
+                <p class="botella_naranja1">Naranja de 2 1/4 Litros</p>
+            </div>
+        </div>
+  
+        <div class="item">
+            <img src="../imgs/botella_lima.png" alt="">
+            <div class="carousel-caption">
+                <p class="botella_cola">Lima de 2 1/4 Litros</p>
+            </div>
+        </div>
+		<div class="item">
+			<img src="../imgs/botella_agua11.png" alt="">
+			<div class="carousel-caption">
+				<p class="botella">Agua mineral de 2Litros</p>
+			</div>
+			</div>
+		<div class="item">
+				<img src="../imgs/botella_cola.png" alt="">
+				<div class="carousel-caption">
+					<p>March</p>
+				</div>
+		</div>
+		
+    </div>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+        </div>
+    </div>
+	</div>
+	<div class="col-sm-3">
+	
+		<label class="pull-center">Usuario</label>
+		<label class="pull-center">Puntos</label><br><br>
+	<button type="button" class="boton" >Ingresar Código</button><br><br>
+	<button type="button" class="boton">Invitar un amigo</button>
+	
+	</div>
+	</div>
+  </div>
+	
+	</div>
+	
+</body>
+</html>
