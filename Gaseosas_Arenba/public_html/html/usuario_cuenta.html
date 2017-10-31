@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="jquery-3.2.1.min.js"> </script>
+	<script type="text/javascript" src="mi_cuenta.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+	<link rel="stylesheet" href="estilo.css">
+    <!-- esto es para cuando hay internechi ->
+    <!-- Latest compiled and minified CSS -->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+
+    <!-- Optional theme -->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+
+    <!-- Latest compiled and minified JavaScript -->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+   <title>Mi Cuenta</title> 
+  </head>
+	<body>
+	<div class="main">
+	<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-center">
+            <li><a href="usuario_inicio.html">Inicio</a></li>
+            <li><a href="usuario_productos.html">Productos</a></li>
+            <li><a href="usuario_cuenta.html">Mi Cuenta</a></li>
+		</ul>	
+		<ul class="nav navbar-nav navbar-right">
+			<li class="salir"><a href="login.html">Salir</a></li>
+		</ul>
+    </div>
+	</nav>
+	<div class="container">
+	
+	<div id="datos">
+			<label class="especial">Apellido</label><br>
+			<label class="especial">Nombre</label><br>
+			<label class="especial">Telefono</label><br>
+			<label class="especial">E-mail</label><br>
+			<label class="especial">Localidad</label><br>
+			<label class="especial">Direccion</label><br>
+
+	</div>
+		
+		<button type="button" id="editar" class="boton" >Editar</button><br><br>
+		
+		<form role="form" id="formulario" style='display:none;'> <!--Formulario para ingresar y seleccionar los datos solicitados -->
+			<div>
+				<label> Nombre </label>
+				<input type="text" name="nombre" id="nombre" pattern="[A-Za-z]{3,16}" title="solo se permiten letras, Máximo de caracteres 20" placeholder="se permite un solo nombre" required="true"> <br>
+				<p class="pError" id="pNombre"></p><br>
+			</div>
+			<div>
+				<label> Apellido</label>
+				<input type="text" name="apellido" id="apellido" pattern="[A-Za-z]{3,30}" title="solo se permiten letras, Máximo de caracteres 30" placeholder="se permite dos apellidos" required="true"><br>
+				<p class="pError" id="pApellido"></p><br>
+			</div>
+			<div>
+				<label> Telefono</label>
+				<input type="number" name="telefono" id="telefono" minlength="8" maxlength="10" title="solo se permite numeros, 8 o 10" placeholder="solo ingrese numeros" required="true"> <br>
+				<p class="pError" id="pTelefono"></p><br>
+			</div>
+			<div>
+				<label> E-mail</label>
+				<input type="email" name="email" id="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="debe ingresar email" placeholder="ejemplo@gmail.com" required="true"> <br>
+				<p class="pError" id="pEmail"></p><br>
+			</div>
+			<div>
+				<label> Localidad</label>
+				<input type="text" name="localidad" id="localidad" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Monte Grande" required="true"> <br>
+				<p class="pError" id="pLocalidad"></p><br>
+			</div>
+			<div>
+				<label> Direccion</label>
+				<input type="text" name="direccion" id="direccion" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder="Nombre y numero" required="true"> <br>
+				<p class="pError" id="pDireccion"></p><br>
+			</div>
+		</form>
+		<div id="botones" style='display:none;'>
+			<input type="button" name="guardar" id="guardar" value="Guardar">
+			<input type="submit" name="cancelar" id="cancelar" value="cancelar">
+		</div>
+	</div>
+	</div>
+</body>
+</html>

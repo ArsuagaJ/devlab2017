@@ -1,15 +1,15 @@
-<!--colores: 5e3b74   letras de botella: Segoe Print Bold -->
+<!--colores: violeta: 5e3b74 violeta mas claro:9b4b7f  letras de botella: Segoe Print Bold -->
 <!DOCTYPE html>
 <html>
 <head>
     <script type="text/javascript" src="jquery-3.2.1.min.js"> </script>
-	<script type="text/javascript" src="ejercicio1_TP3.js"></script>
+	<script type="text/javascript" src="inicio-usuario.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
-	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="estilo.css">
     <!-- esto es para cuando hay internechi ->
     <!-- Latest compiled and minified CSS -->
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
@@ -22,7 +22,7 @@
    <title>Inicio</title> 
   </head>
 	<body>
-	
+	<div class="main">
 	<nav class="navbar navbar-inverse" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -33,12 +33,12 @@
     </div>
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-center">
-            <li><a href="inicio-usuario.html">Inicio</a></li>
-            <li><a href="productos-usuario.html">Productos</a></li>
-            <li><a href="MiCuenta-usuario.html">Mi Cuenta</a></li>
+            <li><a href="usuario_inicio.html">Inicio</a></li>
+            <li><a href="usuario_productos.html">Productos</a></li>
+            <li><a href="usuario_cuenta.html">Mi Cuenta</a></li>
 		</ul>	
 		<ul class="nav navbar-nav navbar-right">
-			<li class="salir"><a href="#">Salir</a></li>
+			<li class="salir"><a href="login.html">Salir</a></li>
 		</ul>
     </div>
 	</nav>
@@ -46,8 +46,9 @@
 		
 		<div class="row">
 		<div class="col-sm-9">
+		
 		<div class="panel panel-danger">
-        
+        <div class="maindd">
             <h3 class="panel-title">Nuestros Productos</h3>
         
         <div class="panel-body">
@@ -64,32 +65,32 @@
     <div class="carousel-inner">
         <div class="item active">
             
-			<img src="../imgs/botella_naranja1.png" alt="">
+			<img src="botella_naranja1.png" alt="">
             <div class="carousel-caption">
-                <p class="botella_naranja1">Naranja de 2 1/4 Litros</p>
+                <p class="botella">Naranja de 2 1/4 Litros</p>
             </div>
         </div>
   
         <div class="item">
-            <img src="../imgs/botella_lima.png" alt="">
+            <img src="botella_lima.png" alt="">
             <div class="carousel-caption">
-                <p class="botella_cola">Lima de 2 1/4 Litros</p>
+                <p class="botella">Lima de 2 1/4 Litros</p>
             </div>
         </div>
 		<div class="item">
-			<img src="../imgs/botella_agua11.png" alt="">
-			<div class="carousel-caption">
-				<p class="botella">Agua mineral de 2Litros</p>
-			</div>
-			</div>
-		<div class="item">
-				<img src="../imgs/botella_cola.png" alt="">
-				<div class="carousel-caption">
-					<p>March</p>
+					<img src="botella_agua11.png" alt="">
+					<div class="carousel-caption">
+						<p class="botella">Agua mineral de 2Litros</p>
+					</div>
 				</div>
-		</div>
+		<div class="item">
+					<img src="botella_cola.png" alt="">
+					<div class="carousel-caption">
+						<p class="botella">Cola 2 1/4 Litros</p>
+					</div>
+				</div>
 		
-    </div>
+			</div>
 
 			<!-- Controls -->
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -104,18 +105,34 @@
         </div>
     </div>
 	</div>
+	</div>
 	<div class="col-sm-3">
 	
 		<label class="pull-center">Usuario</label>
 		<label class="pull-center">Puntos</label><br><br>
-	<button type="button" class="boton" >Ingresar Código</button><br><br>
-	<button type="button" class="boton">Invitar un amigo</button>
+	<button type="button" id="botonCod" class="boton" >Ingresar Código</button><br><br>
+	<div id="divCodigo" style='display:none;'>
+			<label> Codigo</label>
+			<input type="text" name="codigo" id="codigo" minlength="2" maxlength="6" title="maximo 6 caracteres" placeholder="codigo alfanumerico" required="true"> <br>
+			<p class="pError" id="pCodigo"></p><br>
+			<input type="button" name="enviarCod" id="enviarCod" value="Guardar">
+			<input type="button" name="cancelarCod" id="cancelarCod" value="cancelar"><br><br>
+	</div>
+	
+	<button type="button" id="invitarAmi" class="boton">Invitar un amigo</button><br><br>
+	<div id="divInvitar" style='display:none;'>	
+		<label> E-mail</label>
+		<input type="email" name="email" id="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="debe ingresar email" placeholder="ejemplo@gmail.com" required="true"> <br>
+		<p class="pError" id="pEmail"></p><br>
+		<input type="button" name="enviarEmail" id="enviarEmail" value="enviar">
+		<input type="button" name="cancelarEmail" id="cancelarEmail" value="cancelar"><br>
+	</div>
 	
 	</div>
 	</div>
   </div>
 	
 	</div>
-	
+	</div>
 </body>
 </html>
