@@ -7,17 +7,48 @@ $(document).ready(function(){
 	}); 
 });
 
+function limpiarCampos(){
+    document.getElementById("pNombre").innerHTML="";
+    document.getElementById("pApellido").innerHTML="";
+    document.getElementById("pDni").innerHTML="";
+    document.getElementById("pTelefono").innerHTML="";
+    document.getElementById("pEmail").innerHTML="";
+    document.getElementById("pProvincia").innerHTML="";
+    document.getElementById("pLocalidad").innerHTML="";
+    document.getElementById("pDireccion").innerHTML="";
+    
+    document.getElementById("nombre").value="";
+    document.getElementById("apellido").value="";
+    document.getElementById("dni").value="";
+    document.getElementById("telefono").value="";
+    document.getElementById("email").value="";
+    document.getElementById("provincia").value="";
+    document.getElementById("localidad").value="";
+    document.getElementById("direccion").value="";
+}
+
+
 $(document).ready(function(){
 	$('#cancelar').click(function() {
 		$('#formulario').hide();
 		$('#datos').toggle();
 		$('#editar').toggle();
 		$('#botones').hide();
+                limpiarCampos();
 	}); 
 });
 
+
+
+
 $(document).ready(function(){
 	$('#telefono').keyup(function(){
+		this.value = (this.value + "").replace(/[^^0-9]/g,'');
+	});
+});
+
+$(document).ready(function(){
+	$('#dni').keyup(function(){
 		this.value = (this.value + "").replace(/[^^0-9]/g,'');
 	});
 });
@@ -119,6 +150,35 @@ function validarEmail(){
 	}	
 }
 
+function validarDni(){
+	var texto=$('#dni').val(); 
+        if (texto==""){
+                $('#pDni').text('debe ingresar el DNI');
+                event.preventDefault();
+        }
+        else if(texto.length == 8 || texto.length == 10) { 
+                $('#pDni').text(' ');
+        }else {
+                $('#pDni').text('DNI invalido');
+        }	
+}
+
+function validarProvincia(){
+	var texto=$('#provincia').val(); 
+		var reg =/^[a-z A-z]{3,30}$/;
+		if (texto==""){
+			$('#pProvincia').text('debe ingresar una provincia');
+			event.preventDefault();
+		}
+		else if(reg.test(texto)) { 
+			$('#pProvincia').text(' ');
+			
+		} else {
+			$('#pProvincia').text('provincia invalido');
+			event.preventDefault();
+	}	
+}
+
 $(document).ready(function(){
 	$('#guardar').click(function() {
 		//Utilizamos una expresion regular 
@@ -128,5 +188,7 @@ $(document).ready(function(){
 		validarApellido();
 		validarLocalidad();
 		validarDirreccion();
+                validarDni();
+                validarProvincia();
 	}); 
 });

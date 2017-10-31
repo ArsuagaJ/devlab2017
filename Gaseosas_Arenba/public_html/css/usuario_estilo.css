@@ -1,0 +1,106 @@
+p{
+	font-family: Georgia, "Times New Roman", Times, serif;
+	text-shadow:#AAA 2px 2px 2px;
+	color: #000000;
+	font-size: 14px;
+	}
+.pError{
+	font-family: Georgia, "Times New Roman", Times, serif;
+	text-shadow:#AAA 2px 2px 2px;
+	color: #FF0000;
+	font-size: 14px;
+	}
+	
+.botella{
+	font-family: Georgia, "Times New Roman", Times, serif;
+	text-shadow:#AAA 2px 2px 2px;
+	color: #000000;
+	font-size: 20px;
+	
+	}
+.especial{
+	font-family: emmasophia;
+	
+	color: #000000;
+	font-size: 20px;
+	
+	}
+
+	
+.navbar{
+        
+		text-align: center;
+		background-color: #814676;
+		 border: #814676;
+}
+	
+.boton_1{
+    text-decoration: none;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: helvetica;
+    font-weight: 300;
+    font-size: 25px;
+
+    color: #006505;
+    background-color: #82b085;
+    border-radius: 15px;
+    border: 3px double #006505;
+  }
+  
+  .miParrafo{
+	font-family: Georgia, "Times New Roman", Times, serif;
+	text-shadow:#AAA 2px 2px 2px;
+	color: #006666;
+	font-size: 40px;
+	}
+	
+	.salir{
+    text-decoration: none;
+    padding: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-family: helvetica;
+    font-weight: 300;
+    font-size: 18px;
+	
+    background-color: #814676;
+    border-radius: 0px;
+    border: 3px double #814676;
+   
+  }
+  
+ .main {
+
+    background-color:#FFFFFF;
+} 
+
+.maindd {
+
+    background-color:#f0f0f0;
+} 
+  
+  .boton{
+    text-decoration: none;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: emmasophia;
+    font-weight: 300;
+    font-size: 24px;
+	color: #ffffff;
+	text-shadow:#AAA 0px 0px 0px;
+    background-color: #9b4b7f;
+    border-radius: 15px;
+    border: 3px double #974578;
+   
+  }
+  
+  .btn{
+    background-color: #3e1756;
+    
+    border-color: #080808;
+    
+    color: white;
+}
