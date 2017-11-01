@@ -6,7 +6,7 @@ background: #ffffff;
 
 color: black;
 /* Ubicación de la imagen */
-/*background-image: url(../imgs/gaseosas.jpg);*/
+background-image: url(../imgs/gaseosas.jpg);
 /* Nos aseguramos que la imagen de fondo este centrada vertical y
 horizontalmente en todo momento */
 background-position: center center;

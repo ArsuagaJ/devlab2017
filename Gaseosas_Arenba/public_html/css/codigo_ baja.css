@@ -1,0 +1,39 @@
+td{
+    font-size: 10px;
+    font-family: cursive;
+    font-style: normal;
+    text-align: center;
+}
+
+th{
+    font-size: 15px;
+}
+
+th:hover{
+    color: white;
+}
+
+td:hover,th:hover{
+    background-color: maroon;
+}
+
+.filaPar{
+    background-color: palegreen;
+}
+
+.filaImpar{
+    background-color: orange;
+}
+
+.filaPar:hover{
+    background-color: darkgreen;
+}
+
+.filaImpar:hover{
+    background-color: orangered;
+}
+
+.head{
+    background-color: skyblue;
+    /*font-size: 20px;*/
+}
