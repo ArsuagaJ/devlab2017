@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>Gaseosas Arenba - ABM</title>
+		<!-- -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel=stylesheet href="../css/style.css">
+		
+	</head>
+	<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Gaseosa Arenba</a>
+ 
+    </div>
+       <ul class="nav navbar-nav">
+      <li class="active"><a href="admin_abm.html">Buscar Usuario</a></li>
+      <li><a href="admin_nuevo_usuario.html">Nuevo Usuario</a></li>
+    </ul>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> 
+                        <strong> Usuario</strong>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong>Nombre Usuario</strong></p>
+                                        <p class="text-left small">Admin</p>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+          
+          
+        
+      </ul>
+              <li><a href="#"><span class="glyphicon glyphicon-share-alt"></span><strong>Salir</strong></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+             <div>
+                <label><h3>Buscar Usuario</h3></label>
+            </div>
+	
+<div class="form-group row">
+           
+            
+            <div class="col-md-2">
+                <label>Nombre de Usuario</label>
+                <input class="form-control"  name="nombreUsuario" required>
+            
+            </div>
+ 
+            <div class="col-md-2">
+                <label>Rol</label>
+                <select class="selectpicker form-control">
+                <option>Empleado</option>
+                <option>Representante</option>
+                <option>Administrador</option>
+                <option>Todos</option>
+                </select>
+
+            </div>
+        </div>
+            <div>
+                    <button type="button" id="btnInforme" class="btn">Buscar</button>
+            </div>
+            
+<table id="idTablaInforme2" class="table table-striped table-bordered target">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>rol</th>
+        <th>Modificar/Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>DanielEnciso</td>
+        <td>administrador</td>
+        <td class="col-md-2 col-sm-2"><button type="button" id="btnInforme" class="btn">Modificar</button>
+        <button type="button" id="btnInforme" class="btn">Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+ 
+            
+
+</html>
