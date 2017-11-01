@@ -38,88 +38,92 @@
     </div>
   </div>
 </nav>
-	
 <div class="container">
-<form id="formulario" class="form-horizontal" role="form">
   <div class="row">
-    <div class="Absolute-Center is-Responsive">
-      <div class="col-sm-6 col-md-6 col-md-offset-1">
-        <form action="" id="registroForm">
+    <div class="is-Responsive">
+        <div class="col-sm-4">
+            <div class="form-group input-group">
+                <span class="input-group">Nombre</span>
+                <input class="form-control" type="text" name='nombre' id="nombre" placeholder="usuario"/>
+                <p class="pError" id="pNombre"></p>		
+            </div>
+        
+            <div class="form-group input-group">
+                <span class="input-group">Apellido</span>
+                <input class="form-control" type="text" name='apellido' id="apellido" placeholder="usuario"/>
+		<p class="pError" id="pApellido"></p>			
+            </div>
+        
+            <div class="form-group input-group">
+                <span class="input-group">DNI</span>
+                <input class="form-control" type="text" name='dni' id="dni" placeholder="usuario"/>
+		<p class="pError" id="pDni"></p>			
+            </div>
+        
+            <div class="form-group input-group">
+                <span class="input-group">Telefono</span>
+                <input class="form-control" type="text" name='telefono' id="telefono" placeholder="usuario"/>
+		<p class="pError" id="pTelefono"></p>			
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group input-group">
+                <span class="input-group">E-mail</span>
+                <input class="form-control" type="text" name='email' id="email" placeholder="usuario"/>
+		<p class="pError" id="pEmail"></p>			
+            </div>
+        
+            <div class="form-group input-group">
+                <span class="input-group">Provincia</span>
+                <input class="form-control" type="text" name='provincia' id="provincia" placeholder="usuario"/>
+		<p class="pError" id="pProvincia"></p>			
+            </div>
+        
+            <div class="form-group input-group">
+                <span class="input-group">Localidad</span>
+                <input class="form-control" type="text" name='localidad' id="localidad" placeholder="usuario"/>
+		<p class="pError" id="pLocalidad"></p>			
+            </div>
           
-           <div class="form-group input-group">
-            <span class="input-group">Nombre</span>
-            <input class="form-control" type="text" name='nombre' id="nombre" placeholder="usuario"/>
-			<p class="pError" id="pNombre"></p><br>			
-          </div>
-          
-          <div class="form-group input-group">
-            <span class="input-group">Apellido</span>
-            <input class="form-control" type="text" name='apellido' id="apellido" placeholder="usuario"/>
-			<p class="pError" id="pApellido"></p><br>			
-          </div>
-            
-          <div class="form-group input-group">
-            <span class="input-group">DNI</span>
-            <input class="form-control" type="text" name='dni' id="dni" placeholder="usuario"/>
-			<p class="pError" id="pDni"></p><br>			
-          </div>
-            
-          <div class="form-group input-group">
-            <span class="input-group">Telefono</span>
-            <input class="form-control" type="text" name='telefono' id="telefono" placeholder="usuario"/>
-			<p class="pError" id="pTelefono"></p><br>			
-          </div>
-       </div>  
-       <div class="col-sm-6 col-md-6 col-md-offset-1">
-          <div class="form-group input-group">
-            <span class="input-group">E-mail</span>
-            <input class="form-control" type="text" name='email' id="email" placeholder="usuario"/>
-			<p class="pError" id="pEmail"></p><br>			
-          </div>
-            
-          <div class="form-group input-group">
-            <span class="input-group">Provincia</span>
-            <input class="form-control" type="text" name='provincia' id="provincia" placeholder="usuario"/>
-			<p class="pError" id="pProvincia"></p><br>			
-          </div>
-          
-          <div class="form-group input-group">
-            <span class="input-group">Localidad</span>
-            <input class="form-control" type="text" name='localidad' id="localidad" placeholder="usuario"/>
-			<p class="pError" id="pLocalidad"></p><br>			
-          </div>
-            
-          <div class="form-group input-group">
-            <span class="input-group">Direccion</span>
-            <input class="form-control" type="text" name='direccion' id="direccion" placeholder="usuario"/>
-			<p class="pError" id="pDireccion"></p><br>			
-          </div>
-            
-          <div class="form-group input-group">
-            <span class="input-group">Usuario</span>
-            <input class="form-control" type="text" name='usuario' id="idUsuario" placeholder="usuario"/>
-			<p class="pError" id="pUsuario"></p><br>			
-          </div>
-          <div class="form-group input-group">
-            <span class="input-group">Password</span>
-            <input class="form-control" type="password" name='password' id="idPassword" placeholder="password"/>
-			<p class="pError" id="pPassword"></p><br>		
-          </div>
-            
-          <div class="form-group input-group">
-            <span class="input-group">Confirmar password</span>
-            <input class="form-control" type="password" name='password1' id="idPassword1" placeholder="password"/>
-			<p class="pError" id="pPassword1"></p><br>		
-          </div>
-       </div>     
-          <div class="form-group">
-            <button type="submit" class="btn btn-def btn-block" id="registro">Registrarse</button>
-          </div>
-        </form>        
-       
-    </div>    
-  </div>
-</div>
-            
-
+            <div class="form-group input-group">
+                <span class="input-group">Direccion</span>
+                <input class="form-control" type="text" name='direccion' id="direccion" placeholder="usuario"/>
+		<p class="pError" id="pDireccion"></p>			
+            </div>
+        </div>
+    </div>
+      
+    
+        <div class="col-sm-4">
+            <div class="form-group input-group">
+                <span class="input-group">Usuario</span>
+                <input class="form-control" type="text" name='usuario' id="idUsuario" placeholder="usuario"/>
+		<p class="pError" id="pUsuario"></p>			
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group input-group">
+                <span class="input-group">Password</span>
+                <input class="form-control" type="password" name='password' id="idPassword" placeholder="password"/>
+		<p class="pError" id="pPassword"></p>		
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group input-group">
+                <span class="input-group">Confirmar password</span>
+                <input class="form-control" type="password" name='password1' id="idPassword1" placeholder="password"/>
+                <p class="pError" id="pPassword1"></p>		
+            </div>
+       </div>
+    </div>
+    <div class="row">    
+        <div class="col-sm-2">
+            <div class="form-group">
+                <button type="submit" class="btn btn-def btn-block" id="registro">Registrarse</button>
+            </div>
+        </div>       
+    </div>
+        </div>    
+    
+        </body>
 </html>
