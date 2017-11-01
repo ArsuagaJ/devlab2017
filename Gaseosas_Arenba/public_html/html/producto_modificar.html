@@ -23,7 +23,7 @@ and open the template in the editor.
         
 	<link rel=stylesheet href="../css/style.css">
         <!--<link rel=stylesheet href="../css/producto_agregar.css">-->
-        <script src="../js/producto_baja.js" type="text/javascript"></script>
+        <script src="../js/producto_modificar.js" type="text/javascript"></script>
     </head>
     
     <body>
@@ -39,8 +39,8 @@ and open the template in the editor.
                 <a class="navbar-brand" href="#">Gaseosas Arenba</a>
                 <ul class="nav navbar-nav navbar-left">
                   <li><a href="./producto_agregar.html">Agregar Producto</a></li>
-                  <li><a href="#">Baja Producto</a></li>
-                  <li><a href="./producto_modificar">Modificar Producto</a></li>
+                  <li><a href="./producto_baja">Baja Producto</a></li>
+                  <li><a href="#">Modificar Producto</a></li>
                 </ul>
               </div>
               <div class="collapse navbar-collapse" id="ac_datosUsuario">
@@ -53,9 +53,17 @@ and open the template in the editor.
 
         <div class="container">
             <div class="row">
-                <div class="input-group">
-                    <span class="input-group-addon">Buscar</span>
-                    <input id="filtrar" type="text" class="form-control" placeholder="Ingrese el nombre o descripcion del producto a buscar...">
+                <div class="col-sm-10">
+                    <div class="col-sm-1">
+                        <span class="input-group-addon">Buscar</span>
+                    </div>
+                    <div class="col-sm-11">
+                        <input id="filtrar" type="text" class="form-control" placeholder="Ingrese el nombre o descripcion del producto a buscar...">
+                    </div>
+                </div>
+                
+                <div class="col-sm-2 hidden" id="divBtnModificar">
+                    <button type="button" class="btn btn-primary btn-group" id="btnModificar">Modificar</button>
                 </div>
             </div>
 
@@ -75,7 +83,7 @@ and open the template in the editor.
                       <tbody class="buscar" id="tblResultado">
                         <tr>
                           <td>Televisor Samsung</td>
-                          <td>Led 4k</td>
+                          <td>Led 4k - Super Ultra Mega Copado, de aspecto moderno y le mandamos fruta</td>
                           <td>150000</td>
                           <td>foto000001.jpg</td>
                        </tr>
@@ -119,7 +127,7 @@ and open the template in the editor.
                 </div>
             </div>
             
-            <div class="row">
+            <div class="row" id="ocultar">
                 <!-- creamos el div de la paginacion -->
                 <div class="col-md-12 text-center form-group">
                     <!-- creamos la lista para que puedan visualizarse los numeros de paginacion -->
@@ -128,45 +136,83 @@ and open the template in the editor.
                       <li><a href="#" class="prev_link" style="display: none;">«</a></li><li class="active"><a href="#" class="page_link active">1</a></li><li class=""><a href="#" class="page_link">2</a></li><li><a href="#" class="page_link">3</a></li><li><a href="#" class="next_link">»</a></li></ul>
                 </div>
             </div>
-
-            <!--div del boton CONFIRMAR BAJA -->
+        </div>
+        
+        <!-- div campos a cambiar -->
+        <div id="divCambios" class="container hidden">
             <div class="row">
-                <div class="btn-group form-group col-md-2 hidden" id="divBtnConfirmar">
-                    <!-- no me funciona la ventana de MODAL para confirmar la baja -->
-                    <!-- directamente lo hace -->
-                    <button type="button" class="btn btn-primary" id="btnConfirmar" data-toggle="modal" data-target="#myModal">Confirmar Baja</button>
+                <div class="col-md-6">
+                    <div class="row form-group">
+                        <div class="col-sm-12">
+                            <div class="col-sm-4">
+                                <label class="control-label" for="inpNombreProducto">Nombre del Producto:</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" required id="inpNombreProducto" name="inpNombreProducto" placeholder="Ingrese el nombre del producto">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-sm-12">
+                            <div class="col-sm-4">
+                                <label class="control-label" for="inpPuntos">Puntos de Canje:</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" required id="inpPuntos" name="inpPuntos" placeholder="Cantidad de Puntos" pattern="[0-9]">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-sm-12">
+                            <div class="col-sm-12">
+                                <label class="control-label" for="txtDescripcion">Descripcion:</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <textarea class="form-control" rows="5" id="txtDescripcion" placeholder="Ingrese descripcion del producto" name="txtDescripcion" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong>Subir Imagen</strong> <small></small></div>
+                                <div class="panel-body">
+
+                                    <!-- Formulario con los campos -->
+                                    <h4>Seleccione imagen desde su computadora</h4>
+                                    <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+                                      <div class="form-inline">
+                                        <div class="form-group">
+                                          <input type="file" name="files[]" id="js-upload-files" multiple>
+                                        </div>
+                                        <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Subir Archivo</button>
+                                      </div>
+                                    </form>
+                                    <div class="upload-drop-zone" id="drop-zone">
+                                      O arrastre el archivo aqui
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
-
-                    <!-- Contenido del Modal-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Recuperar su contraseña</h3>
-                      </div>
-                      <div class="modal-body">
-                          <label for="inpEmailBkp">Email:</label>
-                          <input type="email" id="inpEmailBkp" placeholder="usuario@dominio" required>
-                          <div>
-                            <button type="button" class="btn btn-info" id="inpBtnEnviarBkp" data-dismiss="modal">Enviar</button>
-                          </div>
-                          <!--<p>Some text in the modal.</p>-->
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                      </div>
-                    </div>
-
-                  </div>
+        <!-- div boton confirmar/guardar cambios -->
+        <div id="divBtnGuardar" class="container hidden">
+            <div class="row" id="mostrar">
+                <div class="btn-group form-group col-md-2">
+                    <button type="button" class="btn btn-primary" id="btnConfirmar">Guardar Cambios</button>
                 </div>
+            </div>
+        </div>
         
+        <!-- div del mensaje -->
         <div class="container">
-            <!-- div del mensaje -->
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
