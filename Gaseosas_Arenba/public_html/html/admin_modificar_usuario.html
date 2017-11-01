@@ -3,7 +3,7 @@
 <html>
 
 	<head>
-		<title>Gaseosas Arenba - Reportes</title>
+		<title>Gaseosas Arenba - ABM</title>
 		<!-- -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -22,18 +22,14 @@
         <span class="icon-bar"></span>                        
       </button>
       <a class="navbar-brand" href="#">Gaseosa Arenba</a>
+ 
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="representante_codigos_informados.html">Codigos informados</a></li>
-            <li><a href="representante_productos_canjeados.html" class="active">Productos Canjeados</a></li>
-          </ul>
-        </li>
      
-      </ul>
+    <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+      <li><a href="admin_abm.html">Buscar Usuario</a></li>
+      <li><a href="admin_nuevo_usuario.html">Nuevo Usuario</a></li>
+    </ul>
       <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -47,7 +43,7 @@
                                 <div class="row">
                                     <div class="col-lg-8">
                                         <p class="text-left"><strong>Nombre Usuario</strong></p>
-                                        <p class="text-left small">Representante</p>
+                                        <p class="text-left small">Admin</p>
                                       
                                     </div>
                                 </div>
@@ -61,36 +57,44 @@
       </ul>
     </div>
   </div>
-
 </nav>
-      
-            
-            <div >
-                <label><h3>Codigos existentes e informados por los usuarios</h3></label>
-            </div>
-            <div>
-                    <button type="button" class="btn">Informar</button>
-            </div>
-            
-    <table id="idTablaInforme1" class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>Codigo</th>
-        <th>Periodo</th>
-        <th>Usuario</th>
-        <th>Fecha de ingreso</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>4dsafsdf54</td>
-        <td>15/10/2017 - 15/11/2017</td>
-        <td>DanielEnciso</td>
-        <td>29/10/2017</td>
-      </tr>
-    </tbody>
-  </table>
- 
-         
+            <div class="container">
+	
+	<div id="datos">
+			<label class="especial">Nombre</label><br>
+			<label class="especial">Password</label><br>
+			<label class="especial">Rol</label><br>
 
+
+	</div>
+		
+		<button type="button" id="editar" class="btn" >Editar</button><br><br>
+		
+		<form role="form" id="formulario" style='display:none;'> <!--Formulario para ingresar y seleccionar los datos solicitados -->
+			<div>
+				<label> Nombre </label>
+				<input type="text" name="nombre" id="nombre" pattern="[A-Za-z]{3,16}" title="solo se permiten letras, Máximo de caracteres 20" placeholder="se permite un solo nombre" required="true"> <br>
+				<p class="pError" id="pNombre"></p><br>
+			</div>
+                        <div>
+				<label> Password</label>
+				<input type="text" name="apellido" id="apellido" pattern="[A-Za-z]{3,30}" title="solo se permiten letras, Máximo de caracteres 30" placeholder="se permite dos apellidos" required="true"><br>
+				<p class="pError" id="pApellido"></p><br>
+                        </div>
+                        <div>
+				<label> Rol</label>
+				<input type="number" name="dni" id="dni" title="solo se permiten numeros" placeholder="ej:00.000.000" required="true"><br>
+				<p class="pError" id="pDni"></p><br>
+                        </div>
+                    
+		</form>
+		<div id="botones" style='display:none;'>
+			<input class="btn" type="button" name="guardar" id="guardar" value="Guardar">
+			<input class="btn" type="submit" name="cancelar" id="cancelar" value="cancelar">
+		</div>
+	</div>
+            
+
+            
+        </body>
 </html>
