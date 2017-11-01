@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+	<title>Gaseosas Arenba</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+        <!--  jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+        <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+        <!-- Bootstrap Date-Picker Plugin -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <!-- hasta aca lo de abajo es otra cosa -->
+        
+	<link rel=stylesheet href="../css/style.css">
+        <!--<link rel=stylesheet href="../css/producto_agregar.css">-->
+        <script src="../js/producto_baja.js" type="text/javascript"></script>
+    </head>
+    
+    <body>
+        <!--navbar del titulo de la pagina -->
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>                        
+                </button>
+                <a class="navbar-brand" href="#">Gaseosas Arenba</a>
+                <ul class="nav navbar-nav navbar-left">
+                  <li><a href="./producto_agregar.html">Agregar Producto</a></li>
+                  <li><a href="#">Baja Producto</a></li>
+                  <li><a href="./producto_modificar">Modificar Producto</a></li>
+                </ul>
+              </div>
+              <div class="collapse navbar-collapse" id="ac_datosUsuario">
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#"><span class="glyphicon glyphicon-user"></span>EmpleadoXXX</a></li>
+                </ul>
+              </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="input-group">
+                    <span class="input-group-addon">Buscar</span>
+                    <input id="filtrar" type="text" class="form-control" placeholder="Ingrese codigo a buscar...">
+                </div>
+            </div>
+
+            <div class="row">
+                <!--<div class="form-group">
+                <!-- tabla resposive bootstrap, hay que llenarla con los datos que nos trae de la bbd -->
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped table-bordered hidden" id="tblTablaOculta" data-pagination="true" data-only-info-pagination="true">
+                      <thead>
+                       <tr>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Cant. Puntos</th>
+                        <th>Foto</th>
+                       </tr>
+                      </thead>
+                      <tbody class="buscar" id="tblResultado">
+                        <tr>
+                          <td>Televisor Samsung</td>
+                          <td>Led 4k</td>
+                          <td>150000</td>
+                          <td>foto000001.jpg</td>
+                       </tr>
+                       <tr>
+                          <td>Televisor LG</td>
+                          <td>Led 4k</td>
+                          <td>150000</td>
+                          <td>foto000002.jpg</td>
+                       </tr>
+                       <tr>
+                          <td>Televisor Panasonic</td>
+                          <td>Led 4k</td>
+                          <td>150000</td>
+                          <td>foto000003.jpg</td>
+                       </tr>
+                       <tr>
+                          <td>Televisor SUPERTELE</td>
+                          <td>Led 8k</td>
+                          <td>250000</td>
+                          <td>foto000004.jpg</td>
+                       </tr>
+                       <tr>
+                          <td>Televisor MagnetBox</td>
+                          <td>Led 4k</td>
+                          <td>50000</td>
+                          <td>foto000005.jpg</td>
+                       </tr><tr>
+                          <td>Televisor Panafonic Authentic</td>
+                          <td>Led 40k</td>
+                          <td>1500000</td>
+                          <td>foto000006.jpg</td>
+                       </tr>
+                       <tr>
+                          <td>Televisor Sorni</td>
+                          <td>Led 4k</td>
+                          <td>750000</td>
+                          <td>foto000007.jpg</td>
+                       </tr>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- creamos el div de la paginacion -->
+                <div class="col-md-12 text-center form-group">
+                    <!-- creamos la lista para que puedan visualizarse los numeros de paginacion -->
+                  <ul class="pagination pagination-lg pager" id="myPager">
+                      <!-- luego llamamos desde jquery al elemento de lista 'myPager' -->
+                      <li><a href="#" class="prev_link" style="display: none;">«</a></li><li class="active"><a href="#" class="page_link active">1</a></li><li class=""><a href="#" class="page_link">2</a></li><li><a href="#" class="page_link">3</a></li><li><a href="#" class="next_link">»</a></li></ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="btn-group form-group col-md-2 hidden" id="divBtnConfirmar">
+                    <button type="button" class="btn btn-primary" id="btnConfirmar">Confirmar Baja</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <!-- div del mensaje -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="alert alert-info alert-dismissible hidden form-group" role="alert" id="divMensaje">
+                            <button type="button" class="close" data-dismiss="alert" id="btnCerrarAlerta">&times;</button>
+                            <p id="pMensaje"><strong></strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
