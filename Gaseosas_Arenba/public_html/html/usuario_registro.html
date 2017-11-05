@@ -33,7 +33,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="index.html"><span class="glyphicon glyphicon-user"></span> iniciar sesión</a></li>
+        <li><a href="index.html"><span class="glyphicon glyphicon-user"></span> iniciar sesion</a></li>
       </ul>
     </div>
   </div>
@@ -44,50 +44,50 @@
         <div class="col-sm-4">
             <div class="form-group input-group">
                 <span class="input-group">Nombre</span>
-                <input class="form-control" type="text" name='nombre' id="nombre" placeholder="usuario"/>
+                <input class="form-control" type="text" name='nombre' id="nombre" pattern="[A-Za-z]{3,16}" title="solo se permiten letras, Máximo de caracteres 16" placeholder="se permite un solo nombre" required="true"/>
                 <p class="pError" id="pNombre"></p>		
             </div>
         
             <div class="form-group input-group">
                 <span class="input-group">Apellido</span>
-                <input class="form-control" type="text" name='apellido' id="apellido" placeholder="usuario"/>
+                <input class="form-control" type="text" name='apellido' id="apellido" pattern="[A-Za-z]{3,30}" title="solo se permiten letras, Máximo de caracteres 30" placeholder="se permite dos apellidos" required="true"/>
 		<p class="pError" id="pApellido"></p>			
             </div>
         
             <div class="form-group input-group">
                 <span class="input-group">DNI</span>
-                <input class="form-control" type="text" name='dni' id="dni" placeholder="usuario"/>
+                <input class="form-control" type="text" name='dni' id="dni" placeholder="ej:00.000.000" required="true"/>
 		<p class="pError" id="pDni"></p>			
             </div>
         
             <div class="form-group input-group">
                 <span class="input-group">Telefono</span>
-                <input class="form-control" type="text" name='telefono' id="telefono" placeholder="usuario"/>
+                <input class="form-control" type="text" name='telefono' id="telefono" minlength="8" maxlength="10" title="solo se permite numeros, 8 o 10" placeholder="solo ingrese numeros" required="true"/>
 		<p class="pError" id="pTelefono"></p>			
             </div>
         </div>
         <div class="col-sm-4">
             <div class="form-group input-group">
                 <span class="input-group">E-mail</span>
-                <input class="form-control" type="text" name='email' id="email" placeholder="usuario"/>
+                <input class="form-control" type="email" name='email' id="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="debe ingresar email" placeholder="ejemplo@gmail.com" required="true"/>
 		<p class="pError" id="pEmail"></p>			
             </div>
         
             <div class="form-group input-group">
                 <span class="input-group">Provincia</span>
-                <input class="form-control" type="text" name='provincia' id="provincia" placeholder="usuario"/>
+                <input class="form-control" type="text" name='provincia' id="provincia" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Buenos Aires" required="true"/>
 		<p class="pError" id="pProvincia"></p>			
             </div>
         
             <div class="form-group input-group">
                 <span class="input-group">Localidad</span>
-                <input class="form-control" type="text" name='localidad' id="localidad" placeholder="usuario"/>
+                <input class="form-control" type="text" name='localidad' id="localidad" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Monte Grande" required="true"/>
 		<p class="pError" id="pLocalidad"></p>			
             </div>
           
             <div class="form-group input-group">
                 <span class="input-group">Direccion</span>
-                <input class="form-control" type="text" name='direccion' id="direccion" placeholder="usuario"/>
+                <input class="form-control" type="text" name='direccion' id="direccion" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder="Nombre y numero" required="true"/>
 		<p class="pError" id="pDireccion"></p>			
             </div>
         </div>

@@ -1,5 +1,5 @@
 p{
-	font-family: Georgia, "Times New Roman", Times, serif;
+	font-family: emmasophia;
 	text-shadow:#AAA 2px 2px 2px;
 	color: #000000;
 	font-size: 14px;
@@ -58,15 +58,10 @@ p{
 	
 	.salir{
     text-decoration: none;
-    padding: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
     font-family: helvetica;
     font-weight: 300;
     font-size: 18px;
-	
     background-color: #814676;
-    border-radius: 0px;
     border: 3px double #814676;
    
   }
@@ -83,16 +78,14 @@ p{
   
   .boton{
     text-decoration: none;
-    padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+   
     font-family: emmasophia;
     font-weight: 300;
     font-size: 24px;
 	color: #ffffff;
 	text-shadow:#AAA 0px 0px 0px;
     background-color: #9b4b7f;
-    border-radius: 15px;
+    border-radius: 5px;
     border: 3px double #974578;
    
   }

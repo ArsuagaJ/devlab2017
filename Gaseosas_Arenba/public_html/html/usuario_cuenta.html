@@ -62,49 +62,65 @@
 		
 		<button type="button" id="editar" class="btn" >Editar</button><br><br>
 		
-		<form role="form" id="formulario" style='display:none;'> <!--Formulario para ingresar y seleccionar los datos solicitados -->
-			<div>
-				<label> Nombre </label>
-				<input type="text" name="nombre" id="nombre" pattern="[A-Za-z]{3,16}" title="solo se permiten letras, Máximo de caracteres 20" placeholder="se permite un solo nombre" required="true"> <br>
-				<p class="pError" id="pNombre"></p><br>
+		 <!--Formulario para ingresar y seleccionar los datos solicitados -->
+                 <div id="formulario" style='display:none;'>
+                    <div class="col-sm-4">
+                        <div class="form-group input-group">
+				<label> Nombre </label><br>
+				<input type="text" name="nombre" id="nombre" pattern="[A-Za-z]{3,16}" title="solo se permiten letras, Máximo de caracteres 16" placeholder="se permite un solo nombre" required="true">
+				<p class="pError" id="pNombre"></p>
 			</div>
-                        <div>
-				<label> Apellido</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group input-group">
+				<label> Apellido</label><br>
 				<input type="text" name="apellido" id="apellido" pattern="[A-Za-z]{3,30}" title="solo se permiten letras, Máximo de caracteres 30" placeholder="se permite dos apellidos" required="true"><br>
-				<p class="pError" id="pApellido"></p><br>
+				<p class="pError" id="pApellido"></p>
                         </div>
-                        <div>
-				<label> DNI</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group input-group">
+                                <label> DNI</label><br>
 				<input type="number" name="dni" id="dni" title="solo se permiten numeros" placeholder="ej:00.000.000" required="true"><br>
-				<p class="pError" id="pDni"></p><br>
+				<p class="pError" id="pDni"></p>
                         </div>
-                    
-			<div>
-				<label> Telefono</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group input-group">
+                                <label> Telefono</label><br>
 				<input type="number" name="telefono" id="telefono" minlength="8" maxlength="10" title="solo se permite numeros, 8 o 10" placeholder="solo ingrese numeros" required="true"> <br>
-				<p class="pError" id="pTelefono"></p><br>
+				<p class="pError" id="pTelefono"></p>
 			</div>
-			<div>
-				<label> E-mail</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group input-group">
+                                <label> E-mail</label><br>
 				<input type="email" name="email" id="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="debe ingresar email" placeholder="ejemplo@gmail.com" required="true"> <br>
-				<p class="pError" id="pEmail"></p><br>
+				<p class="pError" id="pEmail"></p>
 			</div>
-                        <div>
-				<label> Provincia</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group input-group">
+                                <label> Provincia</label><br>
 				<input type="text" name="provincia" id="provincia" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Buenos Aires" required="true"> <br>
-				<p class="pError" id="pProvincia"></p><br>
+				<p class="pError" id="pProvincia"></p>
 			</div>
-			<div>
-				<label> Localidad</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group input-group">
+				<label> Localidad</label><br>
 				<input type="text" name="localidad" id="localidad" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Monte Grande" required="true"> <br>
-				<p class="pError" id="pLocalidad"></p><br>
+				<p class="pError" id="pLocalidad"></p>
 			</div>
-			<div>
-				<label> Direccion</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group input-group">
+                                <label> Direccion</label><br>
 				<input type="text" name="direccion" id="direccion" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder="Nombre y numero" required="true"> <br>
 				<p class="pError" id="pDireccion"></p><br>
 			</div>
-		</form>
+                    </div>
+                </div>     
 		<div id="botones" style='display:none;'>
 			<input class="btn" type="button" name="guardar" id="guardar" value="Guardar">
 			<input class="btn" type="submit" name="cancelar" id="cancelar" value="cancelar">
