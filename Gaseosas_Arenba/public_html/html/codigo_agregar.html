@@ -8,6 +8,8 @@ and open the template in the editor.
     <head>
 	<title>Gaseosas Arenba</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- el siguiente META es para que se visualicen los caracteres ESPAÑOLES -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
         <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
@@ -61,6 +63,39 @@ and open the template in the editor.
             </div>
         </nav>
 
+        <!-- div general -->
+        <div class="container">
+            <div class="row">
+                <!-- div de la 1era columna -->
+                <div class="col-sm-12">
+                    <div class="col-sm-10">
+                        <input type="file" id="archivo" class="btn btn-primary" data-preview-file-type="any" required="true"><br>
+                        <textarea class="form-control" rows="10" cols="80" id="editor" disabled></textarea>
+                        <br>
+                        <p id="datos"></p>
+                    </div>
+                </div>
+                
+                <!-- div de la 2da columna -->
+                <div class="col-sm-12">
+                    <div class="col-sm-4"> <!-- Fecha Desde -->
+                        <label class="control-label" for="date">Valido Desde:</label>
+                        <input class="form-inline" id="date" name="date" placeholder="MM/DD/YYY" type="date" required="true"/>
+                    </div>
+
+                    <div class="col-sm-4"> <!-- Fecha hasta -->
+                        <label class="control-label requiredField" for="hasta">Valido Hasta:</label>
+                        <input class="form-inline" id="hasta" name="hasta" placeholder="MM/DD/YYY" type="date" required="true"/>
+                    </div>
+
+                    <div class="btn-group form-group col-sm-4">
+                        <button type="button" class="btn btn-primary" id="btnAgregar">Agregar</button>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        
+        <!--
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -76,23 +111,12 @@ and open the template in the editor.
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
                         </div>-->
-                        <div class="form-group col-sm-6"> <!-- Fecha Desde -->
-                            <label class="control-label" for="date">Valido Desde:</label>
-                            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="date"/>
-                        </div>
-
-                        <div class="form-group col-sm-6"> <!-- Fecha hasta -->
-                            <label class="control-label requiredField" for="hasta">Valido Hasta:</label>
-                            <input class="form-control" id="hasta" name="hasta" placeholder="MM/DD/YYY" type="date"/>
-                        </div>
-
-                        <div class="btn-group form-group col-sm-6">
-                            <button type="button" class="btn btn-primary" id="btnAgregar">Agregar</button>
-                        </div>
-                    </form>
+                        
+                    <!--</form>
                 </div>
             </div>
-        </div>
+        </div>-->
+        
         <div class="alert alert-success alert-dismissible hidden" role="alert" id="divMensaje">
             <button type="button" class="close" data-dismiss="alert" id="btnCerrarAlerta">&times;</button>
             <strong>Agregado Correctamente</strong>
