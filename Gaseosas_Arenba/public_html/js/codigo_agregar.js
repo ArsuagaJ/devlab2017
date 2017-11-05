@@ -1,24 +1,4 @@
-$(document).ready(function(){
-    /*var date_input=$('input[name="date"]'); //our date input has the name "date"
-    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    var options={
-        format: 'mm/dd/yyyy',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-    };
-    date_input.datepicker(options);
-      
-    var hasta_input=$('input[name="hasta"]'); //our date input has the name "date"
-    var container2=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    var options2={
-        format: 'mm/dd/yyyy',
-        container: container2,
-        todayHighlight: true,
-        autoclose: true,
-    };
-    hasta_input.datepicker(options2);*/
-    
+$(document).ready(function(){    
     $("#btnAgregar").click(function(){
         $("#divMensaje").removeClass("hidden");
         $("#divMensaje").addClass("visible-block");
@@ -69,6 +49,28 @@ window.addEventListener('load', inicio, false);
         var split = contenidoDelArchivo.split(","); // separamos el contenido del archivo en un array eliminando las comas
         document.getElementById('editor').value=contenidoDelArchivo;
     }
+
+/*var date_input=$('input[name="date"]'); //our date input has the name "date"
+var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+var options={
+    format: 'mm/dd/yyyy',
+    container: container,
+    todayHighlight: true,
+    autoclose: true,
+};
+date_input.datepicker(options);
+      
+var hasta_input=$('input[name="hasta"]'); //our date input has the name "date"
+var container2=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+var options2={
+    format: 'mm/dd/yyyy',
+    container: container2,
+    todayHighlight: true,
+    autoclose: true,
+};
+hasta_input.datepicker(options2);*/
+
+
 
 /*document.getElementById('file-input').addEventListener('change', leerArchivoTxt(this), false);
 

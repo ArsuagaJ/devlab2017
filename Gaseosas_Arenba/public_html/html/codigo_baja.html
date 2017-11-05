@@ -7,6 +7,8 @@ and open the template in the editor.
 <html>
     <head>
 	<title>Gaseosas Arenba</title>
+        <!-- el siguiente META es para que se visualicen los caracteres ESPAÑOLES -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
         <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
@@ -60,10 +62,20 @@ and open the template in the editor.
         </nav>
 
         <!-- campo de busqueda BOOTSTRAP -->
-        <div class="input-group">
-            <span class="input-group-addon">Buscar</span>
-            <input id="filtrar" type="text" class="form-control" placeholder="Ingrese codigo a buscar...">
+        <div class="input-group inner-addon left-addon">
+            <input id="filtrar" type="text" class="form-control" placeholder="Ingrese codigo a buscar..."/>
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search"></i>
+            </span>
         </div>
+        <!--<div class="input-group">
+            <div  class="inner-addon left-addon">
+                    <i class="glyphicon glyphicon-search"></i>
+                    <input type="text" class="form-control" placeholder="Buscar en Empresa">
+              </div>
+            <span class="input-group-addon input-group-lg btn btn-block btn-info">Buscar</span>
+            <input id="filtrar" type="text" class="form-control" placeholder="Ingrese codigo a buscar...">
+        </div>-->
 
         <!--<div class="form-group">
         <!-- tabla resposive bootstrap, hay que llenarla con los datos que nos trae de la bbd -->

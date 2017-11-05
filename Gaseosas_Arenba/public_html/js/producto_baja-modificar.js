@@ -125,64 +125,41 @@ $(document).ready(function(){
             }).hide();
     });
     }(jQuery));
-    
+
     var nombreProducto = "";
     var descProducto = "";
     var totalPuntos = "";
     var fila = "";
+
+    // tomamos los datos de la fila y los cargamos en la funcion que estamos trabajando
     $("#tblTablaOculta").find('tr').click(function(){
         fila = $(this);
         var celdas = this.getElementsByTagName("td");
         nombreProducto = celdas[0].firstChild.nodeValue;
         descProducto = celdas[1].firstChild.nodeValue;
         totalPuntos = celdas[2].firstChild.nodeValue;
-        $("#divBtnModificar").removeClass("hidden");
-        $("#divBtnModificar").addClass("visible-block");
-    });
-    
-    var boton = $("#btnModificar");
-    boton.click(function(){
-        mostrarCambios();
         cargarDatos(nombreProducto,descProducto,totalPuntos);
     });
     
-    $("#btnConfirmar").click(function(){
+    // luego de dar boton "CONFIRMAR se da de baja el producto y se quita de la lista
+    var boton = $("#btnModalBajaConfirmar");
+    boton.click(function(){
         var mensaje = $("#divMensaje");
         mensaje.removeClass("hidden");
         mensaje.addClass("visible-block");
-        $("#pMensaje").text("El producto: '"+nombreProducto+ "' '"+descProducto+"' con un total de '"+totalPuntos+"' se ha modificado Correctamente");
-        ocultarCambios();
-        
+        $("#pMensaje").text("El producto: '"+nombreProducto+ "' '"+descProducto+"' con un total de '"+totalPuntos+"' puntos necesarios para ser canjeados, se ha dado de baja Correctamente");
+        fila.attr("class","hidden");//$(this).parent.attr("class","hidden");
     });
     
     $("#btnCerrarAlerta").click(function(){
         $("#divMensaje").removeClass("visible-block");
         $("#divMensaje").addClass("hidden");
-        ocultarCambios();
     });
 });
 
-
 function cargarDatos(strNombre,strDescripcion,strCantidadPuntos){
+    
     $("#inpNombreProducto").attr("value",strNombre);
     $("#txtDescripcion").text(strDescripcion);
     $("#inpPuntos").attr("value",parseInt(strCantidadPuntos));
-}
-
-function mostrarCambios(){
-    var divCambios = $("#divCambios");
-    var btnGuardar = $("#divBtnGuardar");
-    divCambios.removeClass("hidden");
-    divCambios.addClass("visible-block");
-    btnGuardar.removeClass("hidden");
-    btnGuardar.addClass("visible-block");
-}
-
-function ocultarCambios(){
-    var divCambios = $("#divCambios");
-    var btnGuardar = $("#divBtnGuardar");
-    divCambios.removeClass("visible-block");
-    divCambios.addClass("hidden");
-    btnGuardar.removeClass("visible-block");
-    btnGuardar.addClass("hidden");
 }
