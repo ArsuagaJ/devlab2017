@@ -6,8 +6,8 @@ $(document).ready(function(){
         maxImageHeight: 500
     });
     
-    function($) {
-        'use strict';
+function($){
+    'use strict';
 
         // UPLOAD CLASS DEFINITION
         // ======================
