@@ -75,15 +75,25 @@
             include('./desconexion.php');
         }*/
         
-        function insertar($nomb,$desc,$foto,$punt,$estad){
+        function insertar($nomb,$desc,$foto,$punt,$esta){
+           
             // realizamos la conexion
             include('conexion.php');
-            
+
             //preparamos la consulta insert
-            $statmt = $conn->prepare("INSERT INTO `producto`(`nombre`, `descripcion`, `foto`, `puntos`, `estado`) VALUES ('$nomb','$desc','$foto','$punt','$estad')");
-            
+            $statmt = $conn->prepare("INSERT INTO `producto`(`nombre`, `descripcion`, `foto`, `puntos`, `estado`) VALUES ('$nomb','$desc','$foto','$punt','$esta')");
+
             //ejecutamos el insert
             $statmt->execute();
+            
+            /*}else{
+                echo '<script>';
+                echo 'console.log("No funca")';
+                echo '</script>';
+                
+                echo (filter_input_array($_POST));
+            }*/
+            
             
             // realizamos la desconexion de la BD
             include('desconexion.php');
@@ -113,10 +123,11 @@
     }
     
     // instanciamos un objeto "Producto"
-    $producto = new Producto();
+    //$producto = new Producto();
     
     // llamamos al metodo INSERTAR
     // hay que tomar los datos del campo del html de producto_agregar y pasarlos como parametros aca.
-    $producto->insertar('Tele','Smart','foto00002.jop',15000,true);
+    //$producto->insertar();
     //$producto->cerrarConexionBD();
+    
 ?>
