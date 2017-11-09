@@ -75,6 +75,48 @@
             include('./desconexion.php');
         }*/
         
+        function getProductoByID($id_producto){
+            include './conexion.php';
+
+            $stmt = $conn->prepare("SELECT id_producto, nombre, descripcion, foto, puntos, estado FROM producto WHERE id_producto=:id_producto");
+            $stmt->bindParam(':id_producto', $id_producto);
+            
+            $stmt->execute();
+            
+            $result = $stmt->fetch();
+            
+            
+            return $result;
+        }
+        
+        function getProductoByNameOrDescript($nomb){
+            include './conexion.php';
+
+            $stmt = $conn->prepare("SELECT nombre, descripcion, foto, puntos, estado FROM producto WHERE nombre LIKE ? OR descripcion LIKE ?");
+            $stmt->bindValue(1,"%{$nomb}%", PDO::PARAM_STR);
+            $stmt->bindValue(2,"%{$nomb}%", PDO::PARAM_STR);
+            
+            $stmt->execute();
+            
+            $result = $stmt->fetchAll();
+            
+            return $result;
+        }
+        
+        function getProductos(){
+            
+            include('conexion.php');
+            
+            $sql = 'SELECT id_producto, nombre, descripcion, foto, puntos, estado FROM producto';
+            //$statmt = $conn->prepare($sql); con esta funcion no me funciona...
+            $result = $conn->query($sql);
+            // Extraer los valores de $result
+            $filas = $result->fetchAll();
+            
+            return $filas; // retornamos los valores
+            
+        }
+        
         function insertar($nomb,$desc,$foto,$punt,$esta){
            
             // realizamos la conexion
@@ -100,7 +142,7 @@
         }
                 
         //la funcion que sigue era de prueba
-        function guardarDatos(){
+        /*function guardarDatos(){
             // incluimos el archivo de conexion con los datos y variables del mismo.
             include('conexion.php');
             //$servername = "localhost";$username = "root";$password = "";
@@ -119,7 +161,7 @@
             foreach ($resultado as $row) {
                 echo $row["apellido"];
             }*/
-        }
+        
     }
     
     // instanciamos un objeto "Producto"
@@ -129,5 +171,6 @@
     // hay que tomar los datos del campo del html de producto_agregar y pasarlos como parametros aca.
     //$producto->insertar();
     //$producto->cerrarConexionBD();
+    //$producto->getProductoByID('1');
     
 ?>

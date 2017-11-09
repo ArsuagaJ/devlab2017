@@ -140,6 +140,11 @@ $(document).ready(function(){
         totalPuntos = celdas[2].firstChild.nodeValue;
         cargarDatos(nombreProducto,descProducto,totalPuntos);
     });
+    // tengo que agregarlo aca para que lo tome en todas las filas...
+
+    $("#btnModalModificar").click(function(){
+        cargarDatosDeFila();
+    });
     
     // luego de dar boton "CONFIRMAR se da de baja el producto y se quita de la lista
     var boton = $("#btnModalBajaConfirmar");
@@ -158,8 +163,23 @@ $(document).ready(function(){
 });
 
 function cargarDatos(strNombre,strDescripcion,strCantidadPuntos){
-    
     $("#inpNombreProducto").attr("value",strNombre);
     $("#txtDescripcion").text(strDescripcion);
     $("#inpPuntos").attr("value",parseInt(strCantidadPuntos));
+}
+
+function cargarDatosDeFila(){
+    var nombreProducto = "";
+    var descProducto = "";
+    var totalPuntos = "";
+    var fila = "";
+    // tomamos los datos de la fila y los cargamos en la funcion que estamos trabajando
+    $("#tblTablaOculta").find('tr').click(function(){
+        fila = $(this);
+        var celdas = this.getElementsByTagName("td");
+        nombreProducto = celdas[0].firstChild.nodeValue;
+        descProducto = celdas[1].firstChild.nodeValue;
+        totalPuntos = celdas[2].firstChild.nodeValue;
+        cargarDatos(nombreProducto,descProducto,totalPuntos);
+    });
 }
