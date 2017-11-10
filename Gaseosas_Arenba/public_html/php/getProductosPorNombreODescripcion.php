@@ -15,7 +15,7 @@
     foreach ($resultado as $row) {
     //Guardamos los datos en un array
         $datos = array(
-            'resultado' => 'ok', //este campo creo que esta de mas, pero por las dudas lo dejamos
+            'resultado' => 'ok', //este campo creo que esta de mas, pero por las dudas lo dejamos, creo que es de comprobacion
             'nombre' => $row['nombre'], 
             'descripcion' => $row['descripcion'], 
             'foto' => $row['foto'],
@@ -28,7 +28,6 @@
     
     //Seteamos el header de "content-type" como "JSON" para que jQuery lo reconozca como tal
     header('Content-Type: application/json');
-    
     /*$datos = array(
         'resultado' => 'ok', //este campo creo que esta de mas, pero por las dudas lo dejamos
         'nombre' => $resultado['nombre'], 
@@ -39,7 +38,7 @@
     );*/
 
     //Devolvemos el array pasado a JSON como objeto
-    echo json_encode($resultado, JSON_FORCE_OBJECT);
+    echo json_encode($respuesta, JSON_FORCE_OBJECT);
     
     require_once './desconexion.php'; // cerramos la conexion a la base de datos
 ?>
