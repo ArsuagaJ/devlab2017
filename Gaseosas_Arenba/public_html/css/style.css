@@ -117,3 +117,13 @@ position: absolute;
     padding-bottom: 0px;
     padding-top: 0px;
 }
+
+
+.list-group-item.active
+{
+background-color: #3e1756;
+    
+border-color: #080808;   
+    
+    
+}
