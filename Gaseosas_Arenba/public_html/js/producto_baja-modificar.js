@@ -109,30 +109,17 @@ $(document).ready(function(){
     $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
   
     $('#filtrar').keyup(function(e) {
-        
-        var rex = new RegExp($("#filtrar").val(), 'i');
-        var valorABuscar = $("#filtrar").val();
-        var parametros = {
-                    //"nameDescrip" : rex.test($(this).text())
-            "nameDescrip" : valorABuscar
-        };
         if(e.keyCode === 13) {
-            $.ajax({
-                data:  parametros, // los datos que van a ser recuperados desde el php
-                url:   '../php/getProductosPorNombreODescripcion.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
-                type:  'get'
-            }).done(function(respuesta){
-                //alert(respuesta);
-                if (respuesta[0].resultado === "ok") {
-                    console.log(JSON.stringify(respuesta));
-                    //mostramos la tabla si existe coincidencia
-                    $("#tblTablaOculta").removeClass("hidden");
-                    $("#tblTablaOculta").addClass("visible-block");
-                    $('.buscar tr').show();
-                    generarTabla(respuesta);
-                }
-            });
+            vaciarTabla();
+            ocultarMensaje();
+            realizarBusqueda();
         }
+    });
+    
+    $("#btnFiltroBuscar").click(function(){
+        vaciarTabla();
+        ocultarMensaje();
+        realizarBusqueda();
     });
   
     // funcion para realizar la comparacion de datos con los elementos de la tabla
@@ -195,24 +182,67 @@ $(document).ready(function(){
     // tengo que agregarlo aca para que lo tome en todas las filas...
 
     $("#btnModalModificar").click(function(){
+        alert("hola");
         cargarDatosDeFila();
     });
     
     // luego de dar boton "CONFIRMAR se da de baja el producto y se quita de la lista
     var boton = $("#btnModalBajaConfirmar");
     boton.click(function(){
-        var mensaje = $("#divMensaje");
-        mensaje.removeClass("hidden");
-        mensaje.addClass("visible-block");
+        mostrarDivMensaje();
         $("#pMensaje").text("El producto: '"+nombreProducto+ "' '"+descProducto+"' con un total de '"+totalPuntos+"' puntos necesarios para ser canjeados, se ha dado de baja Correctamente");
         fila.attr("class","hidden");//$(this).parent.attr("class","hidden");
     });
     
     $("#btnCerrarAlerta").click(function(){
-        $("#divMensaje").removeClass("visible-block");
-        $("#divMensaje").addClass("hidden");
+        ocultarMensaje();
     });
 });
+
+function ocultarMensaje(){
+    $("#divMensaje").removeClass("visible-block");
+    $("#divMensaje").addClass("hidden");
+}
+
+function mostrarDivMensaje(){
+    $("#divMensaje").removeClass("hidden");
+    $("#divMensaje").addClass("visible-block");
+}
+
+function vaciarTabla(){
+    $("#tblTablaOculta tr").remove();
+}
+
+function realizarBusqueda(){
+    var rex = new RegExp($("#filtrar").val(), 'i');
+    var valorABuscar = $("#filtrar").val();
+    var parametros = {
+        //"nameDescrip" : rex.test($(this).text())
+        "nameDescrip" : valorABuscar
+    };
+    $.ajax({
+        data:  parametros, // los datos que van a ser recuperados desde el php
+        url:   '../php/getProductosPorNombreODescripcion.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+        type:  'get'
+        }).done(function(respuesta){
+            //alert(respuesta);
+            if(respuesta[0].resultado === "nodata"){
+                mostrarDivMensaje();
+                $("#pMensaje").text("No hay registros con esos datos");
+            }
+            if (respuesta[0].resultado === "ok") {
+                console.log(JSON.stringify(respuesta));
+                //mostramos la tabla si existe coincidencia
+                $("#tblTablaOculta").removeClass("hidden");
+                $("#tblTablaOculta").addClass("visible-block");
+                $('.buscar tr').show();
+                generarTabla(respuesta);
+            }
+            else{
+                console.log("Se ha producido un error con los datos enviados por el servidor");
+            }
+        });
+}
 
 function cargarDatos(strNombre,strDescripcion,strCantidadPuntos){
     $("#inpNombreProducto").attr("value",strNombre);
@@ -232,6 +262,7 @@ function cargarDatosDeFila(){
         nombreProducto = celdas[0].firstChild.nodeValue;
         descProducto = celdas[1].firstChild.nodeValue;
         totalPuntos = celdas[2].firstChild.nodeValue;
+        alert(nombreProducto);
         cargarDatos(nombreProducto,descProducto,totalPuntos);
     });
 }
@@ -242,9 +273,8 @@ function generarTabla(objetoJSON){
     var tbody = tabla.tBodies[0];//Crea un elemento <table>
 
     var longitud = Object.keys(objetoJSON).length;
-    
     // crea las hileras
-    for (var i = 0; i < longitud; i++) {
+    for (var i = 1; i < longitud; i++) {
         var hilera = document.createElement("tr");//Crea las hileras de la tabla
         var celda1 = document.createElement("td");
         var celda2 = document.createElement("td");
@@ -306,6 +336,6 @@ function generarTabla(objetoJSON){
     //actualizarTabla();
 }
 
-function actualizarTabla(){
+/*function actualizarTabla(){
     $("tblTablaOculta").addClass("table table-hover table-striped table-bordered hidden");
-}
+}*/

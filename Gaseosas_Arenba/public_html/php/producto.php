@@ -89,7 +89,7 @@
             return $result;
         }
         
-        function getProductoByNameOrDescript($nomb){
+        function getProductosByNameOrDescript($nomb){
             include './conexion.php';
 
             $stmt = $conn->prepare("SELECT nombre, descripcion, foto, puntos, estado FROM producto WHERE nombre LIKE ? OR descripcion LIKE ?");
