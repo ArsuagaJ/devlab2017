@@ -172,16 +172,19 @@ $(document).ready(function(){
 
     // tomamos los datos de la fila y los cargamos en la funcion que estamos trabajando
     $("#tblTablaOculta").find('tr').click(function(){
-        $("#btnModalModificar").click(function(){
-            alert("hola");
-            cargarDatosDeFila();
-        });
         fila = $(this);
         var celdas = this.getElementsByTagName("td");
         nombreProducto = celdas[0].firstChild.nodeValue;
         descProducto = celdas[1].firstChild.nodeValue;
         totalPuntos = celdas[2].firstChild.nodeValue;
+        alert(descProducto);
+        var nombreBtnModificar = celdas[3].firstChild;
+        var nombreBtnBajaProducto = celdas[3].lastChild;
         cargarDatos(nombreProducto,descProducto,totalPuntos);
+        $("#"+nombreBtnModificar).click(function(){
+            alert("hola");
+            cargarDatosDeFila();
+        });       
     });
     // tengo que agregarlo aca para que lo tome en todas las filas...
     
@@ -209,7 +212,7 @@ function mostrarDivMensaje(){
 }
 
 function vaciarTabla(){
-    $("#tblTablaOculta tr").remove();
+    $("#tblTablaOculta #tblResultado tr").remove();
 }
 
 function realizarBusqueda(){
@@ -284,12 +287,22 @@ function generarTabla(objetoJSON){
         var nombreProducto = objetoJSON[i].nombre;
         var descripcProducto = objetoJSON[i].descripcion;
         var puntos = objetoJSON[i].puntos;
+        
         var foto = objetoJSON[i].foto;
+        var imagen = document.createElement("img");
+        imagen.src = foto;
+        imagen.className = "img-thumbnail";
+        imagen.setAttribute("alt","Vista Previa");
+        imagen.setAttribute("width", "75"); 
+        imagen.setAttribute("height","50");
+        
+        var nombreBtnModalModificar = "btnModalModificar"+i;
+        var nombreBtnModalDarBaja = "btnModalDarBaja"+i;
         
         var botonModificar = document.createElement("button");
         var iconoModifi = document.createElement("i");
         botonModificar.className = "btn btn-warning";
-        botonModificar.setAttribute("id","btnModalModificar");
+        botonModificar.setAttribute("id",nombreBtnModalModificar);
         botonModificar.setAttribute("data-toggle","modal");
         botonModificar.setAttribute("data-target","#modalModificar");
         iconoModifi.className = "glyphicon glyphicon-pencil";
@@ -299,7 +312,7 @@ function generarTabla(objetoJSON){
         var botonBaja = document.createElement("button");
         var iconoBaja = document.createElement("i");
         botonBaja.className = "btn btn-danger";
-        botonBaja.setAttribute("id","btnModalDarBaja");
+        botonBaja.setAttribute("id",nombreBtnModalDarBaja);
         botonBaja.setAttribute("data-toggle","modal");
         botonBaja.setAttribute("data-target","#myModal");
         iconoBaja.className = "glyphicon glyphicon-remove";
@@ -314,7 +327,7 @@ function generarTabla(objetoJSON){
         celda1.appendChild(textoCelda1);
         celda2.appendChild(textoCelda2);
         celda3.appendChild(textoCelda3);
-        celda4.appendChild(textoCelda4);
+        celda4.appendChild(imagen);
         celda5.appendChild(botonModificar);
         celda5.appendChild(botonBaja);
             

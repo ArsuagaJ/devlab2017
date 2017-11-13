@@ -5,6 +5,13 @@
     require_once './conexion.php';
     require_once './producto.php';
     
+    //Filtro anti-XSS
+    /* no parece funcionar, habria que probarlo
+    $caracteres_malos = array("<", ">", "\"", "'", "/", "<", ">", "'", "/");
+    $caracteres_buenos = array("&lt;", "&gt;", "&quot;", "&#x27;", "&#x2F;", "&#060;", "&#062;", "&#039;", "&#047;");
+    // hay que reemplazarlos por el name para evitar Cross Site Scripting
+    $name = str_replace($caracteres_malos, $caracteres_buenos, $name);*/
+    
     $producto = new Producto();
     
     $resultado = $producto->getProductosByNameOrDescript($name);// ejecutamos la consulta y retornamos resultado

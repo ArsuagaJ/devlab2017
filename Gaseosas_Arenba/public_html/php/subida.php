@@ -20,7 +20,7 @@
         }else if ($size > 1024*1024){
             array_push($retorno,array("resultado" => "fallo"));
             array_push($retorno, array("Error, el tamaño máximo permitido es un 1MB"));
-        }else if ($width > 500 || $height > 500){
+        }else if ($width > 2048 || $height > 1024){
             array_push($retorno,array("resultado" => "fallo"));
             array_push($retorno, array("Error la anchura y la altura maxima permitida es 500px"));
         }else if($width < 60 || $height < 60){
