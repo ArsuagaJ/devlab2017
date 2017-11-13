@@ -96,17 +96,13 @@ and open the template in the editor.
                                     <!-- Formulario con los campos -->
                                     <h4>Seleccione imagen desde su computadora</h4>
                                     <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
-                                      <div class="form-inline">
-                                        <div class="form-group">
-                                          <input type="file" name="files[]" id="js-upload-files" multiple>
-                                        </div>
-                                        <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Subir Archivo</button>
-                                      </div>
+                                          <input type="file" name="file" id="file">
                                     </form>
 
                                     <!-- Zona Drop -->
                                     <!--<h4>O arrastre el archivo debajo</h4>-->
                                     <div class="upload-drop-zone" id="drop-zone">
+                                        <div id="muestra"></div>
                                       O arrastre el archivo aqui
                                     </div>
 

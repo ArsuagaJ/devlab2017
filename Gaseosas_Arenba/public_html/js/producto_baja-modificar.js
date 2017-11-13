@@ -172,6 +172,10 @@ $(document).ready(function(){
 
     // tomamos los datos de la fila y los cargamos en la funcion que estamos trabajando
     $("#tblTablaOculta").find('tr').click(function(){
+        $("#btnModalModificar").click(function(){
+            alert("hola");
+            cargarDatosDeFila();
+        });
         fila = $(this);
         var celdas = this.getElementsByTagName("td");
         nombreProducto = celdas[0].firstChild.nodeValue;
@@ -180,11 +184,6 @@ $(document).ready(function(){
         cargarDatos(nombreProducto,descProducto,totalPuntos);
     });
     // tengo que agregarlo aca para que lo tome en todas las filas...
-
-    $("#btnModalModificar").click(function(){
-        alert("hola");
-        cargarDatosDeFila();
-    });
     
     // luego de dar boton "CONFIRMAR se da de baja el producto y se quita de la lista
     var boton = $("#btnModalBajaConfirmar");
