@@ -12,8 +12,6 @@
         $height = $dimensiones[1];
         $carpeta = "../fotos/";
         
-        
-
         if ($tipo != 'image/jpg' && $tipo != 'image/jpeg' && $tipo != 'image/png' && $tipo != 'image/gif'){
             array_push($retorno,array("resultado" => "fallo"));
             array_push($retorno, array("Error, el archivo no es una imagen"));

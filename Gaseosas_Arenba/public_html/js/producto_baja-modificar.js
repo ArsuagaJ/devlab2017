@@ -121,49 +121,6 @@ $(document).ready(function(){
         ocultarMensaje();
         realizarBusqueda();
     });
-  
-    // funcion para realizar la comparacion de datos con los elementos de la tabla
-    /*(function ($) {
-        $('#filtrar').keyup(function () {
-            //mostramos la tabla si existe coincidencia
-            $("#tblTablaOculta").removeClass("hidden");
-            $("#tblTablaOculta").addClass("visible-block");
-            
-            // generamos una expresion regular con nuestro valor del campo buscar
-            var rex = new RegExp($(this).val(), 'i');
-            // lo mostramos a la tabla
-            $('.buscar tr').show();
-            // realizamos un chequeo si existe el valor ingresado con las filas de la tabla
-            $('.buscar tr').filter(function () {
-                //var valor = $(this.text());
-                var parametros = {
-                    "nameDescrip" : rex.test($(this).text())
-                };
-                //return !rex.test($(this).text());
-                
-                return $.ajax({
-                    data:  parametros, // los datos que van a ser recuperados desde el php
-                    url:   '../php/getProductosPorNombreODescripcion.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
-                    type:  'get'
-                    /*beforeSend: function insertar() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
-                            $("#pMensaje").text("Procesando, espere por favor...");
-                    },
-
-                    success:  function (response) {
-                            console.log("success");
-                            $("#pMensaje").text(response);
-                    }*/
- 
-                /*}).done(function(respuesta){
-                    if (respuesta.estado === "ok") {
-			console.log(JSON.stringify(respuesta));
-			//$(".respuesta").html("Servidor:<br><pre>"+JSON.stringify(respuesta, null, 2)+"</pre>");
-                    }
-                });
-                
-            }).hide();
-    });
-    }(jQuery));*/
 
     var nombreProducto = "";
     var descProducto = "";

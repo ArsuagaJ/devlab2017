@@ -1,4 +1,4 @@
-$(document).ready(function(){    
+$(document).ready(function(){  
     $("#btnAgregar").click(function(){
         $("#divMensaje").removeClass("hidden");
         $("#divMensaje").addClass("visible-block");
@@ -9,6 +9,109 @@ $(document).ready(function(){
         $("#divMensaje").addClass("hidden");
     });
     
+    $("#btnAgregar").click(function(){
+        $("#divMensaje").removeClass("hidden");
+        $("#divMensaje").addClass("visible-block");
+        
+        var formData = new FormData($("#frmArchivo")[0]);
+        
+        // RECORDAR AGREGAR EL ATRIBUTO NAME EN EL INPUT DE TIPO
+        // FILE PARA QUE FUNCIONE EL PHP
+									
+      	$.ajax({
+                type:"post",
+                data:formData,
+                //dataType:"json",
+                url:"../php/subirArchivo.php",      					
+                contentType:false,                
+                processData:false,
+                beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
+                    $("#pMensaje").text("Procesando, espere por favor...");
+                }
+            }).done(function(respuesta){      					
+                console.log(respuesta);
+                if(respuesta[0].resultado === "ok"){ // si el resultado es OK, o sea, si se agregó el archivo al server.... lo guardamos en la base
+                    $("#pMensaje").text("Se ha agregado correctamente el archivo de codigos..");
+                    var fechaDesde = $("#date").val();
+                    var fechaHasta = $("#hasta").val();
+                    var descrip = $("#txtDescript").val();
+                    var rutaArchivo = respuesta[1]; // en el indice 1 esta la ruta recuperada del php
+                    var estado = true;
+                    
+                    var parametros = {
+                        "fechaDesde" : fechaDesde,
+                        "fechaHasta" : fechaHasta,
+                        "descrip" : descrip,
+                        "path" : rutaArchivo,
+                        "estado" : estado
+                    };
+                    // generamos un ajax nuevo con los valores de los campos
+                    $.ajax({
+                        data:  parametros, // los datos que van a ser recuperados desde el php
+                        url:   '../php/insertListaCodigo.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+                        type:  'post',
+                        success:  function (response) {
+                            console.log(response);
+                            $("#pMensaje").text(response);    
+                        }
+                    }).done(function(respuesta){
+                        $("#pMensaje").text("OK, se agregado correctamente el archivo");
+                    });
+                }
+                else{
+                    $("#pMensaje").text(respuesta[1][0]); // si nos dio algun error PHP, lo mostramos como un mensaje en la pagina
+                }
+            });
+        });
+        //tomamos los datos del archivo
+        //var formData = new FormData($("#js-upload-form")[0]);
+        //var ruta = "../php/subida.php"; // lo enviamos al php para que lo suba a la carpeta "fotos"
+        
+        /*var nombre = $("#inpNombreProducto").val();
+        var descrip = $("#txtDescripcion").val();
+        var puntos = $("#inpPuntos").val();
+        var rutaImagen = response[1]; // en el indice 1 esta la ruta recuperada del php
+        var estado = true;
+        
+        $.ajax({
+            /*url: ruta,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            beforeSend: function insertar() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
+                $("#pMensaje").text("Procesando, espere por favor...");
+            }
+        }).done(function(response){ //recuperamos el valor de la ruta de destino '../fotos/nombre_archivo
+            console.log(response); //lo grabamos en la consola
+                       
+            // si se subio la imagen, tomamos los valores de los campos
+            
+            
+            // los siguientes valores son los que le pasamos al php con ajax que luego los recuperara con el nombre descriptivo
+            // que le hayamos puesto.. en este caso
+            // "nombre", "descrip","punt","img","estado"
+            var parametros = {
+                "nombre" : nombre,
+                "descrip" : descrip,
+                "punt" : puntos,
+                "img" : rutaImagen,
+                "estado" : estado
+            };
+            // generamos un ajax nuevo con los valores de los campos
+            $.ajax({
+                data:  parametros, // los datos que van a ser recuperados desde el php
+                url:   '../php/insertProductos.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+                type:  'post',
+                success:  function (response) {
+                    console.log(response);
+                    $("#pMensaje").text(response);    
+                }
+            }).done(function(respuesta){
+                $("#pMensaje").text("OK, se agregado correctamente el archivo");
+            });
+        });
+    });*/
 });
 
 // lo siguiente tengo que dejarlo sin JQUERY porque no me funciona si lo tiene.
@@ -19,7 +122,7 @@ window.addEventListener('load', inicio, false);
      el usuario seleccione un archivo del disco duro:
      */
     function inicio() {
-        document.getElementById('archivo').addEventListener('change', cargar, false);               
+        document.getElementById('file').addEventListener('change', cargar, false);               
     }
 
     /*
@@ -33,7 +136,7 @@ window.addEventListener('load', inicio, false);
      */
     function cargar(ev) {
         document.getElementById('datos').innerHTML='Nombre del archivo:'+ev.target.files[0].name+'<br>'+
-                                                   'Tamaño del archivo:'+ev.target.files[0].size+'<br>'+  
+                                                   'Tamaño del archivo en bytes:'+ev.target.files[0].size+'<br>'+  
                                                    'Tipo MIME:'+ev.target.files[0].type;
         var arch=new FileReader();
         arch.addEventListener('load',leer,false);
@@ -46,48 +149,13 @@ window.addEventListener('load', inicio, false);
     function leer(ev) {
         // id=editor es el TEXTAREA
         var contenidoDelArchivo = ev.target.result; //almacenamos el contenido en la variable "contenidoDelArchivo"
-        var split = contenidoDelArchivo.split(","); // separamos el contenido del archivo en un array eliminando las comas
-        document.getElementById('editor').value=contenidoDelArchivo;
+        var split = contenidoDelArchivo.split(",");// separamos el contenido del archivo en un array eliminando las comas
+        var stringDeCodigos = ""; // creamos un string que será el que muestre los codigos a importar
+        var longit = split.length;
+        for(var i = 0; i < longit ; i++){
+            var temp = split[i].trim()+", ";
+            stringDeCodigos = stringDeCodigos+temp;
+        }
+        
+        document.getElementById('editor').value=stringDeCodigos; // la mostramos en el textarea de previsualizacion
     }
-
-/*var date_input=$('input[name="date"]'); //our date input has the name "date"
-var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-var options={
-    format: 'mm/dd/yyyy',
-    container: container,
-    todayHighlight: true,
-    autoclose: true,
-};
-date_input.datepicker(options);
-      
-var hasta_input=$('input[name="hasta"]'); //our date input has the name "date"
-var container2=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-var options2={
-    format: 'mm/dd/yyyy',
-    container: container2,
-    todayHighlight: true,
-    autoclose: true,
-};
-hasta_input.datepicker(options2);*/
-
-
-
-/*document.getElementById('file-input').addEventListener('change', leerArchivoTxt(this), false);
-
-function leerArchivoTxt(file){
-    var archivo = file.target.files[0];
-    if (!archivo) {
-    return;
-    }
-    var lector = new FileReader();
-    lector.onload = function(file) {
-        var contenido = file.target.result;
-        mostrarContenido(contenido);
-    };
-    lector.readAsText(file);
-}
-
-function mostrarContenido(contenido) {
-  var elemento = document.getElementById('contenido-archivo');
-  elemento.innerHTML = contenido;
-}*/
