@@ -106,7 +106,7 @@ $(document).ready(function(){
     
     /* en este caso, llamamos al elemento 'tbody' de nombre 'myTable' para ocultar los registros y mostrarlos de acuerdo al selector de paginacion en que estamos, en principio es 1...
     Luego llamamos al selector de nombre 'myPager' y mostramos los controles necesarios para ejecutarlo */
-    $('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
+    $('#tblTablaOculta').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
   
     $('#filtrar').keyup(function(e) {
         if(e.keyCode === 13) {
@@ -199,15 +199,15 @@ $(document).ready(function(){
     });
 });
 
-function ocultarMensaje(){
+/*function ocultarMensaje(){
     $("#divMensaje").removeClass("visible-block");
     $("#divMensaje").addClass("hidden");
-}
+}*/
 
-function mostrarDivMensaje(){
+/*function mostrarDivMensaje(){
     $("#divMensaje").removeClass("hidden");
     $("#divMensaje").addClass("visible-block");
-}
+}*/
 
 function vaciarTabla(){
     $("#tblTablaOculta tr").remove();
