@@ -1,8 +1,4 @@
 $(document).ready(function(){  
-    $("#btnAgregar").click(function(){
-        $("#divMensaje").removeClass("hidden");
-        $("#divMensaje").addClass("visible-block");
-    });
     
     $("#btnCerrarAlerta").click(function(){
         $("#divMensaje").removeClass("visible-block");
@@ -13,12 +9,18 @@ $(document).ready(function(){
         $("#divMensaje").removeClass("hidden");
         $("#divMensaje").addClass("visible-block");
         
+        //Añadimos la imagen de carga en el contenedor
+        $('#content').html('<div><img src="../imgs/loading.gif"/></div>');
+
+        var page = $(this).attr('data');        
+        var dataString = 'page='+page;
+        
         var formData = new FormData($("#frmArchivo")[0]);
         
         // RECORDAR AGREGAR EL ATRIBUTO NAME EN EL INPUT DE TIPO
         // FILE PARA QUE FUNCIONE EL PHP
 									
-      	$.ajax({
+      	$.ajax({ // ajax para subir el archivo al server
                 type:"post",
                 data:formData,
                 //dataType:"json",
@@ -27,9 +29,14 @@ $(document).ready(function(){
                 processData:false,
                 beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
                     $("#pMensaje").text("Procesando, espere por favor...");
+                },
+                success: function(data){
+                    //Cargamos finalmente el contenido deseado
+                    $('#content').fadeIn(1000).html(data);// con esto deberiamos mostrar el icono de carga de datos de "imgs/loading.gif"
                 }
-            }).done(function(respuesta){      					
-                console.log(respuesta);
+            }).done(function(respuesta){ // una vez que se haya finalizado la operacion de ajax, guardamos el listado de codigo en la base de datos para recuperar el id que se genere      					
+                //console.log(respuesta);
+                
                 if(respuesta[0].resultado === "ok"){ // si el resultado es OK, o sea, si se agregó el archivo al server.... lo guardamos en la base
                     $("#pMensaje").text("Se ha agregado correctamente el archivo de codigos..");
                     var fechaDesde = $("#date").val();
@@ -45,17 +52,39 @@ $(document).ready(function(){
                         "path" : rutaArchivo,
                         "estado" : estado
                     };
-                    // generamos un ajax nuevo con los valores de los campos
+                    // generamos un ajax nuevo con los valores de los campos que se guardaran en la tabla "lista de codigos"
                     $.ajax({
                         data:  parametros, // los datos que van a ser recuperados desde el php
                         url:   '../php/insertListaCodigo.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
                         type:  'post',
-                        success:  function (response) {
-                            console.log(response);
-                            $("#pMensaje").text(response);    
+                        beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
+                            $("#pMensaje").text("Subiendo archivo de códigos, aguarde unos instantes...");
+                        },
+                        success:  function (response) { //al responder, primero se ejecuta el success y luego el .done
+
+                            var idUsuario = 1; // hardcodeamos el id de usuario hasta tener las sesiones..
+                            var arrDataAjax = []; //creamos una variable que pasaremos con los parametros a guardar
+                            var textLeido = leerArchivo(); //leemos el archivo para pasar los codigos
+                            arrDataAjax.push(textLeido);
+                            arrDataAjax.push(response); // aca agregamos el id del registro de la lista de codigos
+                            arrDataAjax.push(idUsuario);
+                            
+                            $.ajax({ //y por ultimo generamos un ajax nuevo para guardar los codigos finales en la base de datos en la tabla referente a los codigos.
+                                type: "POST",
+                                data: {'arrayData':JSON.stringify(arrDataAjax)},//capturo array para tomar desde el php
+                                url: "../php/insertCodigos.php",
+                                beforeSend: function procesandoCodigos(){
+                                    $("#pMensaje").text("Guardando Codigos..."); // mensaje mientras se van agregando los codigos..
+                                }
+                            }).done(function(result){
+                                $("#pMensaje").text("Se han agregado correctamente los codigos");
+                                console.log("Archivo Procesado Correctamente");
+                                //console.log(result);
+                            });
                         }
                     }).done(function(respuesta){
                         $("#pMensaje").text("OK, se agregado correctamente el archivo");
+                        //console.log(respuesta);
                     });
                 }
                 else{
@@ -63,57 +92,15 @@ $(document).ready(function(){
                 }
             });
         });
-        //tomamos los datos del archivo
-        //var formData = new FormData($("#js-upload-form")[0]);
-        //var ruta = "../php/subida.php"; // lo enviamos al php para que lo suba a la carpeta "fotos"
-        
-        /*var nombre = $("#inpNombreProducto").val();
-        var descrip = $("#txtDescripcion").val();
-        var puntos = $("#inpPuntos").val();
-        var rutaImagen = response[1]; // en el indice 1 esta la ruta recuperada del php
-        var estado = true;
-        
-        $.ajax({
-            /*url: ruta,
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            beforeSend: function insertar() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
-                $("#pMensaje").text("Procesando, espere por favor...");
-            }
-        }).done(function(response){ //recuperamos el valor de la ruta de destino '../fotos/nombre_archivo
-            console.log(response); //lo grabamos en la consola
-                       
-            // si se subio la imagen, tomamos los valores de los campos
-            
-            
-            // los siguientes valores son los que le pasamos al php con ajax que luego los recuperara con el nombre descriptivo
-            // que le hayamos puesto.. en este caso
-            // "nombre", "descrip","punt","img","estado"
-            var parametros = {
-                "nombre" : nombre,
-                "descrip" : descrip,
-                "punt" : puntos,
-                "img" : rutaImagen,
-                "estado" : estado
-            };
-            // generamos un ajax nuevo con los valores de los campos
-            $.ajax({
-                data:  parametros, // los datos que van a ser recuperados desde el php
-                url:   '../php/insertProductos.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
-                type:  'post',
-                success:  function (response) {
-                    console.log(response);
-                    $("#pMensaje").text(response);    
-                }
-            }).done(function(respuesta){
-                $("#pMensaje").text("OK, se agregado correctamente el archivo");
-            });
-        });
-    });*/
 });
 
+function leerArchivo(){
+    var textLeido = $("#editor").val();
+    var split = textLeido.split(",");// separamos el contenido del archivo en un array eliminando las comas
+    return split;
+}
+
+// a continuacion viene el codigo del event listener para mostrar el contenido del archivo en campo TEXTAREA para eso...
 // lo siguiente tengo que dejarlo sin JQUERY porque no me funciona si lo tiene.
 window.addEventListener('load', inicio, false);
 
@@ -158,4 +145,5 @@ window.addEventListener('load', inicio, false);
         }
         
         document.getElementById('editor').value=stringDeCodigos; // la mostramos en el textarea de previsualizacion
+        //return stringDeCodigos;
     }

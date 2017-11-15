@@ -6,7 +6,6 @@ $(document).ready(function(){
         maxImageHeight: 500
     });*/
     
-    
     $("#btnAgregar").click(function(){
         
         $("#divMensaje").removeClass("hidden");
@@ -23,6 +22,7 @@ $(document).ready(function(){
             processData: false,
             beforeSend: function insertar() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
                 $("#pMensaje").text("Procesando, espere por favor...");
+                
             }/*,
             success: function(response){
                 $("#pMensaje").text(response);
