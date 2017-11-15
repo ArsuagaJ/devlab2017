@@ -3,9 +3,8 @@
     // ejemplo, en el archivo 'producto_agregar.js' nombramos el valor de la variable 'descripcion' de la forma 'descrip'
     $data = json_decode(filter_input(INPUT_POST,'arrayData'));
     $arrayCodigos = $data[0];
-    $idUsuario = $data[2];
     $idListaCodigo = $data[1];
-    $estadoCanje = true;
+    $estadoCanje = false;
 
     //include('./conexion.php');
     include('./codigo.php');
@@ -15,8 +14,8 @@
     
     $largo = sizeOf($arrayCodigos);
     try{
-        for($i = 0; $i < $largo; ++$i) {
-            $codigo->insertarCodigo($arrayCodigos[$i],$estadoCanje,$idListaCodigo,$idUsuario);
+        for($i = 0; $i < $largo; $i++) {
+            $codigo->insertarCodigo($arrayCodigos[$i],$estadoCanje,$idListaCodigo);
         }
     }catch (PDOExepction $e){
         print "Error!: " . $e->getMessage();

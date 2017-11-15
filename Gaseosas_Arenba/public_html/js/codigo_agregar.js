@@ -35,7 +35,7 @@ $(document).ready(function(){
                     $('#content').fadeIn(1000).html(data);// con esto deberiamos mostrar el icono de carga de datos de "imgs/loading.gif"
                 }
             }).done(function(respuesta){ // una vez que se haya finalizado la operacion de ajax, guardamos el listado de codigo en la base de datos para recuperar el id que se genere      					
-                //console.log(respuesta);
+                console.log(respuesta);
                 
                 if(respuesta[0].resultado === "ok"){ // si el resultado es OK, o sea, si se agregó el archivo al server.... lo guardamos en la base
                     $("#pMensaje").text("Se ha agregado correctamente el archivo de codigos..");
@@ -60,11 +60,11 @@ $(document).ready(function(){
                         beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
                             $("#pMensaje").text("Subiendo archivo de códigos, aguarde unos instantes...");
                         },
-                        success:  function (response) { //al responder, primero se ejecuta el success y luego el .done
-
-                            var idUsuario = 1; // hardcodeamos el id de usuario hasta tener las sesiones..
+                        success:  function (response){ //al responder, primero se ejecuta el success y luego el .done
+                            console.log(response);
+                            var idUsuario = '1'; // hardcodeamos el id de usuario hasta tener las sesiones..
                             var arrDataAjax = []; //creamos una variable que pasaremos con los parametros a guardar
-                            var textLeido = leerArchivo(); //leemos el archivo para pasar los codigos
+                            var textLeido = leerArchivo();//leemos el archivo para pasar los codigos
                             arrDataAjax.push(textLeido);
                             arrDataAjax.push(response); // aca agregamos el id del registro de la lista de codigos
                             arrDataAjax.push(idUsuario);
@@ -77,6 +77,9 @@ $(document).ready(function(){
                                     $("#pMensaje").text("Guardando Codigos..."); // mensaje mientras se van agregando los codigos..
                                 }
                             }).done(function(result){
+                                if(result === 0){
+                                    alert("rrorr");
+                                }
                                 $("#pMensaje").text("Se han agregado correctamente los codigos");
                                 console.log("Archivo Procesado Correctamente");
                                 //console.log(result);
@@ -96,7 +99,11 @@ $(document).ready(function(){
 
 function leerArchivo(){
     var textLeido = $("#editor").val();
-    var split = textLeido.split(",");// separamos el contenido del archivo en un array eliminando las comas
+    var split = textLeido.split(", ");// separamos el contenido del archivo en un array eliminando las comas
+    split.pop(); //esto es bien a lo mono, pero necesito eliminar el último registro, sino lo agrega como registro vacio en la BDD
+    // A
+    // T
+    // R
     return split;
 }
 

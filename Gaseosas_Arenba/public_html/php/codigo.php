@@ -59,12 +59,12 @@
             }
         }*/
         
-        function insertarCodigo($code,$estado_canje,$id_lista_codigo,$id_usuario){
+        function insertarCodigo($code,$estado_canje,$id_lista_codigo){
             include('./conexion.php');
             //$ultimoId; // declaramos una variable que sera el ID insertado
             try{
                 //preparamos la consulta insert
-                $statmt = $conn->prepare("INSERT INTO `codigo`(`codigo`, `estado_canje`, `id_lista_codigo`, `id_usuario`) VALUES ('$code','$estado_canje','$id_lista_codigo','$id_usuario')");
+                $statmt = $conn->prepare("INSERT INTO `codigo`(`codigo`, `estado_canje`, `id_lista_codigo`) VALUES ('$code','$estado_canje','$id_lista_codigo')");
                 try { 
                     $conn->beginTransaction(); 
                      //ejecutamos el insert
