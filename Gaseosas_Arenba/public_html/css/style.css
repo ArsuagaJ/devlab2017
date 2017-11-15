@@ -127,3 +127,15 @@ border-color: #080808;
     
     
 }
+
+table{
+    text-align: center;
+    align-content: center;
+    align-self: center;
+    align-items: center;
+}
+
+th{
+    text-align: center;
+    align-content: center;
+}

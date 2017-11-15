@@ -14,24 +14,6 @@ and open the template in the editor.
         <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
         <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
-                <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-		<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-        
-        <!--  jQuery -->
-        <!--<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-        <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-        <!--<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
-
-        <!-- Bootstrap Date-Picker Plugin -->
-        <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-
-        
-        <!-- hasta aca lo de abajo es otra cosa -->
         
         <script src="../js/codigo_agregar.js"></script>
 	<link rel=stylesheet href="../css/style.css">
@@ -50,9 +32,8 @@ and open the template in the editor.
                 </button>
                 <a class="navbar-brand" href="#">Gaseosas Arenba</a>
                 <ul class="nav navbar-nav navbar-left">
-                  <li><a href="#">Agregar Codigo</a></li>
-                  <li><a href="./codigo_baja.html">Baja Codigo</a></li>
-                  <li><a href="./codigo_modificar.html">Modificar Codigo</a></li>
+                  <li><a href="#">Agregar Codigos</a></li>
+                  <li><a href="./codigo_baja-modificar.html">Baja/Modificacion Codigos</a></li>
                 </ul>
               </div>
               <div class="collapse navbar-collapse" id="ac_datosUsuario">
@@ -62,64 +43,83 @@ and open the template in the editor.
               </div>
             </div>
         </nav>
-
-        <!-- div general -->
+        
         <div class="container">
             <div class="row">
-                <!-- div de la 1era columna -->
-                <div class="col-sm-12">
-                    <div class="col-sm-10">
-                        <input type="file" id="archivo" class="btn btn-primary" data-preview-file-type="any" required="true"><br>
-                        <textarea class="form-control" rows="10" cols="80" id="editor" disabled></textarea>
-                        <br>
-                        <p id="datos"></p>
+                <!-- div del boton archivo, y los datos del archivo-->
+                <div class="col-sm-4">
+                    <!-- div de la fila con el boton -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form action="" method="post" enctype="multipart/form-data" id="frmArchivo">
+                                <input type="file" id="file" name="file" accept="text/plain" class="btn btn-primary" required><br>
+                                <label>Datos del archivo:</label>
+                                <p id="datos"></p>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- div de la 2da columna -->
-                <div class="col-sm-12">
-                    <div class="col-sm-4"> <!-- Fecha Desde -->
-                        <label class="control-label" for="date">Valido Desde:</label>
-                        <input class="form-inline" id="date" name="date" placeholder="MM/DD/YYY" type="date" required="true"/>
+                <!-- div del input de carga de descripcion del archivo -->
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <textarea class="form-control" rows="5" cols="10" id="txtDescript" placeholder="Ingrese descripcion del archivo.."></textarea>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        
+        <br>
 
-                    <div class="col-sm-4"> <!-- Fecha hasta -->
-                        <label class="control-label requiredField" for="hasta">Valido Hasta:</label>
-                        <input class="form-inline" id="hasta" name="hasta" placeholder="MM/DD/YYY" type="date" required="true"/>
-                    </div>
-
+        <!-- div general de las fechas y la muestra del archivo subido -->
+        <div class="container">
+            <!-- div de los datos del archivo -->
+            <div class="row">
+                <div class="col-sm-4">
+                    <!-- Fecha Desde -->
+                        <div class="col-sm-12"> 
+                            <label class="control-label" for="date">Valido Desde:</label>
+                            <input class="form-group" id="date" name="date" placeholder="MM/DD/YYY" type="date" required/>
+                        </div>
+                    
+                        <!-- Fecha hasta -->
+                        <div class="col-sm-12">
+                            <label class="control-label requiredField" for="hasta">Valido Hasta:</label>
+                            <input class="form-group" id="hasta" name="hasta" placeholder="MM/DD/YYY" type="date" required/>
+                        </div>
+                </div>
+                <div class="col-sm-4">
+                    <label>Listado de codigos del archivo:</label>
+                    <textarea class="form-control" rows="5" cols="30" id="editor" disabled></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <!-- div del boton agregar -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
                     <div class="btn-group form-group col-sm-4">
                         <button type="button" class="btn btn-primary" id="btnAgregar">Agregar</button>
                     </div>
                 </div>
-            </div>  
+            </div>
         </div>
-        
-        <!--
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <form class="form-horizontal" role="form">
-                        <div class="form-inline">
-                            <label for="codigoInpArchivo">Seleccione Codigos:</label>
-                            <input id="codigoInpArchivo" type="file" class="btn btn-primary" data-preview-file-type="any">
+                
+        <!-- div del mensaje -->
+        <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="alert alert-success hidden form-group" role="alert" id="divMensaje">
+                            <button type="button" class="close" data-dismiss="alert" id="btnCerrarAlerta">&times;</button>
+                            <p id="pMensaje"><strong></strong></p>
                         </div>
-
-                        <!--<div class="input-group date" id="example">
-                            <input type="text" class="form-control" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>-->
-                        
-                    <!--</form>
+                    </div>
                 </div>
             </div>
-        </div>-->
-        
-        <div class="alert alert-success alert-dismissible hidden" role="alert" id="divMensaje">
-            <button type="button" class="close" data-dismiss="alert" id="btnCerrarAlerta">&times;</button>
-            <strong>Agregado Correctamente</strong>
         </div>
     </body>
 </html>

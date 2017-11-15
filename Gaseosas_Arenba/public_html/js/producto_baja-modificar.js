@@ -121,49 +121,6 @@ $(document).ready(function(){
         ocultarMensaje();
         realizarBusqueda();
     });
-  
-    // funcion para realizar la comparacion de datos con los elementos de la tabla
-    /*(function ($) {
-        $('#filtrar').keyup(function () {
-            //mostramos la tabla si existe coincidencia
-            $("#tblTablaOculta").removeClass("hidden");
-            $("#tblTablaOculta").addClass("visible-block");
-            
-            // generamos una expresion regular con nuestro valor del campo buscar
-            var rex = new RegExp($(this).val(), 'i');
-            // lo mostramos a la tabla
-            $('.buscar tr').show();
-            // realizamos un chequeo si existe el valor ingresado con las filas de la tabla
-            $('.buscar tr').filter(function () {
-                //var valor = $(this.text());
-                var parametros = {
-                    "nameDescrip" : rex.test($(this).text())
-                };
-                //return !rex.test($(this).text());
-                
-                return $.ajax({
-                    data:  parametros, // los datos que van a ser recuperados desde el php
-                    url:   '../php/getProductosPorNombreODescripcion.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
-                    type:  'get'
-                    /*beforeSend: function insertar() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
-                            $("#pMensaje").text("Procesando, espere por favor...");
-                    },
-
-                    success:  function (response) {
-                            console.log("success");
-                            $("#pMensaje").text(response);
-                    }*/
- 
-                /*}).done(function(respuesta){
-                    if (respuesta.estado === "ok") {
-			console.log(JSON.stringify(respuesta));
-			//$(".respuesta").html("Servidor:<br><pre>"+JSON.stringify(respuesta, null, 2)+"</pre>");
-                    }
-                });
-                
-            }).hide();
-    });
-    }(jQuery));*/
 
     var nombreProducto = "";
     var descProducto = "";
@@ -177,14 +134,16 @@ $(document).ready(function(){
         nombreProducto = celdas[0].firstChild.nodeValue;
         descProducto = celdas[1].firstChild.nodeValue;
         totalPuntos = celdas[2].firstChild.nodeValue;
+        alert(descProducto);
+        var nombreBtnModificar = celdas[3].firstChild;
+        var nombreBtnBajaProducto = celdas[3].lastChild;
         cargarDatos(nombreProducto,descProducto,totalPuntos);
+        $("#"+nombreBtnModificar).click(function(){
+            alert("hola");
+            cargarDatosDeFila();
+        });       
     });
     // tengo que agregarlo aca para que lo tome en todas las filas...
-
-    $("#btnModalModificar").click(function(){
-        alert("hola");
-        cargarDatosDeFila();
-    });
     
     // luego de dar boton "CONFIRMAR se da de baja el producto y se quita de la lista
     var boton = $("#btnModalBajaConfirmar");
@@ -210,7 +169,7 @@ $(document).ready(function(){
 }*/
 
 function vaciarTabla(){
-    $("#tblTablaOculta tr").remove();
+    $("#tblTablaOculta #tblResultado tr").remove();
 }
 
 function realizarBusqueda(){
@@ -285,12 +244,22 @@ function generarTabla(objetoJSON){
         var nombreProducto = objetoJSON[i].nombre;
         var descripcProducto = objetoJSON[i].descripcion;
         var puntos = objetoJSON[i].puntos;
+        
         var foto = objetoJSON[i].foto;
+        var imagen = document.createElement("img");
+        imagen.src = foto;
+        imagen.className = "img-thumbnail";
+        imagen.setAttribute("alt","Vista Previa");
+        imagen.setAttribute("width", "75"); 
+        imagen.setAttribute("height","50");
+        
+        var nombreBtnModalModificar = "btnModalModificar"+i;
+        var nombreBtnModalDarBaja = "btnModalDarBaja"+i;
         
         var botonModificar = document.createElement("button");
         var iconoModifi = document.createElement("i");
         botonModificar.className = "btn btn-warning";
-        botonModificar.setAttribute("id","btnModalModificar");
+        botonModificar.setAttribute("id",nombreBtnModalModificar);
         botonModificar.setAttribute("data-toggle","modal");
         botonModificar.setAttribute("data-target","#modalModificar");
         iconoModifi.className = "glyphicon glyphicon-pencil";
@@ -300,7 +269,7 @@ function generarTabla(objetoJSON){
         var botonBaja = document.createElement("button");
         var iconoBaja = document.createElement("i");
         botonBaja.className = "btn btn-danger";
-        botonBaja.setAttribute("id","btnModalDarBaja");
+        botonBaja.setAttribute("id",nombreBtnModalDarBaja);
         botonBaja.setAttribute("data-toggle","modal");
         botonBaja.setAttribute("data-target","#myModal");
         iconoBaja.className = "glyphicon glyphicon-remove";
@@ -315,7 +284,7 @@ function generarTabla(objetoJSON){
         celda1.appendChild(textoCelda1);
         celda2.appendChild(textoCelda2);
         celda3.appendChild(textoCelda3);
-        celda4.appendChild(textoCelda4);
+        celda4.appendChild(imagen);
         celda5.appendChild(botonModificar);
         celda5.appendChild(botonBaja);
             

@@ -11,13 +11,9 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
-                <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
-                <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
-                <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
-                <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-		<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-        <!-- hasta aca lo de abajo es otra cosa -->
+        <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
+        <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
+        <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
         
 	<link rel=stylesheet href="../css/style.css">
         <!--<link rel=stylesheet href="../css/producto_agregar.css">-->
@@ -59,7 +55,7 @@ and open the template in the editor.
                     <input id="filtrar" type="text" class="form-control" placeholder="Ingrese el nombre o descripcion del producto a buscar...">
                 </div>-->
                 <div class="input-group inner-addon left-addon">
-                    <input id="filtrar" type="text" class="form-control" placeholder="Ingrese el nombre o descripcion del producto a buscar..."/>
+                    <input id="filtrar" type="text" class="form-control" placeholder="Ingrese el nombre o descripcion del producto a buscar..." autofocus/>
                     <span class="input-group-addon">
                         <button id="btnFiltroBuscar" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-search"></i></button>
                     </span>
@@ -70,43 +66,18 @@ and open the template in the editor.
                 <!--<div class="form-group">
                 <!-- tabla resposive bootstrap, hay que llenarla con los datos que nos trae de la bbd -->
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped table-bordered hidden" id="tblTablaOculta" data-pagination="true" data-only-info-pagination="true">
+                    <table class="table table-hover table-striped table-bordered hidden" id="tblTablaOculta" data-pagination="true" data-only-info-pagination="true" cellpadding="10" cellspacing="5">
                       <thead>
                        <tr>
                         <th>Nombre</th>
                         <th>Descripcion</th>
                         <th>Cant. Puntos</th>
                         <th>Foto</th>
+                        <th>Acciones</th>
                        </tr>
                       </thead>
                       <tbody class="buscar" id="tblResultado">
-                        <!--<tr>
-                          <td>Televisor Samsung</td>
-                          <td>Led 4k</td>
-                          <td>150000</td>
-                          <td>foto000001.jpg</td>
-                          <td>
-                            <button class="btn btn-warning" id="btnModalModificar" data-toggle="modal" data-target="#modalModificar"><i class="glyphicon glyphicon-pencil"></i></button>
-                            <button class="btn btn-danger" id="btnModalDarBaja" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-remove"></i></button>
-                          </td>
-                       </tr>
-                       <tr>
-                          <td>Televisor LG</td>
-                          <td>Led 4k</td>
-                          <td>150000</td>
-                          <td>foto000002.jpg</td>
-                          <td>
-                            <button class="btn btn-warning" id="btnModalModificar" data-toggle="modal" data-target="#modalModificar"><i class="glyphicon glyphicon-pencil"></i></button>
-                            <button class="btn btn-danger" id="btnModalDarBaja" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-remove"></i></button>
-                          </td>
-                       </tr>
-                       
-                       <tr>
-                          <td>Televisor Sorni</td>
-                          <td>Led 4k</td>
-                          <td>750000</td>
-                          <td>foto000007.jpg</td>
-                       </tr>-->
+                          
                       </tbody>
                     </table>
                 </div>

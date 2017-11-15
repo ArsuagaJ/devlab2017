@@ -122,12 +122,29 @@
             // realizamos la conexion
             include('conexion.php');
 
-            //preparamos la consulta insert
-            $statmt = $conn->prepare("INSERT INTO `producto`(`nombre`, `descripcion`, `foto`, `puntos`, `estado`) VALUES ('$nomb','$desc','$foto','$punt','$esta')");
-
+            $ultimoId;
             //ejecutamos el insert
-            $statmt->execute();
-            
+            //$statmt->execute();
+            try{
+                //preparamos la consulta insert
+                $statmt = $conn->prepare("INSERT INTO `producto`(`nombre`, `descripcion`, `foto`, `puntos`, `estado`) VALUES ('$nomb','$desc','$foto','$punt','$esta')");
+                try { 
+                    $conn->beginTransaction(); 
+                     //ejecutamos el insert
+                    $statmt->execute(); 
+                    $conn->commit();
+                    $stmt = $conn->query("SELECT LAST_INSERT_ID()"); // para poder retornar el ultimo id generado
+                    $lastId = $stmt->fetchColumn();
+                    $ultimoId = $lastId;
+                    //$ultimoId = $conn->lastInsertId(['id_producto']); // devolvemos el ultimo id insertado
+                }catch(PDOExecption $e) { 
+                    $conn->rollback(); 
+                    print "Error!: " . $e->getMessage() . "</br>"; 
+                } 
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            } 
+            echo $ultimoId;
             /*}else{
                 echo '<script>';
                 echo 'console.log("No funca")';

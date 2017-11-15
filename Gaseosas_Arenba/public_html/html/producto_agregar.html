@@ -96,18 +96,15 @@ and open the template in the editor.
                                     <!-- Formulario con los campos -->
                                     <h4>Seleccione imagen desde su computadora</h4>
                                     <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
-                                      <div class="form-inline">
-                                        <div class="form-group">
-                                          <input type="file" name="files[]" id="js-upload-files" multiple>
-                                        </div>
-                                        <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Subir Archivo</button>
-                                      </div>
+                                          <input type="file" name="file" id="file">
                                     </form>
 
                                     <!-- Zona Drop -->
                                     <!--<h4>O arrastre el archivo debajo</h4>-->
-                                    <div class="upload-drop-zone" id="drop-zone">
-                                      O arrastre el archivo aqui
+                                    <div class="row" id="divImagenMuestra">
+                                        <div class="col-sm-12">
+                                            <img class="img-thumbnail" id="imgSalida" width="50%" height="50%" src="" />
+                                        </div>
                                     </div>
 
                                     <!-- Barra de Progreso -->
@@ -119,7 +116,6 @@ and open the template in the editor.
                                 </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
