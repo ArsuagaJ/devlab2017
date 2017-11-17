@@ -1,5 +1,12 @@
 $(document).ready(function(){  
     
+    var fechaAct = getFechaActual();
+    
+    $("#date").val(fechaAct);
+    $("#date").attr("min",fechaAct);
+    $("#hasta").val(fechaAct);
+    $("#hasta").attr("min",fechaAct);
+    
     $("#btnCerrarAlerta").click(function(){
         $("#divMensaje").removeClass("visible-block");
         $("#divMensaje").addClass("hidden");
@@ -96,6 +103,17 @@ $(document).ready(function(){
             });
         });
 });
+
+
+function getFechaActual(){
+    var f = new Date();
+    var anio = f.getFullYear();
+    var mes = f.getMonth();
+    mes = mes+1;
+    var dia = f.getDate();
+    var fecha = anio+"-"+mes+"-"+dia;
+    return fecha;
+}
 
 function leerArchivo(){
     var textLeido = $("#editor").val();

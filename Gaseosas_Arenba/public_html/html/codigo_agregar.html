@@ -32,7 +32,7 @@ and open the template in the editor.
                 </button>
                 <a class="navbar-brand" href="#">Gaseosas Arenba</a>
                 <ul class="nav navbar-nav navbar-left">
-                  <li><a href="#">Agregar Codigos</a></li>
+                  <li><a href="#">Agregar Listado de Codigos</a></li>
                   <li><a href="./codigo_baja-modificar.html">Baja/Modificar Codigos</a></li>
                 </ul>
               </div>
@@ -81,13 +81,13 @@ and open the template in the editor.
                     <!-- Fecha Desde -->
                         <div class="col-sm-12"> 
                             <label class="control-label" for="date">Valido Desde:</label>
-                            <input class="form-group" id="date" name="date" placeholder="MM/DD/YYY" type="date" required/>
+                            <input class="form-group" id="date" name="date" step="1" max="2025-12-31" value="" type="date" required/>
                         </div>
                     
                         <!-- Fecha hasta -->
                         <div class="col-sm-12">
                             <label class="control-label requiredField" for="hasta">Valido Hasta:</label>
-                            <input class="form-group" id="hasta" name="hasta" placeholder="MM/DD/YYY" type="date" required/>
+                            <input class="form-group" id="hasta" name="hasta" max="2025-12-31" value="" type="date" required/>
                         </div>
                 </div>
                 <div class="col-sm-4">

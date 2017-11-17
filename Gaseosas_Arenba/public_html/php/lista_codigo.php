@@ -91,6 +91,17 @@
             // realizamos la desconexion de la BD
             include('desconexion.php');
         }
+        
+        function getListadosActivosSinCanjes($ec){ // funcion que retorna toda la lista de codigos que ninguno de los codigos relacionados a esas listas esten canjeados
+            include('./conexion.php');
+            $statmt = $conn->prepare("SELECT lc.id_lista_codigo, lc.fecha_inicio,lc.fecha_fin,lc.nombre_archivo,lc.descripcion,lc.estado, max(c.estado_canje) as ec FROM codigo c INNER JOIN lista_codigo lc on c.id_lista_codigo = lc.id_lista_codigo group by lc.id_lista_codigo,lc.fecha_inicio,lc.fecha_fin,lc.nombre_archivo,lc.descripcion,lc.estado having ec=:ec");
+            $statmt->bindParam(':ec', $ec);
+            $statmt->execute(); 
+            
+            $listados_activos = $statmt->fetchAll();
+            return $listados_activos;
+            //include('./desconexion.php');
+        }
     }
         
 ?>

@@ -163,10 +163,10 @@ $(document).ready(function(){
     $("#divMensaje").addClass("hidden");
 }*/
 
-/*function mostrarDivMensaje(){
+function mostrarDivMensaje(){
     $("#divMensaje").removeClass("hidden");
     $("#divMensaje").addClass("visible-block");
-}*/
+}
 
 function vaciarTabla(){
     $("#tblTablaOculta #tblResultado tr").remove();
