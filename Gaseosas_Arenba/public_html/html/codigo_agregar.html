@@ -16,6 +16,7 @@ and open the template in the editor.
         <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
         
         <script src="../js/codigo_agregar.js"></script>
+        <script src="../js/funciones.js"></script>
 	<link rel=stylesheet href="../css/style.css">
         <link rel=stylesheet href="../css/codigo_agregar.css">
     </head>
@@ -30,15 +31,15 @@ and open the template in the editor.
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>                        
                 </button>
-                <a class="navbar-brand" href="#">Gaseosas Arenba</a>
+                <a class="navbar-brand" href="#" title="Ir a la pagina principal de Gaseosas Arenba">Gaseosas Arenba</a>
                 <ul class="nav navbar-nav navbar-left">
-                  <li><a href="#">Agregar Listado de Codigos</a></li>
-                  <li><a href="./codigo_baja-modificar.html">Baja/Modificar Codigos</a></li>
+                  <li><a href="#" title="Ir a la pagina Agregar Listado de Codigos">Agregar Listado de Codigos</a></li>
+                  <li><a href="./codigo_baja-modificar.html" title="Ir a la pagina Baja y Modificacion de Listado de Codigos">Baja/Modificar Codigos</a></li>
                 </ul>
               </div>
               <div class="collapse navbar-collapse" id="ac_datosUsuario">
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#"><span class="glyphicon glyphicon-user"></span>EmpleadoXXX</a></li>
+                  <li><a href="#" title="Empleado XXXX"><span class="glyphicon glyphicon-user"></span>EmpleadoXXX</a></li>
                 </ul>
               </div>
             </div>
@@ -52,7 +53,7 @@ and open the template in the editor.
                     <div class="row">
                         <div class="col-sm-12">
                             <form action="" method="post" enctype="multipart/form-data" id="frmArchivo">
-                                <input type="file" id="file" name="file" accept="text/plain" class="btn btn-primary" required><br>
+                                <input type="file" id="file" name="file" accept="text/plain" title="seleccione archivo TXT con lista de codigos" class="btn btn-primary" required><br>
                                 <label>Datos del archivo:</label>
                                 <p id="datos"></p>
                             </form>
@@ -64,7 +65,7 @@ and open the template in the editor.
                 <div class="col-sm-4">
                     <div class="row">
                         <div class="col-sm-12">
-                            <textarea class="form-control" rows="5" cols="10" id="txtDescript" placeholder="Ingrese descripcion del archivo.."></textarea>
+                            <textarea class="form-control" rows="5" cols="10" title="Ingrese la descripcion del archivo" id="txtDescript" placeholder="Ingrese descripcion del archivo.."></textarea>
                         </div>
                     </div>
                 </div>
@@ -81,18 +82,18 @@ and open the template in the editor.
                     <!-- Fecha Desde -->
                         <div class="col-sm-12"> 
                             <label class="control-label" for="date">Valido Desde:</label>
-                            <input class="form-group" id="date" name="date" step="1" max="2025-12-31" value="" type="date" required/>
+                            <input class="form-group" id="date" name="date" step="1" max="2025-12-31" value="" title="Ingrese la fecha VALIDO DESDE en formato DD-MM-AAAA" type="date" required/>
                         </div>
                     
                         <!-- Fecha hasta -->
                         <div class="col-sm-12">
-                            <label class="control-label requiredField" for="hasta">Valido Hasta:</label>
-                            <input class="form-group" id="hasta" name="hasta" max="2025-12-31" value="" type="date" required/>
+                            <label class="control-label" for="hasta">Valido Hasta:</label>
+                            <input class="form-group" id="hasta" name="hasta" max="2025-12-31" value="" title="Ingrese la fecha VALIDO HASTA en formato DD-MM-AAAA" type="date" required/>
                         </div>
                 </div>
                 <div class="col-sm-4">
                     <label>Listado de codigos del archivo:</label>
-                    <textarea class="form-control" rows="5" cols="30" id="editor" disabled></textarea>
+                    <textarea class="form-control" rows="5" cols="30" title="Aqui se muestra el resultado del archivo que UD subio" id="editor" disabled></textarea>
                 </div>
             </div>
         </div>
@@ -102,7 +103,9 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-sm-2">
                     <div class="btn-group form-group col-sm-4">
+                        <form action="" method="post">
                         <button type="button" class="btn btn-primary" id="btnAgregar">Agregar</button>
+                        </form>
                     </div>
                 </div>
             </div>

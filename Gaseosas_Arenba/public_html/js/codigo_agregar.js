@@ -1,11 +1,7 @@
-$(document).ready(function(){  
+$(document).ready(function(){
     
-    var fechaAct = getFechaActual();
-    
-    $("#date").val(fechaAct);
-    $("#date").attr("min",fechaAct);
-    $("#hasta").val(fechaAct);
-    $("#hasta").attr("min",fechaAct);
+    setFechaActual($("#date")); // le seteamos la fecha actual al input de fecha desde y el valor minimo
+    setFechaActual($("#hasta")); // le seteamos la fecha actual al input de fecha hasta y el valor minimo
     
     $("#btnCerrarAlerta").click(function(){
         $("#divMensaje").removeClass("visible-block");
@@ -23,96 +19,107 @@ $(document).ready(function(){
         var dataString = 'page='+page;
         
         var formData = new FormData($("#frmArchivo")[0]);
-        
+       
         // RECORDAR AGREGAR EL ATRIBUTO NAME EN EL INPUT DE TIPO
         // FILE PARA QUE FUNCIONE EL PHP
-									
-      	$.ajax({ // ajax para subir el archivo al server
-                type:"post",
-                data:formData,
-                //dataType:"json",
-                url:"../php/subirArchivo.php",      					
-                contentType:false,                
-                processData:false,
-                beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
-                    $("#pMensaje").text("Procesando, espere por favor...");
-                },
-                success: function(data){
-                    //Cargamos finalmente el contenido deseado
-                    $('#content').fadeIn(1000).html(data);// con esto deberiamos mostrar el icono de carga de datos de "imgs/loading.gif"
-                }
-            }).done(function(respuesta){ // una vez que se haya finalizado la operacion de ajax, guardamos el listado de codigo en la base de datos para recuperar el id que se genere      					
-                console.log(respuesta);
-                
-                if(respuesta[0].resultado === "ok"){ // si el resultado es OK, o sea, si se agregó el archivo al server.... lo guardamos en la base
-                    $("#pMensaje").text("Se ha agregado correctamente el archivo de codigos..");
-                    var fechaDesde = $("#date").val();
-                    var fechaHasta = $("#hasta").val();
-                    var descrip = $("#txtDescript").val();
-                    var rutaArchivo = respuesta[1]; // en el indice 1 esta la ruta recuperada del php
-                    var estado = true;
-                    
-                    var parametros = {
-                        "fechaDesde" : fechaDesde,
-                        "fechaHasta" : fechaHasta,
-                        "descrip" : descrip,
-                        "path" : rutaArchivo,
-                        "estado" : estado
-                    };
-                    // generamos un ajax nuevo con los valores de los campos que se guardaran en la tabla "lista de codigos"
-                    $.ajax({
-                        data:  parametros, // los datos que van a ser recuperados desde el php
-                        url:   '../php/insertListaCodigo.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
-                        type:  'post',
+	
+        if(validarArchivo()){ // validamos si se ha seleccionado algun archivo
+            if(validarFechaMayorActual($("#date").val()) && validarFechaMayorActual($("#hasta").val())){ // validamos si las fechas estan correctamente ingresadas
+                $.ajax({ // ajax para subir el archivo al server
+                        type:"post",
+                        data:formData,
+                        //dataType:"json",
+                        url:"../php/subirArchivo.php",      					
+                        contentType:false,                
+                        processData:false,
                         beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
-                            $("#pMensaje").text("Subiendo archivo de códigos, aguarde unos instantes...");
+                            imprimirMensaje("Procesando, espere por favor...");
                         },
-                        success:  function (response){ //al responder, primero se ejecuta el success y luego el .done
-                            console.log(response);
-                            var idUsuario = '1'; // hardcodeamos el id de usuario hasta tener las sesiones..
-                            var arrDataAjax = []; //creamos una variable que pasaremos con los parametros a guardar
-                            var textLeido = leerArchivo();//leemos el archivo para pasar los codigos
-                            arrDataAjax.push(textLeido);
-                            arrDataAjax.push(response); // aca agregamos el id del registro de la lista de codigos
-                            arrDataAjax.push(idUsuario);
-                            
-                            $.ajax({ //y por ultimo generamos un ajax nuevo para guardar los codigos finales en la base de datos en la tabla referente a los codigos.
-                                type: "POST",
-                                data: {'arrayData':JSON.stringify(arrDataAjax)},//capturo array para tomar desde el php
-                                url: "../php/insertCodigos.php",
-                                beforeSend: function procesandoCodigos(){
-                                    $("#pMensaje").text("Guardando Codigos..."); // mensaje mientras se van agregando los codigos..
+                        success: function(data){
+                            //Cargamos finalmente el contenido deseado
+                            $('#content').fadeIn(1000).html(data);// con esto deberiamos mostrar el icono de carga de datos de "imgs/loading.gif"
+                        }
+                    }).done(function(respuesta){ // una vez que se haya finalizado la operacion de ajax, guardamos el listado de codigo en la base de datos para recuperar el id que se genere      					
+                        console.log(respuesta);
+
+                        if(respuesta[0].resultado === "ok"){ // si el resultado es OK, o sea, si se agregó el archivo al server.... lo guardamos en la base
+                            imprimirMensaje("Se ha agregado correctamente el archivo de codigos..");
+                            var fechaDesde = $("#date").val();
+                            var fechaHasta = $("#hasta").val();
+
+                            var descrip = $("#txtDescript").val();
+                            var rutaArchivo = respuesta[1]; // en el indice 1 esta la ruta recuperada del php
+                            var estado = true;
+
+                            var parametros = {
+                                "fechaDesde" : fechaDesde,
+                                "fechaHasta" : fechaHasta,
+                                "descrip" : descrip,
+                                "path" : rutaArchivo,
+                                "estado" : estado
+                            };
+                            // generamos un ajax nuevo con los valores de los campos que se guardaran en la tabla "lista de codigos"
+                            $.ajax({
+                                data:  parametros, // los datos que van a ser recuperados desde el php
+                                url:   '../php/insertListaCodigo.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+                                type:  'post',
+                                beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
+                                    imprimirMensaje("Subiendo archivo de códigos, aguarde unos instantes...");
+                                },
+                                success:  function (response){ //al responder, primero se ejecuta el success y luego el .done
+                                    console.log(response);
+                                    var idUsuario = '1'; // hardcodeamos el id de usuario hasta tener las sesiones..
+                                    var arrDataAjax = []; //creamos una variable que pasaremos con los parametros a guardar
+                                    var textLeido = leerArchivo();//leemos el archivo para pasar los codigos
+                                    arrDataAjax.push(textLeido);
+                                    arrDataAjax.push(response); // aca agregamos el id del registro de la lista de codigos
+                                    arrDataAjax.push(idUsuario);
+
+                                    $.ajax({ //y por ultimo generamos un ajax nuevo para guardar los codigos finales en la base de datos en la tabla referente a los codigos.
+                                        type: "POST",
+                                        data: {'arrayData':JSON.stringify(arrDataAjax)},//capturo array para tomar desde el php
+                                        url: "../php/insertCodigos.php",
+                                        beforeSend: function procesandoCodigos(){
+                                            imprimirMensaje("Guardando Codigos..."); // mensaje mientras se van agregando los codigos..
+                                        }
+                                    }).done(function(result){
+                                        if(result === 0){
+                                            alert("rrorr");
+                                        }
+                                        imprimirMensaje("Se han agregado correctamente los codigos");
+                                        console.log("Archivo Procesado Correctamente");
+                                        //console.log(result);
+                                    });
                                 }
-                            }).done(function(result){
-                                if(result === 0){
-                                    alert("rrorr");
-                                }
-                                $("#pMensaje").text("Se han agregado correctamente los codigos");
-                                console.log("Archivo Procesado Correctamente");
-                                //console.log(result);
+                            }).done(function(respuesta){
+                                imprimirMensaje("OK, se agregado correctamente el archivo");
+                                //console.log(respuesta);
                             });
                         }
-                    }).done(function(respuesta){
-                        $("#pMensaje").text("OK, se agregado correctamente el archivo");
-                        //console.log(respuesta);
+                        else{
+                            imprimirMensaje(respuesta[1][0]); // si nos dio algun error PHP, lo mostramos como un mensaje en la pagina
+                        }
                     });
+                }else{
+                    imprimirMensaje("Las fechas ingresadas no son correctas, respete el formato DD-MM-AAAA");
                 }
-                else{
-                    $("#pMensaje").text(respuesta[1][0]); // si nos dio algun error PHP, lo mostramos como un mensaje en la pagina
-                }
-            });
-        });
+        }
+    });
 });
 
+function imprimirMensaje(strMensaje){
+    $("#pMensaje").text(strMensaje);
+}
 
-function getFechaActual(){
-    var f = new Date();
-    var anio = f.getFullYear();
-    var mes = f.getMonth();
-    mes = mes+1;
-    var dia = f.getDate();
-    var fecha = anio+"-"+mes+"-"+dia;
-    return fecha;
+function validarArchivo(){
+    var valor = $("#file").val();
+    if(valor == ''){
+        console.log("No se ha seleccionado ningun archivo");
+        imprimirMensaje("No se ha seleccionado ningun archivo");
+        return false;
+    }else{
+        return true;
+    }
 }
 
 function leerArchivo(){

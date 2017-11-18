@@ -31,15 +31,15 @@ and open the template in the editor.
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>                        
                 </button>
-                <a class="navbar-brand" href="#">Gaseosas Arenba</a>
+                <a class="navbar-brand" href="#" title="Ir a la pagina principal de Gaseosas Arenba">Gaseosas Arenba</a>
                 <ul class="nav navbar-nav navbar-left">
-                  <li><a href="./codigo_agregar.html">Agregar Listado de Codigos</a></li>
-                  <li><a href="#">Baja/Modificar Codigos</a></li>
+                  <li><a href="./codigo_agregar.html" title="Ir a la pagina Agregar Listado de Codigos">Agregar Listado de Codigos</a></li>
+                  <li><a href="#" title="Ir a la pagina Baja y Modificacion de Listado de Codigos">Baja/Modificar Codigos</a></li>
                 </ul>
               </div>
               <div class="collapse navbar-collapse" id="ac_datosUsuario">
                 <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#"><span class="glyphicon glyphicon-user"></span>EmpleadoXXX</a></li>
+                  <li><a href="#" title="Empleado XXXX"><span class="glyphicon glyphicon-user"></span>EmpleadoXXX</a></li>
                 </ul>
               </div>
             </div>
@@ -48,10 +48,10 @@ and open the template in the editor.
         <div class="container">
             <div class="row">
                 <div class="col-sm-10">
-                    <span>Haga click en 'Mostrar Listados' para ver los listados activos que no tienen ningún codigo canjeado</span>
+                    <span title="Haga click en 'Mostrar Listados' para ver los listados activos que no tienen ningún codigo canjeado">Haga click en 'Mostrar Listados' para ver los listados activos que no tienen ningún codigo canjeado</span>
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-primary pull-right" id="btnBusquedaListados">Mostrar Listados</button>
+                    <button type="button" class="btn btn-primary pull-right" title="Click Aqui para Mostrar Listados Activos sin codigos canjeados" id="btnBusquedaListados">Mostrar Listados</button>
                 </div>
             </div>
         </div>
@@ -59,20 +59,31 @@ and open the template in the editor.
         <!--<div class="form-group">
         <!-- tabla resposive bootstrap, hay que llenarla con los datos que nos trae de la bbd -->
             <div class="container table-responsive">
-                <table class="table table-hover table-bordered" id="tblTablaOculta" data-pagination="true" data-only-info-pagination="true">
-                  <thead>
-                   <tr class="table table-striped">
-                    <th>Lista de Codigo</th>
-                    <th>Estado</th>
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Fin</th>
-                    <th>Descripcion</th>
-                    <th>Acciones</th>
-                   </tr>
-                  </thead>
-                  <tbody class="buscar" id="tblResultado">
+                <table class="table table-hover table-bordered" id="tblTablaOculta" data-pagination="true" title="Tabla de Resultados de la busqueda" data-only-info-pagination="true">
+                    <thead>
+                        <tr class="table table-striped">
+                            <th title="Cabecera: Lista de Codigo">Lista de Codigo</th>
+                            <th title="Cabecera: Estado">Estado</th>
+                            <th title="Cabecera: Fecha Inicio">Fecha Inicio</th>
+                            <th title="Cabecera: Fecha Fin">Fecha Fin</th>
+                            <th title="Cabecera: Descripcion">Descripcion</th>
+                            <th title="Cabecera: Acciones a Realizar sobre los registros">Acciones</th>
+                        </tr>
+                        <tr>
+                            <td>Codi1</td>
+                            <td>Activo</td>
+                            <td>18-11-2017</td>
+                            <td>18-11-2017</td>
+                            <td>Descrip</td>
+                            <td>
+                                <button class="btn btn-warning" id="btnModalModificar" data-toggle="modal" data-target="#modalModificar"><i class="glyphicon glyphicon-pencil"></i></button>
+                            <button class="btn btn-danger" id="btnModalDarBaja" data-toggle="modal" data-target="#modalBaja"><i class="glyphicon glyphicon-remove"></i></button>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody class="buscar" id="tblResultado">
                       <!-- agregar codigo desde la BDD -->
-                  </tbody>
+                    </tbody>
                 </table>
             </div>
         <!-- creo que -->
@@ -114,5 +125,98 @@ and open the template in the editor.
             </div>
         </div>
         
+        <!-- Modal Baja -->
+        <div id="modalBaja" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Contenido del Modal-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Baja de Listado de Codigo</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>Esta seguro de dar de baja el listado de codigos seleccionado?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnModalBajaCancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btnModalBajaConfirmar" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal -->
+        <div id="modalModificar" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Contenido del Modal-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Modificar Listado de Codigos</h3>
+                    </div>
+                    <div class="modal-body">
+                        <!-- div campos a cambiar -->
+                        <div id="divCambios" class="container">
+                            <!-- div del nombre -->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <!-- Fecha Desde -->
+                                    <div class="col-sm-4"> 
+                                        <label class="control-label" for="desde">Valido Desde:</label>
+                                        <input class="form-group" id="desde" name="desde" step="1" max="2025-12-31" value="" title="Ingrese la fecha VALIDO DESDE en formato DD-MM-AAAA" type="date" required/>
+                                    </div>
+
+                                    <!-- Fecha hasta -->
+                                    <div class="col-sm-4">
+                                        <label class="control-label" for="hasta">Valido Hasta:</label>
+                                        <input class="form-group" id="hasta" name="hasta" max="2025-12-31" value="" title="Ingrese la fecha VALIDO HASTA en formato DD-MM-AAAA" type="date" required/>
+                                    </div>
+                                    <!-- estado -->
+                                    <div class="col-sm-2">
+                                        <label for="selEstado">Estado:</label>
+                                        <select id="selEstado" name="selEstado">
+                                            <option value="0">Activo</option> <!-- estan invertidos los indices porque en la BDD se busca eso -->
+                                            <option value="1">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <!-- div de las fechas y el estado para ingresar --> 
+                                <div class="col-sm-6">
+                                    <div class="row form-group">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
+                                                <label class="control-label" for="inpNombreListado">Nombre del Listado</label>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control" required id="inpNombreListado" name="inpNombreListado" placeholder="Ingrese el nuevo nombre del listado">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- div de la descripcion del listado -->
+                                <div class="col-sm-6">
+                                    <div class="col-sm-12">
+                                        <label class="control-label" for="txtDescripcion">Descripcion:</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <textarea class="form-control" rows="5" id="txtDescripcion" placeholder="Ingrese descripcion del listado de codigos seleccionado" name="txtDescripcion" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnModalModificarCancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btnModalModificarConfirmar" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

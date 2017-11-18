@@ -158,10 +158,10 @@ $(document).ready(function(){
     });
 });
 
-/*function ocultarMensaje(){
+function ocultarMensaje(){
     $("#divMensaje").removeClass("visible-block");
     $("#divMensaje").addClass("hidden");
-}*/
+}
 
 function mostrarDivMensaje(){
     $("#divMensaje").removeClass("hidden");
@@ -190,7 +190,7 @@ function realizarBusqueda(){
                 $("#pMensaje").text("No hay registros con esos datos");
             }
             if (respuesta[0].resultado === "ok") {
-                console.log(JSON.stringify(respuesta));
+                //console.log(JSON.stringify(respuesta));
                 //mostramos la tabla si existe coincidencia
                 $("#tblTablaOculta").removeClass("hidden");
                 $("#tblTablaOculta").addClass("visible-block");

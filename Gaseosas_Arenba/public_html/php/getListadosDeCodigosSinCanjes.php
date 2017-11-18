@@ -1,6 +1,7 @@
 <?php
     //recuperamos el valor de la variable que viene por get
     $estado_canje = filter_input(INPUT_GET,'estado_canje');
+    //$estado_canje = 0;
 
     require_once './conexion.php';
     require_once './lista_codigo.php';
