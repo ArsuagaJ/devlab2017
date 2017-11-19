@@ -49,7 +49,6 @@ $(document).ready(function(){
 
                             var descrip = $("#txtDescript").val();
                             var rutaArchivo = respuesta[1]; // en el indice 1 esta la ruta recuperada del php
-                            alert("ruta: "+rutaArchivo);
                             var estado = true;
 
                             var parametros = {

@@ -32,7 +32,8 @@
                 'descripcion' => $row['descripcion'], 
                 'foto' => $row['foto'],
                 'puntos' => $row['puntos'],
-                'estado' => $row['estado']
+                'estado' => $row['estado'],
+                'id' => $row['id_producto']
             );
             // agregamos el array de la fila al array general '$respuesta' que se devolvera como objeto JSON
             array_push($respuesta,$datos);

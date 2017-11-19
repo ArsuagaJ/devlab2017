@@ -92,7 +92,7 @@
         function getProductosByNameOrDescript($nomb){
             include './conexion.php';
 
-            $stmt = $conn->prepare("SELECT nombre, descripcion, foto, puntos, estado FROM producto WHERE nombre LIKE ? OR descripcion LIKE ?");
+            $stmt = $conn->prepare("SELECT id_producto, nombre, descripcion, foto, puntos, estado FROM producto WHERE nombre LIKE ? OR descripcion LIKE ?");
             $stmt->bindValue(1,"%{$nomb}%", PDO::PARAM_STR);
             $stmt->bindValue(2,"%{$nomb}%", PDO::PARAM_STR);
             

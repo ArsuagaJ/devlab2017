@@ -27,6 +27,7 @@ function setFechaActual(objeto){
     //console.log("fechas");
 }
 
+// la siguiente funcion FUNCIONA de 10, esta OK funcionando correcto
 function validarFechaMayorActual(fecha){
     var split = fecha.split("-"); // dividimos el string de fechas por guiones (como viene del browser)
     if(split.length != 3){ // si no tiene unicamente 3 partes, decimos que es falso

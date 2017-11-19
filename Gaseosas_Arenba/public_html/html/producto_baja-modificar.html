@@ -32,6 +32,8 @@ and open the template in the editor.
                 </button>
                 <a class="navbar-brand" href="#">Gaseosas Arenba</a>
                 <ul class="nav navbar-nav navbar-left">
+                    <li><a href="./codigo_agregar.html">Agregar Listado de Codigo</a></li>
+                  <li><a href="./codigo_baja-modificar.html">Baja/Modificar Listado de Codigo</a></li>
                   <li><a href="./producto_agregar.html">Agregar Producto</a></li>
                   <li><a href="#">Baja/Modificar Producto</a></li>
                   <!--<li><a href="./producto_modificar">Modificar Producto</a></li>-->
@@ -187,13 +189,45 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                     
-                                    <div class="col-sm-12">
+                                    <div class="col-md-6">
+                                            <div class="col-sm-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading"><strong>Subir Imagen</strong> <small></small></div>
+                                                        <div class="panel-body">
+                                                            <div class="col-sm-6">
+
+                                                                <!-- Formulario con los campos -->
+                                                                <h4>Seleccione imagen desde su computadora</h4>
+                                                                <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+                                                                      <input type="file" name="file" id="file">
+                                                                </form>
+                                                            </div>
+
+                                                            <!-- Zona Drop -->
+                                                            <!--<h4>O arrastre el archivo debajo</h4>-->
+                                                            <div class="col-sm-6">
+                                                                <img class="img-thumbnail" id="imgSalida" width="50%" height="50%" src="" />
+                                                            </div>
+                                                            
+
+                                                            <!-- Barra de Progreso -->
+                                                            <!--<div class="progress">
+                                                              <div class="progress-bar" role="progressbar" id="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+                                                                <span class="sr-only">60% Complete</span>
+                                                              </div>
+                                                            </div>-->
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    <!--<div class="col-sm-12">
                                         <div class="panel panel-default">
                                             <div class="panel-heading"><strong>Subir Imagen</strong> <small></small></div>
                                                 <div class="panel-body">
 
                                                     <!-- Formulario con los campos -->
-                                                    <h4>Seleccione imagen desde su computadora</h4>
+                                                    <!--<h4>Seleccione imagen desde su computadora</h4>
                                                     <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
                                                       <div class="form-inline">
                                                         <div class="form-group">
@@ -207,7 +241,8 @@ and open the template in the editor.
                                                     </div>
                                                 </div>
                                         </div>
-                                    </div>
+                                    </div>-->
+                                                    
                                 </div>
                             </div>
                         </div>

@@ -121,42 +121,87 @@ $(document).ready(function(){
         ocultarMensaje();
         realizarBusqueda();
     });
-
+    
     var nombreProducto = "";
     var descProducto = "";
-    var totalPuntos = "";
-    var fila = "";
+    var puntos = "";
+    var imagen = "";
+    var botonModif;
+    var id;
 
-    // tomamos los datos de la fila y los cargamos en la funcion que estamos trabajando
-    $("#tblTablaOculta").find('tr').click(function(){
-        fila = $(this);
-        var celdas = this.getElementsByTagName("td");
+    $("#modalModificar").on('show.bs.modal', function (e) {
+        
+        // lo siguiente funciona. lo tome de la web pero no lo entiendo mucho..
+        
+        var row = $(e.relatedTarget).parent().parent();
+        var celdas= row.children();
+        
+        botonModif = celdas[4].firstChild;
+        id = botonModif.getAttribute("id");//obtenemos el id referente a la fila mencionada
+        var spli = id.split("-");
+        id = parseInt(spli[1]);
+        //alert(boton.getAttribute("id"));
+        // obtenemos cada uno de los valores referentes de la fila que tomamos..
         nombreProducto = celdas[0].firstChild.nodeValue;
         descProducto = celdas[1].firstChild.nodeValue;
-        totalPuntos = celdas[2].firstChild.nodeValue;
-        alert(descProducto);
-        var nombreBtnModificar = celdas[3].firstChild;
-        var nombreBtnBajaProducto = celdas[3].lastChild;
-        cargarDatos(nombreProducto,descProducto,totalPuntos);
-        $("#"+nombreBtnModificar).click(function(){
-            alert("hola");
-            cargarDatosDeFila();
-        });       
-    });
-    // tengo que agregarlo aca para que lo tome en todas las filas...
-    
-    // luego de dar boton "CONFIRMAR se da de baja el producto y se quita de la lista
-    var boton = $("#btnModalBajaConfirmar");
-    boton.click(function(){
-        mostrarDivMensaje();
-        $("#pMensaje").text("El producto: '"+nombreProducto+ "' '"+descProducto+"' con un total de '"+totalPuntos+"' puntos necesarios para ser canjeados, se ha dado de baja Correctamente");
-        fila.attr("class","hidden");//$(this).parent.attr("class","hidden");
+        puntos = celdas[2].firstChild.nodeValue;
+        imagen = celdas[3].firstChild.nodeValue;
+        
+        cargarDatos(nombreProducto,descProducto,imagen,puntos);
+        $("#btnModalModificarConfirmar").click(function(){
+            //alert(botonModif.getAttribute("id"));
+            //alert(id);
+            /*if(validarFechaMayorActual($("#desde").val()) && validarFechaMayorActual($("#hasta").val())){
+                var fechaDesde = $("#desde").val();
+                var fechaHasta = $("#hasta").val();
+                var estate = $("#selEstado").val();
+                var descrip = $("#txtDescripcion").val();
+                var rutaArchivo = nombreLista;
+                var estado = true;
+                if(estate === "1"){
+                    estado = 1;
+                }
+                var parametros = {
+                    "fechaDesde" : fechaDesde,
+                    "fechaHasta" : fechaHasta,
+                    "descrip" : descrip,
+                    "path" : "../archivos/"+rutaArchivo,
+                    "estado" : estado,
+                    "id" : id
+                };
+                // generamos un ajax nuevo con los valores de los campos que se guardaran en la tabla "lista de codigos"
+                $.ajax({
+                    data:  parametros, // los datos que van a ser recuperados desde el php
+                    url:   '../php/updateListaCodigos.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+                    type:  'post',
+                    beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
+                        imprimirMensaje("Actualizando archivo de códigos, aguarde unos instantes...");
+                    }
+                }).done(function(result){
+                    if(result === 0){
+                        alert("rrorr");
+                    }
+                    imprimirMensaje("Se ha actualizado correctamente el archivo de codigos"+rutaArchivo);
+                    console.log("Archivo Procesado Correctamente");
+                    //console.log(result);
+                });;
+            }else{
+                imprimirMensajeModal("Error al actualizar el archivo de codigos"+rutaArchivo);
+            }*/
+        });
     });
     
     $("#btnCerrarAlerta").click(function(){
         ocultarMensaje();
     });
 });
+
+function cargarDatos(strNombreProducto,descProducto,imagen,strPuntos){
+    $("#inpNombreProducto").attr("value",this.strNombreProducto);
+    $("#inpPuntos").attr("value", parseInt(this.strPuntos));
+    $("#txtDescripcion").text(this.descProducto);
+    
+}
 
 function ocultarMensaje(){
     $("#divMensaje").removeClass("visible-block");
@@ -253,8 +298,8 @@ function generarTabla(objetoJSON){
         imagen.setAttribute("width", "75"); 
         imagen.setAttribute("height","50");
         
-        var nombreBtnModalModificar = "btnModalModificar"+i;
-        var nombreBtnModalDarBaja = "btnModalDarBaja"+i;
+        var nombreBtnModalModificar = "btnModalModificar-"+objetoJSON[i].id;
+        var nombreBtnModalDarBaja = "btnModalDarBaja-"+objetoJSON[i].id;
         
         var botonModificar = document.createElement("button");
         var iconoModifi = document.createElement("i");

@@ -76,9 +76,10 @@ $(document).ready(function(){
         var celdas= row.children();
         
         botonModif = celdas[5].firstChild;
-        id = botonModif.getAttribute("id").substr(-2,2);//obtenemos el id referente a la fila mencionada
-        
-        id = parseInt(id);
+        id = botonModif.getAttribute("id");//.substr(-2,2);//obtenemos el id referente a la fila mencionada
+        var spli = id.split("-");
+        id = parseInt(spli[1]);
+
         //alert(boton.getAttribute("id"));
         // obtenemos cada uno de los valores referentes de la fila que tomamos..
         nombreLista = celdas[0].firstChild.nodeValue;
@@ -154,7 +155,6 @@ function imprimirMensaje(strMensaje){
 }
 
 function cargarDatosDeFila(){
-    alert("hola");
     var nombreLista = "";
     var descLista = "";
     var estado = "";
@@ -269,8 +269,8 @@ function generarTabla(objetoJSON){
         var fechaInicio = objetoJSON[i].fechaInicio;
         var fechaFin = objetoJSON[i].fechaFin;
         
-        var nombreBtnModalModificar = "btnModalModificar"+objetoJSON[i].id;//+i; esto no me estaria funcionando
-        var nombreBtnModalDarBaja = "btnModalDarBaja"+objetoJSON[i].id;//+i; esto tapoco me estaria funcando
+        var nombreBtnModalModificar = "btnModalModificar-"+objetoJSON[i].id;//+i; esto no me estaria funcionando
+        var nombreBtnModalDarBaja = "btnModalDarBaja-"+objetoJSON[i].id;//+i; esto tapoco me estaria funcando
         
         var botonModificar = document.createElement("button");
         var iconoModifi = document.createElement("i");
