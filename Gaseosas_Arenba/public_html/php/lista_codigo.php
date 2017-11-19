@@ -137,8 +137,22 @@
             include('./conexion.php');
             $ultimoId; // declaramos una variable que sera el ID insertado
             try{
+                //$sql = "INSERT INTO lista_codigo (fecha_inicio, fecha_fin, nombre_archivo,  descripcion,  estado)  VALUES (':fechaInicio',':fechaFin',':nombreArchivo',':descripcion',':estado')";
+                $sql = "INSERT INTO `lista_codigo`(`fecha_inicio`, `fecha_fin`, `nombre_archivo`, `descripcion`, `estado`) VALUES ('$fechaInicio','$fechaFin','$nombreArchivo','$descripcion','$estado')";
+                $stmt = $conn->prepare($sql);
+                //$stmt->execute();*/
+                $stmt->bindParam(':fechaInicio', $fechaInicio, PDO::PARAM_STR);       
+                $stmt->bindParam(':fechaFin', $fechaFin, PDO::PARAM_STR);    
+                $stmt->bindParam(':nombreArchivo', $nombreArchivo, PDO::PARAM_STR);
+                // use PARAM_STR although a number  
+                $stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR); 
+                $stmt->bindParam(':estado', $estado, PDO::PARAM_BOOL);   
+                $stmt->execute();
+                $stamt = $conn->query("SELECT LAST_INSERT_ID()"); // para poder retornar el ultimo id generado
+                $lastId = $stamt->fetchColumn();
+                $ultimoId = $lastId;
                 //preparamos la consulta insert
-                $statmt = $conn->prepare("INSERT INTO `lista_codigo`(`fecha_inicio`, `fecha_fin`, `nombre_archivo`, `descripcion`, `estado`) VALUES ('$fechaInicio','$fechaFin','$nombreArchivo','$descripcion','$estado')");
+                /*$statmt = $conn->prepare("INSERT INTO `lista_codigo`(`fecha_inicio`, `fecha_fin`, `nombre_archivo`, `descripcion`, `estado`) VALUES ('$fechaInicio','$fechaFin','$nombreArchivo','$descripcion','$estado')");
                 try { 
                     $conn->beginTransaction(); 
                      //ejecutamos el insert
@@ -151,7 +165,7 @@
                 }catch(PDOExecption $e) { 
                     $conn->rollback(); 
                     //print "Error!: " . $e->getMessage() . "</br>"; 
-                } 
+                } */
             }catch( PDOExecption $e ) { 
                 print "Error!: " . $e->getMessage() . "</br>"; 
             } 

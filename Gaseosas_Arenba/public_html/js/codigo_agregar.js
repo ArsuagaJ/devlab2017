@@ -49,6 +49,7 @@ $(document).ready(function(){
 
                             var descrip = $("#txtDescript").val();
                             var rutaArchivo = respuesta[1]; // en el indice 1 esta la ruta recuperada del php
+                            alert("ruta: "+rutaArchivo);
                             var estado = true;
 
                             var parametros = {
@@ -67,7 +68,6 @@ $(document).ready(function(){
                                     imprimirMensaje("Subiendo archivo de códigos, aguarde unos instantes...");
                                 },
                                 success:  function (response){ //al responder, primero se ejecuta el success y luego el .done
-                                    console.log(response);
                                     var idUsuario = '1'; // hardcodeamos el id de usuario hasta tener las sesiones..
                                     var arrDataAjax = []; //creamos una variable que pasaremos con los parametros a guardar
                                     var textLeido = leerArchivo();//leemos el archivo para pasar los codigos
@@ -83,6 +83,7 @@ $(document).ready(function(){
                                             imprimirMensaje("Guardando Codigos..."); // mensaje mientras se van agregando los codigos..
                                         }
                                     }).done(function(result){
+                                        alert(result);
                                         if(result === 0){
                                             alert("rrorr");
                                         }
@@ -92,6 +93,7 @@ $(document).ready(function(){
                                     });
                                 }
                             }).done(function(respuesta){
+                                console.log(respuesta);
                                 imprimirMensaje("OK, se agregado correctamente el archivo");
                                 //console.log(respuesta);
                             });
