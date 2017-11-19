@@ -150,14 +150,14 @@
             
         }
         
-        function insertar($nomb,$pass,$id_rol,$nombre,$apellido,$esta){
+        function insertar($nombreUsuario,$password,$nombre,$apellido,$id_rol){
            
-            $pass = md5($pass);
+            $pass = md5($password);
             // realizamos la conexion
             include('conexion.php');
 
             //preparamos la consulta insert
-            $statmt = $conn->prepare("INSERT INTO `usuario`(`nombre`, `descripcion`, `foto`, `puntos`, `estado`) VALUES ('$nomb','$pass','$id_rol','$nombre','$apellido','$esta')");
+            $statmt = $conn->prepare("INSERT INTO `usuario`(`usuario`, `password`, `nombre`, `apellido`, `estado`, `id_rol`) VALUES ('$nombreUsuario','$pass','$nombre','$apellido','1','$id_rol')");
 
             //ejecutamos el insert
             $statmt->execute();

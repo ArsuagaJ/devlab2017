@@ -6,16 +6,16 @@
     $password = filter_input(INPUT_POST,'password');
     $nombre = filter_input(INPUT_POST,'nombre');
     $apellido = filter_input(INPUT_POST,'apellido');
-    $idRol = filter_input(INPUT_POST,'idRol');
+    $id_rol = filter_input(INPUT_POST,'id_rol');
 
     //include('./conexion.php');
     include('./usuario.php');
     
     // instanciamos un objeto "Producto"
-    $producto = new Usuario();
+    $usuario = new Usuario();
     
     // llamamos al metodo INSERTAR
     // hay que tomar los datos del campo del html de producto_agregar y pasarlos como parametros aca.
-    $producto->insertar($nombreUsuario,$password,$nombre,$apellido,$id_rol);
+    $usuario->insertar($nombreUsuario,$password,$nombre,$apellido,$id_rol);
     
 ?>
