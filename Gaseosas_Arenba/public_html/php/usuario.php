@@ -1,20 +1,18 @@
 <?php
 
     class Usuario{
-        private $idUsuario;
         private $strUsuario;
         private $strPassword;
-        private $strRol;
+        private $intIdRol;
         private $strNombre;
         private $strApellido;
         private $boolEstado;
         private $conn;
 
         function __construct(){
-            $this->idUsuario = "";
             $this->strUsuario = "";
             $this->strPassword = "";
-            $this->strRol = "";
+            $this->intIdRol = "";
             $this->strNombre = "";
             $this->strApellido = "";
             $this->boolEstado = false;
@@ -32,8 +30,8 @@
             return $this->strPassword;
         }
 
-        function getStrRol() {
-            return $this->strRol;
+        function getIntIdRol() {
+            return $this->IntIdRol;
         }
 
         function getStrNombre() {
@@ -56,8 +54,8 @@
             $this->strPassword = $strPassword;
         }
 
-        function setStrRol($strRol) {
-            $this->strRol = $strRol;
+        function setIntIdRol($intIdRol) {
+            $this->intIdRol = $intIdRol;
         }
 
         function setIntNombre($intNombre) {
@@ -84,7 +82,7 @@
         function getUsuarioByID($id_usuario){
             include './conexion.php';
 
-            $stmt = $conn->prepare("SELECT id_usuario, usuario, rol, nombre, apellido, estado FROM usuario WHERE id_usuario=:id_usuario");
+            $stmt = $conn->prepare("SELECT id_usuario, usuario, id_rol, nombre, apellido, estado FROM usuario WHERE id_usuario=:id_usuario");
             $stmt->bindParam(':id_usuario', $id_usuario);
             
             $stmt->execute();
@@ -94,10 +92,37 @@
             return $result;
         }
         
+        function getUsuarioByName($nomb){
+            include './conexion.php';
+
+            $stmt = $conn->prepare("SELECT usuario, id_rol, nombre, apellido, estado FROM usuario WHERE nombre LIKE ?");
+            $stmt->bindValue(1,"%{$nomb}%", PDO::PARAM_STR);
+    
+            $stmt->execute();
+            
+            $result = $stmt->fetchAll();
+            
+            return $result;
+        }
+        
+       /* function getUsuarioByName1($nomb){
+            include './conexion.php';
+
+            $stmt = $conn->prepare("SELECT us.`id_usuario`, us.`usuario`, us.`password`, us.`nombre`, us.`apellido`, us.`estado`, rol.`id_rol`, rol.`nombre` FROM `usuario` us , `rol` WHERE us.id_rol = rol.id_rol nombre LIKE ?");
+            $stmt->bindValue(1,"%{$nomb}%", PDO::PARAM_STR);
+    
+            $stmt->execute();
+            
+            $result = $stmt->fetchAll();
+            
+            return $result;
+        }*/
+        
+         
         function getUsuarioByNameOrRol($nomb){
             include './conexion.php';
 
-            $stmt = $conn->prepare("SELECT usuario, rol, nombre, apellido, estado FROM usuario WHERE nombre LIKE ?");
+            $stmt = $conn->prepare("SELECT usuario, id_rol, nombre, apellido, estado FROM usuario WHERE nombre LIKE ?");
             $stmt->bindValue(1,"%{$nomb}%", PDO::PARAM_STR);
    
            
@@ -115,7 +140,7 @@
             
             include('conexion.php');
             
-            $sql = 'SELECT id_usuario, usuario, password, rol, nombre, estado FROM usuario';
+            $sql = 'SELECT id_usuario, usuario, password, id_rol, nombre, estado FROM usuario';
             //$statmt = $conn->prepare($sql); con esta funcion no me funciona...
             $result = $conn->query($sql);
             // Extraer los valores de $result
@@ -125,14 +150,14 @@
             
         }
         
-        function insertar($nomb,$pass,$rol,$nombre,$apellido,$esta){
+        function insertar($nomb,$pass,$id_rol,$nombre,$apellido,$esta){
            
             $pass = md5($pass);
             // realizamos la conexion
             include('conexion.php');
 
             //preparamos la consulta insert
-            $statmt = $conn->prepare("INSERT INTO `usuario`(`nombre`, `descripcion`, `foto`, `puntos`, `estado`) VALUES ('$nomb','$pass','$rol','$nombre','$apellido','$esta')");
+            $statmt = $conn->prepare("INSERT INTO `usuario`(`nombre`, `descripcion`, `foto`, `puntos`, `estado`) VALUES ('$nomb','$pass','$id_rol','$nombre','$apellido','$esta')");
 
             //ejecutamos el insert
             $statmt->execute();

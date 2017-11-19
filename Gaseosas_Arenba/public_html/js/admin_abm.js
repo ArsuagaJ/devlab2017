@@ -13,6 +13,7 @@ $(document).ready(function(){
     });
     
     $("#btnFiltroBuscar").click(function(){
+        //alert("chotaman");
         vaciarTabla();
         /*ocultarMensaje();*/
         realizarBusqueda();
@@ -69,6 +70,7 @@ function realizarBusqueda(){
     else{
       rol = $("#idRol").val();  
     }
+   
          
     var parametros = {
         //"nameDescrip" : rex.test($(this).text())
@@ -78,10 +80,11 @@ function realizarBusqueda(){
     };
     $.ajax({
         data:  parametros, // los datos que van a ser recuperados desde el php
-        url:   '../php/getUsuarioPorNombreORol.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+        url:   '../php/getUsuarioPorNombre.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
         type:  'get'
+         
         }).done(function(respuesta){
-           //alert(respuesta);
+            alert(respuesta);
             if(respuesta[0].resultado === "nodata"){
                 mostrarDivMensaje();
                 $("#pMensaje").text("No hay registros con esos datos");
@@ -110,7 +113,7 @@ function cargarDatos(strUsuario,strRol,strNombre,strApellido){
 
 function cargarDatosDeFila(){
     var usuario = "";
-    var rol = "";
+    var id_rol = "";
     var nombre = "";
     var apellido = "";
     var fila = "";
@@ -119,11 +122,11 @@ function cargarDatosDeFila(){
         fila = $(this);
         var celdas = this.getElementsByTagName("td");
         usuario = celdas[0].firstChild.nodeValue;
-        rol = celdas[1].firstChild.nodeValue;
+        id_rol = celdas[1].firstChild.nodeValue;
         nombre = celdas[2].firstChild.nodeValue;
         apellido = celdas[3].firstChild.nodeValue;
-        alert(usuario);
-        cargarDatos(usuario,rol,nombre,apellido);
+        alert(apellido);
+        cargarDatos(usuario,id_rol,nombre,apellido);
     });
 }
 
@@ -143,7 +146,7 @@ function generarTabla(objetoJSON){
         var celda5 = document.createElement("td");
         
         var usuario = objetoJSON[i].usuario;
-        var rol = objetoJSON[i].rol;
+        var id_rol = objetoJSON[i].id_rol;
         var nombre = objetoJSON[i].nombre;
         var apellido = objetoJSON[i].apellido;
         
@@ -168,7 +171,7 @@ function generarTabla(objetoJSON){
         botonBaja.appendChild(iconoBaja);
         
         var textoCelda1 = document.createTextNode(usuario);
-        var textoCelda2 = document.createTextNode(rol);
+        var textoCelda2 = document.createTextNode(id_rol);
         var textoCelda3 = document.createTextNode(nombre);
         var textoCelda4 = document.createTextNode(apellido);
         

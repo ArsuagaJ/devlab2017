@@ -17,6 +17,7 @@
 		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
 		<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 		<link rel=stylesheet href="../css/style.css">
+                <script src="../js/admin_abm.js" type="text/javascript"></script>
 		
 	</head>
 	<body class="bodyCliente">
@@ -56,9 +57,6 @@
                                 </div>
                             </div>
                         </li>
-          
-          
-        
       </ul>
               <li><a href="#"><span class="glyphicon glyphicon-share-alt"></span><strong>Salir</strong></a></li>
       </ul>
@@ -74,13 +72,13 @@
             
             <div class="col-md-2">
                 <label>Nombre de Usuario</label>
-                <input class="form-control"  name="nombreUsuario" required>
+                <input class="form-control"  id="inpNombreUsuario" name="nombreUsuario" required>
             
             </div>
     
             <div class="col-md-2">
                 <label>Contrasena</label>
-                <input class="form-control" type="password" name="passwordUsuario" required>
+                <input class="form-control" id="txtDescripcion" type="password" name="passwordUsuario" required>
             
             </div>
     
@@ -89,20 +87,31 @@
                 <input class="form-control" type="password" name="passwordUsuario" required>
             
             </div>
+    
+            <div class="col-md-2">
+                <label>Nombre</label>
+                <input class="form-control" id="txtNombre" type="string" name="strNombre" required>
+            
+            </div>
+    
+            <div class="col-md-2">
+                <label>Apellido</label>
+                <input class="form-control" id="txtApellido" type="string" name="strApellido" required>
+            
+            </div>
  
             <div class="col-md-2">
                 <label>Rol</label>
-                <select class="selectpicker form-control">
+                <select class="selectpicker form-control" id="txtRol">
                 <option>Empleado</option>
                 <option>Representante</option>
                 <option>Administrador</option>
-                <option>Todos</option>
                 </select>
 
             </div>
         </div>
             <div>
-                    <button type="button" id="btnInforme" class="btn">Crear</button>
+                    <button type="button" id="btnAgregarUsuario" class="btn">Crear</button>
             </div>
             
 
