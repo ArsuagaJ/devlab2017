@@ -1,69 +1,168 @@
 <?php
 
-    class Producto{
-        private $idProducto;
-        private $strNombreProducto;
-        private $strDescripcionProducto;
-        private $strFoto;
-        private $intPuntosCanje;
-        private $boolEstado;
-        private $conn;
-
+    class Cliente{
+        private $nombre;
+        private $apellido;
+        private $dni;
+        private $telefono;
+        private $email;
+        private $provincia;
+        private $localidad;
+        private $direccion;
+        private $idUsuario;
+        private $idPassword;
+        private $estado;
+        private $rol;
+        private $puntos;
+        private $intentos;
+        private $token;
+        private $validacion;
+               
         function __construct(){
-            $this->idProducto = "";
-            $this->strNombreProducto = "";
-            $this->strDescripcionProducto = "";
-            $this->strFoto = "";
-            $this->intPuntosCanje = 0;
-            $this->boolEstado = false;
+            $this->nombre = "";
+            $this->apellido = "";
+            $this->dni = 0;
+            $this->telefono = 0;
+            $this->email = 0;
+            $this->provincia = "";
+            $this->localidad = "";
+            $this->direccion = "";
+            $this->idUsuario = "";
+            $this->idPassword = "";
+            $this->estado = 0;
+            $this->rol = 0;
+            $this->puntos = 0;
+            $this->intentos = 0;
+            $this->token = 0;
+            $this->validacion = 0;
         }
      
-        function getIdProducto() {
-            return $this->idProducto;
+        function getNombre() {
+            return $this->nombre;
         }
 
-        function getStrNombreProducto() {
-            return $this->strNombreProducto;
+        function getApellido() {
+            return $this->apellido;
         }
 
-        function getStrDescripcionProducto() {
-            return $this->strDescripcionProducto;
+        function getDni() {
+            return $this->dni;
         }
 
-        function getStrFoto() {
-            return $this->strFoto;
+        function getTelefono() {
+            return $this->telefono;
         }
 
-        function getIntPuntosCanje() {
-            return $this->intPuntosCanje;
+        function getImail() {
+            return $this->email;
         }
 
-        function getBoolEstado() {
-            return $this->boolEstado;
+        function getProvincia() {
+            return $this->provincia;
+        }
+        
+        function getLocalidad() {
+            return $this->localidad;
+        }
+        
+        function getDireccion() {
+            return $this->direccion;
+        }
+        
+        function getIdUsuario() {
+            return $this->idUsuario;
+        }
+        
+        function getIdPassword() {
+            return $this->idPassword;
+        }
+        
+        function getEstado() {
+            return $this->estado;
+        }
+        
+        function getRol() {
+            return $this->rol;
+        }
+        
+        function getPuntos() {
+            return $this->puntos;
+        }
+        
+        function getIntentos() {
+            return $this->intentos;
+        }
+        
+        function getToken() {
+            return $this->token;
+        }
+        
+        function getValidacion() {
+            return $this->validacion;
+        }
+        
+        function setNombre($nombre) {
+            $this->idProducto = $nombre;
         }
 
-        function setIdProducto($idProducto) {
-            $this->idProducto = $idProducto;
+        function setApellido($apellido) {
+            $this->strNombreProducto = $apellido;
         }
 
-        function setStrNombreProducto($strNombreProducto) {
-            $this->strNombreProducto = $strNombreProducto;
+        function setDni($dni) {
+            $this->strDescripcionProducto = $dni;
         }
 
-        function setStrDescripcionProducto($strDescripcionProducto) {
-            $this->strDescripcionProducto = $strDescripcionProducto;
+        function setTelefono($telefono) {
+            $this->strFoto = $telefono;
         }
 
-        function setStrFoto($strFoto) {
-            $this->strFoto = $strFoto;
+        function setEmail($email) {
+            $this->intPuntosCanje = $email;
         }
 
-        function setIntPuntosCanje($intPuntosCanje) {
-            $this->intPuntosCanje = $intPuntosCanje;
+        function setProvincia($provincia) {
+            $this->boolEstado = $provincia;
         }
-
-        function setBoolEstado($boolEstado) {
-            $this->boolEstado = $boolEstado;
+        
+        function setLocalidad($localidad) {
+            $this->boolEstado = $localidad;
+        }
+        
+        function setDireccion($direccion) {
+            $this->boolEstado = $direccion;
+        }
+        
+        function setIdUsuario($idUsuario) {
+            $this->boolEstado = $idUsuario;
+        }
+        
+        function setIdPassword($idPassword) {
+            $this->boolEstado = $idPassword;
+        }
+        
+        function setEstado($estado) {
+            $this->boolEstado = $estado;
+        }
+        
+        function setRol($rol) {
+            $this->boolEstado = $rol;
+        }
+        
+        function setPuntos($puntos) {
+            $this->boolEstado = $puntos;
+        }
+        
+        function setIntentos($intentos) {
+            $this->boolEstado = $intentos;
+        }
+        
+        function setToken($token) {
+            $this->boolEstado = $token;
+        }
+        
+        function setValidacion($validacion) {
+            $this->boolEstado = $validacion;
         }
         
         /* estas funciones por el momento no funcan
@@ -117,7 +216,7 @@
             
         }
         
-        function insertar($nomb,$desc,$foto,$punt,$esta){
+        function insertar($idUsuario,$idPassword,$nombre,$apellido,$rol){
            
             // realizamos la conexion
             include('conexion.php');
@@ -127,7 +226,7 @@
             //$statmt->execute();
             try{
                 //preparamos la consulta insert
-                $statmt = $conn->prepare("INSERT INTO `producto`(`nombre`, `descripcion`, `foto`, `puntos`, `estado`) VALUES ('$nomb','$desc','$foto','$punt','$esta')");
+                $statmt = $conn->prepare("INSERT INTO `usuario`(`usuario`,`password`, `nombre`, `apellido`, `id_rol`) VALUES ('$idUsuario','$idPassword','$nombre','$apellido','$rol')");
                 try { 
                     $conn->beginTransaction(); 
                      //ejecutamos el insert

@@ -73,6 +73,43 @@ function validarNombre(){
 	}	
 }
 
+function validarContra(){
+    //Utilizamos una expresion regular 
+    var texto=$('#idPassword').val(); 
+    var reg =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/; 
+    if (texto===""){
+            $('#pPassword').text('debe ingresar contraseña');
+            event.preventDefault();
+            return false;
+    }
+    else if(reg.test(texto)) { 
+            $('#pPassword').text(' ');
+            return true;
+    } else {
+            $('#pPassword').text('contraseña invalida');
+            event.preventDefault();
+            return false;
+        }   
+}
+
+function validarContra1(){    
+    var texto=$('#idPassword').val();
+    var texto1=$('#idPassword1').val();
+    if (texto1===""){
+            $('#pPassword1').text('debe ingresar contraseña');
+            event.preventDefault();
+            return false;
+    }
+    else if(texto===texto1) { 
+            $('#pPassword1').text(' ');
+            return true;
+    } else {
+            $('#pPassword1').text('las contraseñas no coinciden, intente de nuevo');
+            event.preventDefault();
+            return false;
+        }
+}
+
 function validarApellido(){
 	var texto=$('#apellido').val(); 
 		var reg =/^[a-z A-z]{3,30}$/;
@@ -180,6 +217,26 @@ function validarProvincia(){
 	}	
 }
 
+function validarUsuario(){
+     //Utilizamos una expresion regular 
+    var texto=$('#idUsuario').val(); 
+    var reg =/^[a-zA-Z\s0-9]*$/; 
+    var aux = texto.split(" ");
+    if (texto===""){
+            $('#pUsuario').text('debe ingresar usuario');
+            event.preventDefault();
+            return false;
+    }
+    else if(reg.test(texto) & aux.length === 1 & (texto.length > 6 & texto.length < 16)) { 
+            $('#pUsuario').text(' ');
+            return true;
+    } else {
+            $('#pUsuario').text('usuario invalido');
+            event.preventDefault();
+            return false;
+        }
+}
+
 $(document).ready(function(){
 	$('#registro').click(function() {
 		//Utilizamos una expresion regular 
@@ -191,17 +248,32 @@ $(document).ready(function(){
 		var var6 = validarDirreccion();
                 var var7 = validarDni();
                 var var8 = validarProvincia();
+                var var9 = validarContra();
+                var var10 = validarContra1();
+                var var11 = validarUsuario();
                 
-                if (var1 === true & var2 === true & var3 === true & var4 === true & var5 === true & var6 === true & var7 === true & var8 === true){
+                if (var1 === true & var2 === true & var3 === true & var4 === true & var5 === true & var6 === true & var7 === true & var8 === true & var9 === true & var10 === true & var11 === true){
                     
-                    var formData = new FormData($("#js-upload-form")[0]);
-                    var ruta = "../php/cliente_registro.php"; // lo enviamos al php para que lo suba a la carpeta "fotos"
+                    var nombre = $("#nombre").val();
+                    var apellido = $("#apellido").val();
+                    var idUsuario = $("#idUsuario").val();
+                    var idPassword = $("#idPassword").val();
+                    var estado = 1;
+                    var rol = 3;                   
+                    
+                    var parametros1 = {
+                            "nombre" : nombre,
+                            "apellido" : apellido,
+                            "idUsuario" : idUsuario,
+                            "idPassword" : idPassword,
+                            "rol" : rol,
+                            "estado" : estado,
+                        };
+                    var ruta = "../php/usuario_registro.php"; // lo enviamos al php para que lo suba a la carpeta "fotos"
                     $.ajax({
                         url: ruta,
                         type: "POST",
-                        data: formData,
-                        contentType: false,
-                        processData: false,
+                        data: parametros1,
                         beforeSend: function insertar() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
                             $("#pMensaje").text("Procesando, espere por favor...");
 
@@ -214,33 +286,37 @@ $(document).ready(function(){
                         //$("#pMensaje").text(response[1]);
 
                         // si se subio la imagen, tomamos los valores de los campos
-                        var nombre = $("#nombre").val();
-                        var apellido = $("#apellido").val();
                         var dni = $("#dni").val();
                         var telefono = $("#telefono").val();
                         var email = $("#email").val();
                         var provincia = $("#provincia").val();
                         var localidad = $("#localidad").val();
                         var direccion = $("#direccion").val();
-                        var idUsuario = $("#idUsuario").val();
-                        var idPassword = $("#idPassword").val();
-                        var idPassword1 = $("#idPassword1").val();
+                        var puntos = 0;
+                        var intentos = 0;
+                        var token = 0;
+                        var validacion= 0;
                         
 
                         // los siguientes valores son los que le pasamos al php con ajax que luego los recuperara con el nombre descriptivo
                         // que le hayamos puesto.. en este caso
                         // "nombre", "descrip","punt","img","estado"
                         var parametros = {
-                            "nombre" : nombre,
-                            "descrip" : descrip,
-                            "punt" : puntos,
-                            "img" : rutaImagen,
-                            "estado" : estado
+                            "dni" : dni,
+                            "telefono" : telefono,
+                            "email" : email,
+                            "provincia" : provincia,
+                            "localidad" : localidad,
+                            "direccion" : direccion,
+                            "puntos" : puntos,
+                            "intentos" : intentos,
+                            "token" : token,
+                            "validacion" : validacion,
                         };
                         // generamos un ajax nuevo con los valores de los campos
                         $.ajax({
                             data:  parametros, // los datos que van a ser recuperados desde el php
-                            url:   '../php/insertProductos.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+                            url:   '../php/cliente_registro.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
                             type:  'post',
                             success:  function (response) {
                                 console.log(response);
