@@ -64,6 +64,75 @@
             $this->conn = $conn;
         }
         
+        function darBajaListaCodigos($id){
+            include('./conexion.php');
+            //$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
+            try{
+                $sql = "UPDATE lista_codigo SET estado = 1  
+			WHERE id_lista_codigo = :id_lista_codigo";
+                $stmt = $conn->prepare($sql);  
+                $stmt->bindParam(':id_lista_codigo', $id, PDO::PARAM_INT);   
+                $stmt->execute(); 
+
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }         
+            
+            // realizamos la desconexion de la BD
+            include('desconexion.php');
+        }
+        
+        function actualizarListaCodigos($id,$fechaInicio,$fechaFin,$nombreArchivo,$descripcion,$estado){
+            include('./conexion.php');
+            //$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
+            try{
+                
+
+                $sql = "UPDATE lista_codigo SET fecha_inicio = :fechaInicio, 
+			fecha_fin = :fechaFin, 
+			nombre_archivo = :nombreArchivo,  
+			descripcion = :descripcion,  
+			estado = :estado  
+			WHERE id_lista_codigo = :id_lista_codigo";
+                $stmt = $conn->prepare($sql);                                  
+                $stmt->bindParam(':fechaInicio', $fechaInicio, PDO::PARAM_STR);       
+                $stmt->bindParam(':fechaFin', $fechaFin, PDO::PARAM_STR);    
+                $stmt->bindParam(':nombreArchivo', $nombreArchivo, PDO::PARAM_STR);
+                // use PARAM_STR although a number  
+                $stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR); 
+                $stmt->bindParam(':estado', $estado, PDO::PARAM_BOOL);   
+                $stmt->bindParam(':id_lista_codigo', $id, PDO::PARAM_INT);   
+                $stmt->execute(); 
+
+                // echo a message to say the UPDATE succeeded
+                //echo $stmt->rowCount() . " records UPDATED successfully";
+                
+                //preparamos la consulta UPDATE
+                //$statmt = $conn->prepare();
+                //$statmt->execute(); // ejecutamos el UPDATE
+                /*$statmt = $conn->prepare("UPDATE `lista_codigo` SET `fecha_inicio`=:fechaInicio, `fecha_fin`=:fechaFin, `nombre_archivo`=:nombreArchivo, `descripcion`=:descripcion, `estado`=:estado WHERE `id_lista_codigo`=:idListaCodigo)");
+                $statmt->bindParam(':fechaInicio', $fechaInicio);
+                $statmt->bindParam(':fechaFin', $fechaFin);
+                $statmt->bindParam(':nombreArchivo', $nombreArchivo);
+                $statmt->bindParam(':descripcion', $descripcion);
+                $statmt->bindParam(':estado', $estado);
+                $statmt->bindParam(':idListaCodigo', $id);*/
+                /*try { 
+                    $conn->beginTransaction(); 
+                    $statmt->execute(); // ejecutamos el UPDATE
+                    $conn->commit();
+                }catch(PDOExecption $e) { 
+                    $conn->rollback(); 
+                    //print "Error!: " . $e->getMessage() . "</br>"; 
+                } */
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }         
+            
+            // realizamos la desconexion de la BD
+            include('desconexion.php');
+        }
+        
         function insertarListaCodigos($fechaInicio,$fechaFin,$nombreArchivo,$descripcion,$estado){//ejecutamos el insert
             include('./conexion.php');
             $ultimoId; // declaramos una variable que sera el ID insertado

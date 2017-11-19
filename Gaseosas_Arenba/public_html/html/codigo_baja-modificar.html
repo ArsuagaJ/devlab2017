@@ -18,6 +18,7 @@ and open the template in the editor.
 	<link rel=stylesheet href="../css/style.css">
         <!--<link rel=stylesheet href="../css/codigo_baja.css">-->
         <!--<script src="../js/codigo_baja_pager.js" type="text/javascript"></script>-->
+        <script src="../js/funciones.js" type="text/javascript"></script>
         <script src="../js/codigo_baja-modificar.js" type="text/javascript"></script>
     </head>
     
@@ -69,7 +70,7 @@ and open the template in the editor.
                             <th title="Cabecera: Descripcion">Descripcion</th>
                             <th title="Cabecera: Acciones a Realizar sobre los registros">Acciones</th>
                         </tr>
-                        <tr>
+                        <!--<tr>
                             <td>Codi1</td>
                             <td>Activo</td>
                             <td>18-11-2017</td>
@@ -77,9 +78,9 @@ and open the template in the editor.
                             <td>Descrip</td>
                             <td>
                                 <button class="btn btn-warning" id="btnModalModificar" data-toggle="modal" data-target="#modalModificar"><i class="glyphicon glyphicon-pencil"></i></button>
-                            <button class="btn btn-danger" id="btnModalDarBaja" data-toggle="modal" data-target="#modalBaja"><i class="glyphicon glyphicon-remove"></i></button>
+                                <button class="btn btn-danger" id="btnModalDarBaja" data-toggle="modal" data-target="#modalBaja"><i class="glyphicon glyphicon-remove"></i></button>
                             </td>
-                        </tr>
+                        </tr>-->
                     </thead>
                     <tbody class="buscar" id="tblResultado">
                       <!-- agregar codigo desde la BDD -->
@@ -159,6 +160,23 @@ and open the template in the editor.
                         <div id="divCambios" class="container">
                             <!-- div del nombre -->
                             <div class="row">
+                                <!-- div de las fechas y el estado para ingresar --> 
+                                <div class="col-sm-6">
+                                    <div class="row form-group">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
+                                                <label class="control-label" for="inpNombreListado">Nombre del Listado</label>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control" required id="inpNombreListado" disabled name="inpNombreListado" placeholder="Ingrese el nuevo nombre del listado">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="row">
                                 <div class="col-sm-6">
                                     <!-- Fecha Desde -->
                                     <div class="col-sm-4"> 
@@ -181,22 +199,6 @@ and open the template in the editor.
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="row">
-                                <!-- div de las fechas y el estado para ingresar --> 
-                                <div class="col-sm-6">
-                                    <div class="row form-group">
-                                        <div class="col-sm-12">
-                                            <div class="col-sm-12">
-                                                <label class="control-label" for="inpNombreListado">Nombre del Listado</label>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <input type="text" class="form-control" required id="inpNombreListado" name="inpNombreListado" placeholder="Ingrese el nuevo nombre del listado">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="row">
                                 <!-- div de la descripcion del listado -->
@@ -205,7 +207,21 @@ and open the template in the editor.
                                         <label class="control-label" for="txtDescripcion">Descripcion:</label>
                                     </div>
                                     <div class="col-sm-12">
-                                        <textarea class="form-control" rows="5" id="txtDescripcion" placeholder="Ingrese descripcion del listado de codigos seleccionado" name="txtDescripcion" required></textarea>
+                                        <textarea class="form-control" rows="5" cols="80" id="txtDescripcion" placeholder="Ingrese descripcion del listado de codigos seleccionado" name="txtDescripcion" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- div del mensaje -->
+                    <div class="container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="alert alert-success hidden form-group" role="alert" id="divMensaje">
+                                        <button type="button" class="close" data-dismiss="alert" id="btnCerrarAlerta">&times;</button>
+                                        <p id="pModalMensaje"><strong></strong></p>
                                     </div>
                                 </div>
                             </div>
