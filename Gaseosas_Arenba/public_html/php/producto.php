@@ -90,8 +90,7 @@
         }
         
         function getProductosByNameOrDescript($nomb){
-            include './conexion.php';
-
+            include './conexion.php';            
             $stmt = $conn->prepare("SELECT id_producto, nombre, descripcion, foto, puntos, estado FROM producto WHERE nombre LIKE ? OR descripcion LIKE ?");
             $stmt->bindValue(1,"%{$nomb}%", PDO::PARAM_STR);
             $stmt->bindValue(2,"%{$nomb}%", PDO::PARAM_STR);
@@ -157,6 +156,26 @@
             // realizamos la desconexion de la BD
             include('desconexion.php');
         }
+        
+        function updateProducto($idProducto,$nombreProducto,$puntos,$descripcion){
+            include('./conexion.php');
+            try{
+                $sql = "UPDATE producto SET nombre = :nombreProducto,  
+			descripcion = :descripcion,  
+			puntos = :puntos  
+			WHERE id_producto = :id_producto";
+                $stmt = $conn->prepare($sql);                                  
+                $stmt->bindParam(':nombreProducto', $nombreProducto, PDO::PARAM_STR);
+                $stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR); 
+                $stmt->bindParam(':puntos', $puntos, PDO::PARAM_INT);   
+                $stmt->bindParam(':id_producto', $idProducto, PDO::PARAM_INT);   
+                $stmt->execute();
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+            // realizamos la desconexion de la BD
+            include('./desconexion.php');
+        }
                 
         //la funcion que sigue era de prueba
         /*function guardarDatos(){
@@ -178,6 +197,23 @@
             foreach ($resultado as $row) {
                 echo $row["apellido"];
             }*/
+        function darBajaProducto($id_producto){
+            include('./conexion.php');
+            //$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username,$password);
+            try{
+                $sql = "UPDATE producto SET estado = 1  
+			WHERE id_producto = :id_producto";
+                $stmt = $conn->prepare($sql);  
+                $stmt->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);   
+                $stmt->execute(); 
+
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }         
+            
+            // realizamos la desconexion de la BD
+            include('desconexion.php');
+        }
         
     }
     

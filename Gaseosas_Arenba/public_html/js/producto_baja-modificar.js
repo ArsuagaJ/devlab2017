@@ -132,69 +132,133 @@ $(document).ready(function(){
     $("#modalModificar").on('show.bs.modal', function (e) {
         
         // lo siguiente funciona. lo tome de la web pero no lo entiendo mucho..
+        vaciarCacheDeDatos();
         
         var row = $(e.relatedTarget).parent().parent();
         var celdas= row.children();
         
-        botonModif = celdas[4].firstChild;
+        botonModif = celdas[5].firstChild;
         id = botonModif.getAttribute("id");//obtenemos el id referente a la fila mencionada
-        var spli = id.split("-");
+        var spli = id.split("-"); // lo separamos para obtener el numero de id del boton
         id = parseInt(spli[1]);
         //alert(boton.getAttribute("id"));
         // obtenemos cada uno de los valores referentes de la fila que tomamos..
         nombreProducto = celdas[0].firstChild.nodeValue;
         descProducto = celdas[1].firstChild.nodeValue;
         puntos = celdas[2].firstChild.nodeValue;
-        imagen = celdas[3].firstChild.nodeValue;
+        imagen = celdas[3].firstChild.getAttribute("src");// tomamos el valor de la ruta de la imagen
+        //imagen = celdas[3].firstChild.nodeValue;  // lo dividimos para obtener el nombre
+        //imagen = spli[2]; // reasignamos la variable nombre
+        $("#imgSalida").attr("src",imagen);
+        $("#inpNombreProducto").attr("value",nombreProducto);
+        $("#inpPuntos").attr("value", parseInt(puntos));
+        $("#txtDescripcion").text(descProducto);
         
-        cargarDatos(nombreProducto,descProducto,imagen,puntos);
+        
+        //cargarDatos(nombreProducto,descProducto,imagen,puntos); // no me funciona esta funcion
         $("#btnModalModificarConfirmar").click(function(){
-            //alert(botonModif.getAttribute("id"));
-            //alert(id);
-            /*if(validarFechaMayorActual($("#desde").val()) && validarFechaMayorActual($("#hasta").val())){
-                var fechaDesde = $("#desde").val();
-                var fechaHasta = $("#hasta").val();
-                var estate = $("#selEstado").val();
-                var descrip = $("#txtDescripcion").val();
-                var rutaArchivo = nombreLista;
-                var estado = true;
-                if(estate === "1"){
-                    estado = 1;
-                }
+            //*****************************************************************************************
+            /* tengo que seguir modificando esto para que pueda actualizar correctamente el producto */
+            //*****************************************************************************************
+            
+            puntos = $("#inpPuntos").val();
+            nombreProducto = $("#inpNombreProducto").val();
+            descProducto = $("#txtDescripcion").val();
+            
+            if(isNaN(puntos)){
+                mostrarMensajeModal("No se ha ingresado un numero correcto en el campo de PUNTOS DE CANJE");
+                alert("no es un numero");
+                event.preventDefault();
+            }else{
                 var parametros = {
-                    "fechaDesde" : fechaDesde,
-                    "fechaHasta" : fechaHasta,
-                    "descrip" : descrip,
-                    "path" : "../archivos/"+rutaArchivo,
-                    "estado" : estado,
+                    "puntos" : puntos,
+                    "nombre" : nombreProducto,
+                    "descripcion" : descProducto,
                     "id" : id
                 };
-                // generamos un ajax nuevo con los valores de los campos que se guardaran en la tabla "lista de codigos"
                 $.ajax({
                     data:  parametros, // los datos que van a ser recuperados desde el php
-                    url:   '../php/updateListaCodigos.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+                    url:   '../php/updateProducto.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
                     type:  'post',
                     beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
-                        imprimirMensaje("Actualizando archivo de códigos, aguarde unos instantes...");
+                        imprimirMensaje("Actualizando el producto, aguarde unos instantes...");
+                    },
+                    success: function resultado(respuestaPHP){
+                        imprimirMensaje("Se ha actualizado correctamente el producto"+nombreProducto);
                     }
                 }).done(function(result){
                     if(result === 0){
                         alert("rrorr");
                     }
-                    imprimirMensaje("Se ha actualizado correctamente el archivo de codigos"+rutaArchivo);
-                    console.log("Archivo Procesado Correctamente");
+                    mostrarDivMensaje();
+                    imprimirMensaje("Se ha actualizado correctamente el producto"+nombreProducto);
+                    console.log("Actualizacion de producto Procesado Correctamente");
                     //console.log(result);
                 });;
-            }else{
-                imprimirMensajeModal("Error al actualizar el archivo de codigos"+rutaArchivo);
-            }*/
+            }
         });
+    });
+    
+    $('#modalModificar').on('hidden.bs.modal', function (e) {
+        vaciarTabla();
+        vaciarCacheDeDatos();
+        realizarBusqueda(); // actualizamos la tabla para que apliquen los cambios
+    });
+    
+    
+    $("#modalBajaProducto").on('show.bs.modal', function (e) {
+        vaciarCacheDeDatos();
+        
+        var row = $(e.relatedTarget).parent().parent();
+        var celdas= row.children();
+        
+        botonModif = celdas[5].lastChild;
+        id = botonModif.getAttribute("id");//obtenemos el id referente a la fila mencionada
+        var spli = id.split("-"); // lo separamos para obtener el numero de id del boton
+        id = parseInt(spli[1]);
+        var idPhp = {"id":id};
+        $("#btnModalBajaConfirmar").click(function(){
+            $.ajax({
+                data:  idPhp, // los datos que van a ser recuperados desde el php
+                url:   '../php/deleteProducto.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+                type:  'post',
+                beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
+                    imprimirMensaje("Dando de baja el producto, aguarde unos instantes...");
+                },
+            }).done(function(result){
+                    mostrarDivMensaje();
+                    imprimirMensaje("Se ha dado de baja correctamente el producto");
+                    console.log("Baja de producto Procesado Correctamente");
+                    //console.log(result);
+                });
+        });  
+    });
+    
+    $('#modalBajaProducto').on('hidden.bs.modal', function (e) {
+        vaciarTabla();
+        vaciarCacheDeDatos();
+        realizarBusqueda(); // actualizamos la tabla para que apliquen los cambios
     });
     
     $("#btnCerrarAlerta").click(function(){
         ocultarMensaje();
     });
 });
+
+function vaciarCacheDeDatos(){
+    $("#inpPuntos").attr("value","");
+    $("#txtDescripcion").text("");
+    $("#inpNombreProducto").attr("value","");
+    $("#imgSalida").attr("src","");
+}
+
+function imprimirMensaje(strMensaje){
+    $("#pMensaje").text(strMensaje);
+}
+
+function mostrarMensajeModal(strMensaje){
+    $("#parMensajeModal").text(strMensaje);
+}
 
 function cargarDatos(strNombreProducto,descProducto,imagen,strPuntos){
     $("#inpNombreProducto").attr("value",this.strNombreProducto);
@@ -285,10 +349,17 @@ function generarTabla(objetoJSON){
         var celda3 = document.createElement("td");
         var celda4 = document.createElement("td");
         var celda5 = document.createElement("td");
+        var celda6 = document.createElement("td");
         
         var nombreProducto = objetoJSON[i].nombre;
         var descripcProducto = objetoJSON[i].descripcion;
         var puntos = objetoJSON[i].puntos;
+        var estado = objetoJSON[i].estado;
+        if(estado === "0"){
+            estado = "Activo";
+        }else{
+            estado = "Inactivo";
+        }
         
         var foto = objetoJSON[i].foto;
         var imagen = document.createElement("img");
@@ -316,7 +387,7 @@ function generarTabla(objetoJSON){
         botonBaja.className = "btn btn-danger";
         botonBaja.setAttribute("id",nombreBtnModalDarBaja);
         botonBaja.setAttribute("data-toggle","modal");
-        botonBaja.setAttribute("data-target","#myModal");
+        botonBaja.setAttribute("data-target","#modalBajaProducto");
         iconoBaja.className = "glyphicon glyphicon-remove";
 
         botonBaja.appendChild(iconoBaja);
@@ -325,19 +396,22 @@ function generarTabla(objetoJSON){
         var textoCelda2 = document.createTextNode(descripcProducto);
         var textoCelda3 = document.createTextNode(puntos);
         var textoCelda4 = document.createTextNode(foto);
+        var textoCelda5 = document.createTextNode(estado);
         
         celda1.appendChild(textoCelda1);
         celda2.appendChild(textoCelda2);
         celda3.appendChild(textoCelda3);
         celda4.appendChild(imagen);
-        celda5.appendChild(botonModificar);
-        celda5.appendChild(botonBaja);
+        celda5.appendChild(textoCelda5);
+        celda6.appendChild(botonModificar);
+        celda6.appendChild(botonBaja);
             
         hilera.appendChild(celda1);
         hilera.appendChild(celda2);
         hilera.appendChild(celda3);
         hilera.appendChild(celda4);
         hilera.appendChild(celda5);
+        hilera.appendChild(celda6);
  
         tbody.appendChild(hilera); //agrega la hilera al final de la tabla
     }
