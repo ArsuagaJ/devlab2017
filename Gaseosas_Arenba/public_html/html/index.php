@@ -50,7 +50,7 @@
   <div class="row">
     <div class="Absolute-Center is-Responsive">
       <div class="col-sm-12 col-md-10 col-md-offset-1">
-        <form id="loginForm" methop="post" action="../php/validar.php" >
+        <form id="loginForm" method="post" action="../php/validar.php" >
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input class="form-control" type="text" name='usuario' id="idUsuario" placeholder="usuario"/>

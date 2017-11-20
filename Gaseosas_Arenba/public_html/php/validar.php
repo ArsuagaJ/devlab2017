@@ -11,18 +11,23 @@
 </head>
 <body>
 <?php
-include 'conexion.php';
-include 'usuario.php';   
- 
+include './conexion.php';
+include './usuario.php';   
+$usuario = filter_input(INPUT_POST,'usuario');
+$psw = filter_input(INPUT_POST,'password');
+$usur = new Usuario();
+//echo('<script> console.log('.$log.') </script>');
 if(isset($_POST['login'])){
-    $usuario = $_POST['usuario'];
-    $pw = $_POST['password'];
-    //$usur = new Usuario();
-    $pw = md5($pw);
+    //$usuario = filter_input(INPUT_POST,'usuario');
+    //$psw = filter_input(INPUT_POST,'password');
     
- 
-  $log = $usur->getUsuarioAndPass($usuario,$pw);
-    echo('<script> console.log($log) </script>');
+    $pw = md5($psw);
+    
+    echo('<script> console.log('+$psw+') </script>');
+    echo('<script> console.log('+$pw+') </script>');
+    $log = $usur->getUsuarioAndPass($usuario,$pw);
+    
+    echo sizeof($log);
 	if (sizeof($log)>0){
             $row = $log[0];
             
@@ -30,19 +35,20 @@ if(isset($_POST['login'])){
             $_SESSION["nombre"] = $row['nombre'];
             $_SESSION["apellido"] = $row['apellido'];
             $_SESSION["rol"] = $row['rol']; 
-            $rol = $row['rol']; 
+            $rol = $row['rol'];
+            echo('<script> console.log('+$rol+') </script>');
             echo 'Iniciando sesión para '.$_SESSION['usuario'].' <p>';
             switch ($rol) {
-            case 1:
+            case '1':
                 echo '<script> window.location="../html/admin_abm.html"; </script>';
                 break;
-            case 2:
+            case '2':
                 echo '<script> window.location="../html/codigo_agregar.html"; </script>';
                 break;
-            case 3:
+            case '3':
                echo '<script> window.location="../html/usuario_inicio.html"; </script>';
                 break;
-            case 4:
+            case '4':
                echo '<script> window.location="../html/representante_codigos_informados.html"; </script>';
                 break;
             }
