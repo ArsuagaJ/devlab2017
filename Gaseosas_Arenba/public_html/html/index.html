@@ -3,9 +3,10 @@
 
 <html>
 
-	<head>
+	<head>            
 		<title>Gaseosas Arenba</title>
 		<!-- -->
+                
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
                 <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
@@ -18,6 +19,13 @@
 		
 	</head>
         <body class="bodyIndex">
+            <?php
+                    session_start();
+                    //include 'serv.php';
+                    if(isset($_SESSION['user'])){
+                    echo '<script> window.location="../php/validar.php"; </script>';
+                    }
+                ?>
             
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -37,12 +45,12 @@
   </div>
 </nav>
 	
-<div class="container">
-<form id="formulario" class="form-horizontal" role="form">
+
+<!--<form id="formulario" class="form-horizontal" role="form">-->
   <div class="row">
     <div class="Absolute-Center is-Responsive">
       <div class="col-sm-12 col-md-10 col-md-offset-1">
-        <form action="" id="loginForm">
+        <form id="loginForm" methop="post" action="validar.php" >
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input class="form-control" type="text" name='usuario' id="idUsuario" placeholder="usuario"/>
@@ -54,13 +62,13 @@
 			<div id="mensaje2" class="oculto">El campo password se encuntra vacio o es incorrecto</div>		
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-def btn-block">Ingresar</button>
+            <button type="submit" name="login" class="btn btn-def btn-block">Ingresar</button>
           </div>
         </form>        
       </div>  
     </div>    
   </div>
-</div>
+
             
 
 </html>

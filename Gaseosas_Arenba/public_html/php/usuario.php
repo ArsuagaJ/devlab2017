@@ -149,6 +149,22 @@
             return $filas; // retornamos los valores
             
         }
+        function getUsuarioAndPass($user, $pass){
+            
+            include('conexion.php');
+            
+            $sql = 'SELECT id_usuario, usuario, password, id_rol, nombre, estado FROM usuario WHERE usuario=:user AND password=:pass';
+            $stmt=$conn->prepare($sql);
+            $stmt->bindParam(':user', $user);
+            $stmt->bindParam(':pass', $pass);
+            //$statmt = $conn->prepare($sql); con esta funcion no me funciona...
+            $stmt->execute();
+            
+            $result = $stmt->fetchAll();
+            
+            return $result; // retornamos los valores
+            
+        }
         
         function insertar($nombreUsuario,$password,$nombre,$apellido,$id_rol){
            
