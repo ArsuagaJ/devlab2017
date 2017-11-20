@@ -36,8 +36,10 @@ if(isset($_POST['login'])){
             $_SESSION["apellido"] = $row['apellido'];
             $_SESSION["rol"] = $row['rol']; 
             $rol = $row['rol'];
-            echo('<script> console.log('+$rol+') </script>');
-            echo 'Iniciando sesión para '.$_SESSION['usuario'].' <p>';
+            //echo('<script> console.log('+$rol+') </script>');
+            if($rol > 0 && $rol < 5){
+                echo 'Iniciando sesión para '.$_SESSION['usuario'].' <p>';
+            }
             switch ($rol) {
             case 1:
                 echo '<script> window.location="../php/admin_abm.php"; </script>';
@@ -51,9 +53,11 @@ if(isset($_POST['login'])){
             case 4:
                echo '<script> window.location="../html/representante_codigos_informados.html"; </script>';
                 break;
+            default:
+                echo '<script> alert("Usuario o contraseña incorrectos.");</script>';
+                echo '<script> window.location="../php/index.php"; </script>';
+                break;
             }
-            
-            
 	}
 	else{
             echo '<script> alert("Usuario o contraseña incorrectos.");</script>';
