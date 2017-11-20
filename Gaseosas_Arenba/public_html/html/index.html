@@ -1,4 +1,10 @@
-
+ <?php
+                    session_start();
+                    //include 'serv.php';
+                    if(isset($_SESSION['user'])){
+                    echo '<script> window.location="../php/validar.php"; </script>';
+                    }
+                ?>
 <!DOCTYPE HTML>
 
 <html>
@@ -19,13 +25,7 @@
 		
 	</head>
         <body class="bodyIndex">
-            <?php
-                    session_start();
-                    //include 'serv.php';
-                    if(isset($_SESSION['user'])){
-                    echo '<script> window.location="../php/validar.php"; </script>';
-                    }
-                ?>
+           
             
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">

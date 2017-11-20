@@ -13,17 +13,19 @@
 <?php
 include 'conexion.php';
 include 'usuario.php';   
-    
+ 
 if(isset($_POST['login'])){
     $usuario = $_POST['usuario'];
     $pw = $_POST['password'];
-    $usuario = new Usuario();
+    //$usur = new Usuario();
     $pw = md5($pw);
     
-    
-    $log = $usuario->getUsuarioAndPass($usuario,$pw);
+ 
+  $log = $usur->getUsuarioAndPass($usuario,$pw);
+    echo('<script> console.log($log) </script>');
 	if (sizeof($log)>0){
             $row = $log[0];
+            
             $_SESSION["usuario"] = $row['usuario']; 
             $_SESSION["nombre"] = $row['nombre'];
             $_SESSION["apellido"] = $row['apellido'];
