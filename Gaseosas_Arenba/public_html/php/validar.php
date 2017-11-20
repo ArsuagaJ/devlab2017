@@ -34,7 +34,7 @@ if(isset($_POST['login'])){
             $_SESSION["usuario"] = $row['usuario']; 
             $_SESSION["nombre"] = $row['nombre'];
             $_SESSION["apellido"] = $row['apellido'];
-            $_SESSION["rol"] = $row['rol']; 
+            $_SESSION["rol"] = $row['id_rol']; 
             $rol = $row['rol'];
             //echo('<script> console.log('+$rol+') </script>');
             if($rol > 0 && $rol < 5){
@@ -45,13 +45,13 @@ if(isset($_POST['login'])){
                 echo '<script> window.location="../php/admin_abm.php"; </script>';
                 break;
             case 2:
-                echo '<script> window.location="../html/codigo_agregar.html"; </script>';
+                echo '<script> window.location="../php/codigo_agregar.php"; </script>';
                 break;
             case 3:
-               echo '<script> window.location="../html/usuario_inicio.html"; </script>';
+               echo '<script> window.location="../php/usuario_inicio.php"; </script>';
                 break;
             case 4:
-               echo '<script> window.location="../html/representante_codigos_informados.html"; </script>';
+               echo '<script> window.location="../php/representante_codigos_informados.php"; </script>';
                 break;
             default:
                 echo '<script> alert("Usuario o contraseña incorrectos.");</script>';
@@ -61,7 +61,7 @@ if(isset($_POST['login'])){
 	}
 	else{
             echo '<script> alert("Usuario o contraseña incorrectos.");</script>';
-            echo '<script> window.location="../html/index.html"; </script>';
+            echo '<script> window.location="../php/index.php"; </script>';
 	}
 }
 ?>	
