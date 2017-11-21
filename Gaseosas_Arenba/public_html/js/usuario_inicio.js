@@ -30,31 +30,47 @@ $(document).ready(function(){
                 data: param,
                 url: '../php/intentoCanje.php',
                 beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
-                    //imprimirMensaje("Procesando, espere por favor...");
+                    mostrarDivMensaje();
+                    imprimirMensaje("Procesando, espere por favor...");
                     //alert("procesando");funcion procesando
                 },
                 success: function (data){
+                    mostrarDivMensaje();
+                    imprimirMensaje("Se ha validado correctamente el codigo...");
                     //funcion procesada
                     
                 }
             }).done(function(data){
                 if(data[0].resultado === "ok"){
-                    alert("hola");
-                    alert(data[1]);
-                    alert(data[2]);
+                    mostrarDivMensaje();
+                    imprimirMensaje("Codigo procesado correctamente...");
                     //console.log(data[3]);
                     //console.log(data[4]);
                 }
             });
         }
         else{
-            alert("chota");
+            
         }
     });
     $('#enviarEmail').click(function() {
         validarEmail();
     });
 });
+
+function imprimirMensaje(strMensaje){
+    $("#pMensaje").text(strMensaje);
+}
+
+function ocultarDivMensaje(){
+    $("#divMensaje").removeClass("visible-block");
+    $("#divMensaje").addClass("hidden");
+}
+
+function mostrarDivMensaje(){
+    $("#divMensaje").removeClass("hidden");
+    $("#divMensaje").addClass("visible-block");
+}
 
 function validarCodigo(strCodigo){
     var texto=strCodigo;
