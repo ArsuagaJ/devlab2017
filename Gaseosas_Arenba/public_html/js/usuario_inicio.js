@@ -1,45 +1,52 @@
 $(document).ready(function(){
-	$('#botonCod').click(function() {
-		$('#divCodigo').toggle();
-	}); 
-});
-$(document).ready(function(){
-	$('#cancelarCod').click(function() {
-		$('#divCodigo').hide();
-		document.getElementById("pCodigo").innerHTML="";
-		document.getElementById("codigo").value="";
-	}); 
-});
-$(document).ready(function(){
-	$('#invitarAmi').click(function() {
-		$('#divInvitar').toggle();
-	}); 
-});
-$(document).ready(function(){
-	$('#cancelarEmail').click(function() {
-		$('#divInvitar').hide();
-		document.getElementById("pEmail").innerHTML="";
-		document.getElementById("email").value="";
-	}); 
+    $('#botonCod').click(function() {
+        $('#divCodigo').toggle();
+    }); 
+    $('#cancelarCod').click(function() {
+        $('#divCodigo').hide();
+	document.getElementById("pCodigo").innerHTML="";
+	document.getElementById("codigo").value="";
+    }); 
+    $('#invitarAmi').click(function() {
+        $('#divInvitar').toggle();
+    });
+    $('#cancelarEmail').click(function() {
+        $('#divInvitar').hide();
+	document.getElementById("pEmail").innerHTML="";
+	document.getElementById("email").value="";
+    });
+    $('#enviarCod').click(function() {
+        var tex = $("#inpCodigo").val();
+        validarCodigo(tex);
+    });
+    $('#enviarEmail').click(function() {
+        validarEmail();
+    });
 });
 
-function validarCodigo(){
-	var texto=$('#codigo').val(); 
-		var reg =/^[a-zA-Z0-9]*$/;
-		var aux= texto.split(" ");
-		if (texto==""){
-			$('#pCodigo').text('debe ingresar un codigo');
-			event.preventDefault();
-		}
-		else if(aux.length != 1) { 
-			$('#pCodigo').text('el codigo no debe tener espacios vacios ');
-		}
-		else if(reg.test(texto)) { 
-			$('#pCodigo').text(' ');
-		} else {
-			$('#pCodigo').text('codigo invalido');
-			event.preventDefault();
-	}	
+function validarCodigo(strCodigo){
+    var texto=strCodigo;
+    var reg =/^[a-zA-Z0-9]*$/;
+    var aux= texto.split(" ");
+    var longi = texto.length;
+    if (texto==""){
+        $('#pCodigo').text('debe ingresar un codigo');
+            event.preventDefault();
+    }
+    else if(longi != 6 ){
+        $('#pCodigo').text('el codigo debe ser unicamente de 6 caracteres alfanumericos ');
+        event.preventDefault();
+    }
+    else if(aux.length != 1) { 
+        $('#pCodigo').text('el codigo no debe tener espacios vacios ');
+    }
+    else if(reg.test(texto)) { 
+        $('#pCodigo').text(' ');
+    }
+    else {
+        $('#pCodigo').text('codigo invalido');
+        event.preventDefault();
+    }	
 }
 
 function validarEmail(){
@@ -56,15 +63,3 @@ function validarEmail(){
 			event.preventDefault();
 	}	
 }
-
-$(document).ready(function(){
-	$('#enviarCod').click(function() {
-		validarCodigo();
-	});
-});
-
-$(document).ready(function(){
-	$('#enviarEmail').click(function() {
-		validarEmail();
-	});
-});
