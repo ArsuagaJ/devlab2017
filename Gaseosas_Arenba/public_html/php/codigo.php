@@ -59,6 +59,34 @@
             }
         }*/
         
+        function canjearClienteCodigo($idCliente,$idCode,$code){
+            include('./conexion.php');
+            $booll = 1;
+            try{
+                $sql = "UPDATE codigo SET estado_canje =1,id_usuario=$idCliente WHERE id_codigo=$idCode";
+                $stmt = $conn->prepare($sql);                           
+                $stmt->bindParam(':esta',$booll,PDO::PARAM_BOOL);
+                $stmt->bindParam(':id_cliente',$idCliente, PDO::PARAM_INT);
+                $stmt->bindParam(':id_codigo',$idCode, PDO::PARAM_INT);
+                $stmt->execute();
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+            // realizamos la desconexion de la BD
+            include('./desconexion.php');
+        }
+        
+        function clienteIngresaCodigo($code){
+            include('./conexion.php');
+            $statmt = $conn->prepare("SELECT `id_codigo`, `codigo` FROM `codigo` WHERE codigo=:cod");
+            $statmt->bindParam(':cod', $code);
+            $statmt->execute(); 
+            
+            $resultado = $statmt->fetchAll();
+            return $resultado;
+            //include('./desconexion.php');
+        }
+        
         function insertarCodigo($code,$estado_canje,$id_lista_codigo){
             include('./conexion.php');
             //$ultimoId; // declaramos una variable que sera el ID insertado

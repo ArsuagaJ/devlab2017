@@ -35,7 +35,8 @@ if(isset($_POST['login'])){
                 $_SESSION["usuario"] = $row['usuario']; 
                 $_SESSION["nombre"] = $row['nombre'];
                 $_SESSION["apellido"] = $row['apellido'];
-                $_SESSION["rol"] = $row['id_rol']; 
+                $_SESSION["rol"] = $row['id_rol'];
+                $_SESSION["id_usuario"] = $row['id_usuario'];
                 $rol = $row['id_rol'];
                 $us = $row['usuario'];
                 
