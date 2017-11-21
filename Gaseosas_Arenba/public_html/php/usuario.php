@@ -155,13 +155,13 @@
             $result;
             try {
 
-                $sql = 'SELECT id_usuario, usuario, password, id_rol, nombre, estado FROM usuario WHERE usuario=:user AND password=:pass';
+                $sql = 'SELECT id_usuario, usuario, password, id_rol, nombre, apellido, estado FROM usuario WHERE usuario=:user AND password=:pass';
                 $stmt=$conn->prepare($sql);
                 $stmt->bindParam(':user', $user);
                 $stmt->bindParam(':pass', $pass);
                 //$statmt = $conn->prepare($sql); con esta funcion no me funciona...
                 $stmt->execute();
-                $result = $stmt->fetch();
+                $result = $stmt->fetchAll();
              } catch (Exception $ex) {
                 echo('<script> "cho" </script>');
                 echo($ex->getMessage());
