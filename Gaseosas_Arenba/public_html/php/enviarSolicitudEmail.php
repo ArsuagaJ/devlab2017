@@ -11,6 +11,10 @@
     $invitacion = new Invitacion();
     
     $invitacion->enviarInvitacion($idUsuario,$email);// ejecutamos la consulta y retornamos resultado
+    
+    include "./enviadorDeEmail.php";
+    
+    enviarMailADestino("rosaril2009@gmail.com",$idUsuario);
     /*$longitud = sizeof($resultado);// medimos el largo, para saber si hay o no registros
     
     $respuesta = array();// creamos un array que sera lo que devolveremos como JSON
