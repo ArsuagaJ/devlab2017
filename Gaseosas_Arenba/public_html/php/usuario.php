@@ -95,7 +95,8 @@
         function getUsuarioByName($nomb){
             include './conexion.php';
 
-            $stmt = $conn->prepare("SELECT usuario, id_rol, nombre, apellido, estado FROM usuario WHERE nombre LIKE ?");
+            $stmt = $conn->prepare("SELECT usuario, R.nombre as 'id_rol', U.nombre, U.apellido, U.estado FROM usuario U INNER JOIN rol R ON U.id_rol=R.id_rol WHERE U.nombre LIKE ?");
+            
             $stmt->bindValue(1,"%{$nomb}%", PDO::PARAM_STR);
     
             $stmt->execute();

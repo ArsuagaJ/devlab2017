@@ -66,6 +66,8 @@ $(document).ready(function(){
             }
             else{
                 console.log("Se ha producido un error con los datos enviados por el servidor");
+                mostrarDivMensaje();
+                $("#pMensaje").text("No hay registros entre estas fechas");
             }
         });
     }
@@ -127,7 +129,7 @@ function generarTabla(objetoJSON){
         celda3.appendChild(textoCelda3);
         celda4.appendChild(textoCelda4);
         celda5.appendChild(textoCelda5);
-        celda5.appendChild(textoCelda6);
+        celda6.appendChild(textoCelda6);
             
         hilera.appendChild(celda1);
         hilera.appendChild(celda2);
@@ -141,3 +143,7 @@ function generarTabla(objetoJSON){
     }
 
 
+function mostrarDivMensaje(){
+    $("#divMensaje").removeClass("hidden");
+    $("#divMensaje").addClass("visible-block");
+}
