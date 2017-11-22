@@ -267,7 +267,7 @@ $(document).ready(function(){
                             "idUsuario" : idUsuario,
                             "idPassword" : idPassword,
                             "rol" : rol,
-                            "estado" : estado,
+                            "estado" : estado
                         };
                     var ruta = "../php/usuario_registro.php"; // lo enviamos al php para que lo suba a la carpeta "fotos"
                     $.ajax({

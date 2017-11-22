@@ -29,5 +29,23 @@
             include('./desconexion.php');
             return $ultimoId;
         }
+        
+        function getInvitaciones($email,$idInvitador){
+            
+            include('./conexion.php');
+            
+            $sql = 'SELECT email, id_usuario FROM invitacion WHERE email=:email AND id_usuario=:invitador';
+            $statm = $conn->prepare($sql);
+            $statm->bindParam(':email',$email,PDO::PARAM_STR);
+            $statm->bindParam(':invitador',$idInvitador,PDO::PARAM_INT);
+            //$statmt = $conn->prepare($sql); con esta funcion no me funciona...
+            $result = $statm->execute();
+            // Extraer los valores de $result
+            //$filas = $result->fetchAll();
+            
+            if($statm->rowCount($result) > 0){
+                return $result; // retornamos los valores
+            }
+        }
     }
 ?>

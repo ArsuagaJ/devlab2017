@@ -71,37 +71,44 @@ $(document).ready(function(){
                 "email" : email
                 //"id" :
             };
-            $.ajax({ // ajax para subir el archivo al server
+            $.ajax({
                 type: 'post',
                 data: param,
-                url: '../php/enviarSolicitudEmail.php',
+                url: '../php/getInvitaciones.php',
                 beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
                     mostrarDivMensaje();
                     imprimirMensaje("Procesando, espere por favor...");
                     //alert("procesando");funcion procesando
-                },
-                success: function (){
-                    console.log("Email de invitacion enviado");
-                    mostrarDivMensaje();
-                    imprimirMensaje("Se ha enviado el email de invitacion...");
-                    //funcion procesada
-                    
                 }
-            }).done(function(){
-                console.log("Email de invitacion enviado");
-                /*if(data[0].resultado === "ok"){
-                    mostrarDivMensaje();
-                    imprimirMensaje("Se ha enviado el email de invitacion...");
-                }else{
-                    mostrarDivMensaje();
-                    imprimirMensaje("Se ha producido un error al procesar su solicitud...");
-                    $('#pEmail').text('Se ha producido un error al procesar su solicitud...');
-                }*/
-                //document.location.reload();
+            }).done(function(respuesta){
+                if(respuesta[0].resultado === "ok"){
+                    $.ajax({ // ajax para subir el archivo al server
+                        type: 'post',
+                        data: param,
+                        url: '../php/enviarSolicitudEmail.php',
+                        beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
+                            mostrarDivMensaje();
+                            imprimirMensaje("Procesando, espere por favor...");
+                            //alert("procesando");funcion procesando
+                        },
+                        success: function (){
+                            console.log("Email de invitacion enviado");
+                            mostrarDivMensaje();
+                            imprimirMensaje("Se ha enviado el email de invitacion...");
+
+                        }
+                    }).done(function(){
+                        console.log("Email de invitacion enviado");
+                        $('#okEmail').text('Se ha enviado el email de invitacion...');
+                    });
+                }
+                if(respuesta[0].resultado === "no"){
+                    $('#pEmail').text('Ya se ha enviado la solicitud para este email');
+                }
+                else if(respuesta[0] === "fallo"){
+                    $('#pEmail').text('Se ha producido un error. Intente de nuevo mas tarde..');
+                }
             });
-        }
-        else{
-            
         }
     });
 });
