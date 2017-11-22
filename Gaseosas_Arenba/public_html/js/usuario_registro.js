@@ -296,7 +296,8 @@ $(document).ready(function(){
                         // los siguientes valores son los que le pasamos al php con ajax que luego los recuperara con el nombre descriptivo
                         // que le hayamos puesto.. en este caso
                         // "nombre", "descrip","punt","img","estado"
-                        var parametros = {
+                     
+                    var parametros = {
                             "dni" : dni,
                             "telefono" : telefono,
                             "email" : email,
@@ -308,6 +309,7 @@ $(document).ready(function(){
                             "token" : token,
                             "validacion" : validacion,
                             "idUsuario" : response
+                            
                         };
                         // generamos un ajax nuevo con los valores de los campos
                         $.ajax({

@@ -1,10 +1,4 @@
 $(document).ready(function(){
-    /*$("#input-dim-1").fileinput({
-        uploadUrl: "/file-upload-batch/2",
-        allowedFileExtensions: ["jpg", "png", "gif"],
-        maxImageWidth: 500,
-        maxImageHeight: 500
-    });*/
     
     $("#btnAgregarUsuario").click(function(){
    

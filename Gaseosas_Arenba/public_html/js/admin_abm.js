@@ -13,7 +13,7 @@ $(document).ready(function(){
     });
     
     $("#btnFiltroBuscar").click(function(){
-        //alert("chotaman");
+      
         vaciarTabla();
         /*ocultarMensaje();*/
         realizarBusqueda();
@@ -42,11 +42,11 @@ $(document).ready(function(){
        /* cargarDatosDeFila();*/
     });
     
-    // luego de dar boton "CONFIRMAR se da de baja el producto y se quita de la lista
+    // luego de dar boton "CONFIRMAR se da de baja el usuario y se quita de la lista
     var boton = $("#btnModalBajaConfirmar");
     boton.click(function(){
         mostrarDivMensaje();
-        $("#pMensaje").text("El producto: '"+nombreProducto+ "' '"+descProducto+"' con un total de '"+totalPuntos+"' puntos necesarios para ser canjeados, se ha dado de baja Correctamente");
+        $("#pMensaje").text("El usuario: "+nombreUsuario+", se ha dado de baja Correctamente");
         fila.attr("class","hidden");//$(this).parent.attr("class","hidden");
     });
     
