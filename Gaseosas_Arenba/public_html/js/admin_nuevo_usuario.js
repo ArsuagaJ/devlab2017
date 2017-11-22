@@ -29,7 +29,6 @@ $(document).ready(function(){
                 id_rol = 4;
             break;
             }
-            alert(id_rol);
             // los siguientes valores son los que le pasamos al php con ajax que luego los recuperara con el nombre descriptivo
             // que le hayamos puesto.. en este caso
 
