@@ -157,14 +157,6 @@
             $this->boolEstado = $intentos;
         }
         
-        function setToken($token) {
-            $this->boolEstado = $token;
-        }
-        
-        function setValidacion($validacion) {
-            $this->boolEstado = $validacion;
-        }
-        
         /* estas funciones por el momento no funcan
         function conectarBD(){
             return include('./conexion.php');
@@ -173,6 +165,61 @@
         function cerrarConexionBD(){
             include('./desconexion.php');
         }*/
+        
+        function getPuntosDeUsuario($idUsu){
+            include ('./conexion.php');
+            try{
+                $stmt = $conn->prepare("SELECT puntos FROM cliente WHERE id_usuario=:id_usuario");
+                $stmt->bindParam(':id_usuario',$idUsu,PDO::PARAM_INT);
+
+                $stmt->execute();
+
+                $result = $stmt->fetch();
+                $punt = (int)$result['puntos'];
+                //print('<script>alert("hola");</script>');
+                return $punt;
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+            // realizamos la desconexion de la BD
+            include ('./desconexion.php');
+        }
+        
+        function sumarPuntosCanje($idUsu){
+            include ('./conexion.php');
+            try{
+                $stmt = $conn->prepare("SELECT puntos FROM cliente WHERE id_usuario=:id_usuario");
+                $stmt->bindParam(':id_usuario',$idUsu,PDO::PARAM_INT);
+
+                $stmt->execute();
+
+                $result = $stmt->fetch();
+                $punt = (int)$result['puntos'];
+                //print('<script>alert("hola");</script>');
+                $puntActualizados = $punt + 10;
+                $this->actualizarPuntos($idUsu,$puntActualizados);
+                return $punt;
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+            // realizamos la desconexion de la BD
+            include ('./desconexion.php');
+        }
+        
+        function actualizarPuntos($idUsu,$intPuntos){
+            include('./conexion.php');
+            try{
+                $sql = "UPDATE cliente SET puntos=:puntos WHERE id_usuario=:id_usuario";
+                $stmt = $conn->prepare($sql);                           
+                $stmt->bindParam(':puntos',$intPuntos,PDO::PARAM_INT);
+                $stmt->bindParam(':id_usuario',$idUsu, PDO::PARAM_INT);
+                $stmt->execute();
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+            // realizamos la desconexion de la BD
+            include('./desconexion.php');
+        }
         
         function getProductoByID($id_producto){
             include './conexion.php';

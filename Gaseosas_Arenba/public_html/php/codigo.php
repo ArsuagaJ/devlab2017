@@ -69,6 +69,7 @@
                 $stmt->bindParam(':id_cliente',$idCliente, PDO::PARAM_INT);
                 $stmt->bindParam(':id_codigo',$idCode, PDO::PARAM_INT);
                 $stmt->execute();
+                return $idCliente;
             }catch( PDOExecption $e ) { 
                 print "Error!: " . $e->getMessage() . "</br>"; 
             }
@@ -78,7 +79,7 @@
         
         function clienteIngresaCodigo($code){
             include('./conexion.php');
-            $statmt = $conn->prepare("SELECT `id_codigo`, `codigo` FROM `codigo` WHERE codigo=:cod");
+            $statmt = $conn->prepare("SELECT `id_codigo`, `codigo` FROM `codigo` WHERE id_usuario IS null AND codigo=:cod");
             $statmt->bindParam(':cod', $code);
             $statmt->execute(); 
             

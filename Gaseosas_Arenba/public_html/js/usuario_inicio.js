@@ -35,18 +35,26 @@ $(document).ready(function(){
                     //alert("procesando");funcion procesando
                 },
                 success: function (data){
+                    console.log(data);
                     mostrarDivMensaje();
                     imprimirMensaje("Se ha validado correctamente el codigo...");
                     //funcion procesada
                     
                 }
             }).done(function(data){
+                console.log(data);
                 if(data[0].resultado === "ok"){
                     mostrarDivMensaje();
-                    imprimirMensaje("Codigo procesado correctamente...");
+                    imprimirMensaje("Codigo procesado correctamente. Se sumaron 10 puntos a su cuenta.");
+                    
                     //console.log(data[3]);
                     //console.log(data[4]);
+                }else{
+                    mostrarDivMensaje();
+                    imprimirMensaje("Error, el codigo no existe o no es valido...");
+                    $('#pCodigo').text('Error, el codigo no existe o no es valido...');
                 }
+                //document.location.reload();
             });
         }
         else{
@@ -54,7 +62,47 @@ $(document).ready(function(){
         }
     });
     $('#enviarEmail').click(function() {
-        validarEmail();
+        var email = $("#email").val();
+        if(validarEmail()){
+            //var textoooo = $("#inpCodigo").val(); //lo tengo que llamar de nuevo, sino esta en UNDEFINED
+            //var id = '<?php session_start(); echo $_SESSION['id_usuario'];?>';
+            //alert(id);
+            var param = {
+                "email" : email
+                //"id" :
+            };
+            $.ajax({ // ajax para subir el archivo al server
+                type: 'post',
+                data: param,
+                url: '../php/enviarSolicitudEmail.php',
+                beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
+                    mostrarDivMensaje();
+                    imprimirMensaje("Procesando, espere por favor...");
+                    //alert("procesando");funcion procesando
+                },
+                success: function (){
+                    console.log("Email de invitacion enviado");
+                    mostrarDivMensaje();
+                    imprimirMensaje("Se ha enviado el email de invitacion...");
+                    //funcion procesada
+                    
+                }
+            }).done(function(){
+                console.log("Email de invitacion enviado");
+                /*if(data[0].resultado === "ok"){
+                    mostrarDivMensaje();
+                    imprimirMensaje("Se ha enviado el email de invitacion...");
+                }else{
+                    mostrarDivMensaje();
+                    imprimirMensaje("Se ha producido un error al procesar su solicitud...");
+                    $('#pEmail').text('Se ha producido un error al procesar su solicitud...');
+                }*/
+                //document.location.reload();
+            });
+        }
+        else{
+            
+        }
     });
 });
 
@@ -104,16 +152,18 @@ function validarCodigo(strCodigo){
 }
 
 function validarEmail(){
-	var texto=$('#email').val(); 
-		var reg =/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
-		if (texto==""){
-			$('#pEmail').text('debe ingresar el e-mail');
-			event.preventDefault();
-		}
-		else if(reg.test(texto)) { 
-			$('#pEmail').text(' '); 	
-		} else {
-			$('#pEmail').text('e-mail invalido');
-			event.preventDefault();
-	}	
+    var texto=$('#email').val(); 
+    var reg =/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+    if(texto==""){
+        $('#pEmail').text('debe ingresar el e-mail');
+        //event.preventDefault();
+        return false;
+    }else if(reg.test(texto)) { 
+        $('#pEmail').text(' ');
+        return true;
+    }else {
+        $('#pEmail').text('e-mail invalido');
+        //event.preventDefault();
+        return false;
+    }
 }

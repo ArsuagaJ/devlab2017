@@ -1,20 +1,17 @@
 <?php
     session_start();
 //recuperamos el valor de la variable que viene por get
-    $code = filter_input(INPUT_POST,'codigo');
+    $email = filter_input(INPUT_POST,'email');
     $idUsuario = $_SESSION['id_usuario'];
     
     //echo '<script> alert($idUsuario)</script>';
     
-    include("./codigo.php");
-    include("./cliente.php");
+    include("./invitacion.php");
     
-    $codigo = new Codigo();
+    $invitacion = new Invitacion();
     
-    $cliente = new Cliente();
-    
-    $resultado = $codigo->clienteIngresaCodigo($code);// ejecutamos la consulta y retornamos resultado
-    $longitud = sizeof($resultado);// medimos el largo, para saber si hay o no registros
+    $invitacion->enviarInvitacion($idUsuario,$email);// ejecutamos la consulta y retornamos resultado
+    /*$longitud = sizeof($resultado);// medimos el largo, para saber si hay o no registros
     
     $respuesta = array();// creamos un array que sera lo que devolveremos como JSON
     try{
@@ -50,13 +47,13 @@
     } catch (PDOExecption $e ) {
         array_push($respuesta,array("resultado" => "nodata"));
         print "Error!: " . $e->getMessage() . "</br>"; 
-    }         
+    }   */      
 
     //$codigo->canjearClienteCodigo($idUsuario,$idCodigo,$code);
     //Seteamos el header de "content-type" como "JSON" para que jQuery lo reconozca como tal
-    header('Content-Type: application/json');
+    //header('Content-Type: application/json');
 
-    echo json_encode($respuesta, JSON_FORCE_OBJECT);
+    //echo json_encode($respuesta, JSON_FORCE_OBJECT);
     
     require_once './desconexion.php'; // cerramos la conexion a la base de datos
 ?>
