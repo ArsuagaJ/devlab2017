@@ -267,7 +267,7 @@ $(document).ready(function(){
                             "password" : password,
                             "id_rol" : rol
                         };
-                    var ruta = "../php/insertUsuario.php"; // lo enviamos al php para que lo suba a la carpeta "fotos"
+                    var ruta = "../php/insertRegistroUsuario.php"; // lo enviamos al php para que lo suba a la carpeta "fotos"
                     $.ajax({
                         url: ruta,
                         type: "POST",
@@ -277,10 +277,10 @@ $(document).ready(function(){
 
                         }
                     }).done(function(response){
-                        console.log(response); //lo grabamos en la consola
+                        console.log(response[0]); //lo grabamos en la consola
                         //$("#pMensaje").text(response[1]);
 
-                        // si se subio la imagen, tomamos los valores de los campos
+                        
                         var dni = $("#dni").val();
                         var telefono = $("#telefono").val();
                         var email = $("#email").val();
@@ -307,6 +307,7 @@ $(document).ready(function(){
                             "intentos" : intentos,
                             "token" : token,
                             "validacion" : validacion,
+                            "idUsuario" : response
                         };
                         // generamos un ajax nuevo con los valores de los campos
                         $.ajax({

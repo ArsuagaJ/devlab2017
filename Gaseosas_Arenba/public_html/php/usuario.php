@@ -184,7 +184,7 @@
             $stmt = $conn->query("SELECT LAST_INSERT_ID()"); // para poder retornar el ultimo id generado
             $lastId = $stmt->fetchColumn();
             $ultimoId = $lastId;
-            
+            echo $ultimoId;
             /*}else{
                 echo '<script>';
                 echo 'console.log("No funca")';
@@ -196,7 +196,7 @@
             
             // realizamos la desconexion de la BD
             include('desconexion.php');
-            return $ultimoId;
+            
         }
         
     }

@@ -21,7 +21,8 @@ if(isset($_POST['login'])){
     //$usuario = filter_input(INPUT_POST,'usuario');
     //$psw = filter_input(INPUT_POST,'password');
     
-    $pw = md5((int)$psw);
+    //$pw = md5((int)$psw); // esta comprobacion era la de prueba, solo con 1 digito.. la que sirve es la de abajo
+    $pw = md5($psw);
     
     //echo('<script> console.log('+$psw+') </script>');
     //echo('<script> console.log('+$pw+') </script>');

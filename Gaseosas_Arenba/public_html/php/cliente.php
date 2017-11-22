@@ -282,45 +282,31 @@
             
         }
         
-        function insertar($idUsuario,$idPassword,$nombre,$apellido,$rol){
-           
+        function insertar($email,$tel,$localid,$direcc,$puntos,$intentosIngreso,$prov,$toke,$valida,$dni,$idUsur){
             // realizamos la conexion
-            include('conexion.php');
-
-            $ultimoId;
-            //ejecutamos el insert
-            //$statmt->execute();
+            include('./conexion.php');
             try{
                 //preparamos la consulta insert
-                $statmt = $conn->prepare("INSERT INTO `usuario`(`usuario`,`password`, `nombre`, `apellido`, `id_rol`) VALUES ('$idUsuario','$idPassword','$nombre','$apellido','$rol')");
-                try { 
-                    $conn->beginTransaction(); 
-                     //ejecutamos el insert
-                    $statmt->execute(); 
-                    $conn->commit();
-                    $stmt = $conn->query("SELECT LAST_INSERT_ID()"); // para poder retornar el ultimo id generado
-                    $lastId = $stmt->fetchColumn();
-                    $ultimoId = $lastId;
-                    //$ultimoId = $conn->lastInsertId(['id_producto']); // devolvemos el ultimo id insertado
-                }catch(PDOExecption $e) { 
-                    $conn->rollback(); 
-                    print "Error!: " . $e->getMessage() . "</br>"; 
-                } 
+                $statmt = $conn->prepare("INSERT INTO `cliente`(`email`, `telefono`, `localidad`, `direccion`, `puntos`, `intento_ingreso`, `provincia`, `token`, `validacion`, `dni`, `id_usuario`) VALUES ('$email','$tel','$localid','$direcc','$puntos','$intentosIngreso','$prov','$toke','$valida','$dni','$idUsur')");
+                $statmt->bindParam(':email', $email, PDO::PARAM_STR);       
+                $statmt->bindParam(':telefono', $tel, PDO::PARAM_INT);    
+                $statmt->bindParam(':localidad', $localid, PDO::PARAM_STR);
+                // use PARAM_STR although a number  
+                $statmt->bindParam(':direccion', $direcc, PDO::PARAM_STR); 
+                $statmt->bindParam(':puntos', $puntos, PDO::PARAM_INT);
+                $statmt->bindParam(':intentos_ingreso', $intentosIngreso, PDO::PARAM_INT);       
+                $statmt->bindParam(':provincia', $prov, PDO::PARAM_STR);    
+                $statmt->bindParam(':token', $toke, PDO::PARAM_STR);
+                // use PARAM_STR although a number  
+                $statmt->bindParam(':validacion', $valida, PDO::PARAM_INT); 
+                $statmt->bindParam(':dni', $dni, PDO::PARAM_INT);
+                $statmt->bindParam(':id_usuario', $idUsur, PDO::PARAM_INT);
+                $conn->beginTransaction(); 
+                $statmt->execute(); 
+                $conn->commit();
             }catch( PDOExecption $e ) { 
                 print "Error!: " . $e->getMessage() . "</br>"; 
-            } 
-            echo $ultimoId;
-            /*}else{
-                echo '<script>';
-                echo 'console.log("No funca")';
-                echo '</script>';
-                
-                echo (filter_input_array($_POST));
-            }*/
-            
-            
-            // realizamos la desconexion de la BD
-            include('desconexion.php');
+            }
         }
                 
         //la funcion que sigue era de prueba
