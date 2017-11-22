@@ -7,7 +7,7 @@
                     if($_SESSION['rol'] != 1){
                         echo '<script> window.location="../html/top_secret.html"; </script>';
                     }else{
-                        include "../html/admin_abm.html";
+                        include "../html/admin_nuevo_usuario.html";
                     }
                 }
-      ?>
+?>

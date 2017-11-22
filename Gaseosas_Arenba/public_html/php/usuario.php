@@ -181,6 +181,9 @@
 
             //ejecutamos el insert
             $statmt->execute();
+            $stmt = $conn->query("SELECT LAST_INSERT_ID()"); // para poder retornar el ultimo id generado
+            $lastId = $stmt->fetchColumn();
+            $ultimoId = $lastId;
             
             /*}else{
                 echo '<script>';
@@ -193,6 +196,7 @@
             
             // realizamos la desconexion de la BD
             include('desconexion.php');
+            return $ultimoId;
         }
         
     }

@@ -256,20 +256,18 @@ $(document).ready(function(){
                     
                     var nombre = $("#nombre").val();
                     var apellido = $("#apellido").val();
-                    var idUsuario = $("#idUsuario").val();
-                    var idPassword = $("#idPassword").val();
-                    var estado = 1;
+                    var usuario = $("#idUsuario").val();
+                    var password = $("#idPassword").val();
                     var rol = 3;                   
                     
                     var parametros1 = {
-                            "nombre" : nombre,
+                            "nombreUsuario" : usuario,
                             "apellido" : apellido,
-                            "idUsuario" : idUsuario,
-                            "idPassword" : idPassword,
-                            "rol" : rol,
-                            "estado" : estado
+                            "nombre" : nombre,
+                            "password" : password,
+                            "id_rol" : rol
                         };
-                    var ruta = "../php/usuario_registro.php"; // lo enviamos al php para que lo suba a la carpeta "fotos"
+                    var ruta = "../php/insertUsuario.php"; // lo enviamos al php para que lo suba a la carpeta "fotos"
                     $.ajax({
                         url: ruta,
                         type: "POST",
@@ -277,11 +275,8 @@ $(document).ready(function(){
                         beforeSend: function insertar() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
                             $("#pMensaje").text("Procesando, espere por favor...");
 
-                        }/*,
-                        success: function(response){
-                            $("#pMensaje").text(response);
-                        }*/
-                    }).done(function(response){ //recuperamos el valor de la ruta de destino '../fotos/nombre_archivo
+                        }
+                    }).done(function(response){
                         console.log(response); //lo grabamos en la consola
                         //$("#pMensaje").text(response[1]);
 
