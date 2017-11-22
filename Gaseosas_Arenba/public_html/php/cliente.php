@@ -282,6 +282,34 @@
             
         }
         
+        function insertarInvitado($email,$tel,$localid,$direcc,$puntos,$intentosIngreso,$prov,$toke,$valida,$dni,$idUsur){
+            // realizamos la conexion
+            include('./conexion.php');
+            try{
+                //preparamos la consulta insert
+                $statmt = $conn->prepare("INSERT INTO `cliente`(`email`, `telefono`, `localidad`, `direccion`, `puntos`, `intento_ingreso`, `provincia`, `token`, `validacion`, `dni`, `id_usuario`) VALUES ('$email','$tel','$localid','$direcc','$puntos','$intentosIngreso','$prov','$toke','$valida','$dni','$idUsur')");
+                $statmt->bindParam(':email', $email, PDO::PARAM_STR);       
+                $statmt->bindParam(':telefono', $tel, PDO::PARAM_INT);    
+                $statmt->bindParam(':localidad', $localid, PDO::PARAM_STR);
+                // use PARAM_STR although a number  
+                $statmt->bindParam(':direccion', $direcc, PDO::PARAM_STR); 
+                $statmt->bindParam(':puntos', $puntos, PDO::PARAM_INT);
+                $statmt->bindParam(':intentos_ingreso', $intentosIngreso, PDO::PARAM_INT);       
+                $statmt->bindParam(':provincia', $prov, PDO::PARAM_STR);    
+                $statmt->bindParam(':token', $toke, PDO::PARAM_STR);
+                // use PARAM_STR although a number  
+                $statmt->bindParam(':validacion', $valida, PDO::PARAM_INT); 
+                $statmt->bindParam(':dni', $dni, PDO::PARAM_INT);
+                $statmt->bindParam(':id_usuario', $idUsur, PDO::PARAM_INT);
+                $conn->beginTransaction(); 
+                $statmt->execute(); 
+                $conn->commit();
+                return true;
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+        }
+        
         function insertar($email,$tel,$localid,$direcc,$puntos,$intentosIngreso,$prov,$toke,$valida,$dni,$idUsur){
             // realizamos la conexion
             include('./conexion.php');

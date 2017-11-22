@@ -14,5 +14,5 @@
     //session_start();
     //include ("../php/verifica_cliente.php");
     include("../html/usuario_registro_invitado.html");
-    echo '<p class=hidden id='.$identificador.' name='.$email.' value='.$invitador.'></p>'
+    echo '<p class=hidden id="ParraDatos" name='.$email.' value='.$invitador.' text='.$identificador.'></p>'
 ?>

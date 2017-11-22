@@ -316,17 +316,37 @@ $(document).ready(function(){
                             type:  'post',
                             success:  function (response) {
                                 console.log(response);
-                                $("#pMensaje").text(response);
-                                limpiarCampos();
+                                $("#pMensaje").text(response);    
                             }
                         }).done(function(respuesta){
                             $("#pMensaje").text("OK, se agregado correctamente el usuario");//fijarme si esta
-                            limpiarCampos();
-                            window.locationf="../php/index.php";
+                            var parra = document.getElementById("ParraDatos");
+                            var identifica = parseInt(parra.getAttribute("value"));
+                            var mailInvitador = parra.getAttribute("name");
+                            var idInvitacion = parra.getAttribute("text");
+                            var idusu = {
+                                "identif" : identifica,
+                                "emailInvitador" : mailInvitador,
+                                "idInvitacion" : idInvitacion
+                            };
+                            $.ajax({
+                                data:  idusu, // los datos que van a ser recuperados desde el php
+                                url:   '../php/cliente_registro_invitado.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+                                type:  'post',
+                                success:  function (response) {
+                                    console.log(response);
+                                    $("#pMensaje").text(response);    
+                                }
+                            });
                         });
-                      });                  
+                      });
+                    
+                    
+                    
+                    
+                                        
                 }else{
-                    $("#pMensaje").text("Se han producido errores al ingresar los datos.. Por favor, verifique");//fijarme si esta
+                    alert("nonoononono");
                 }
 
 	}); 
