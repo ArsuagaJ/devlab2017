@@ -1,20 +1,19 @@
 <?php
-    function enviarMailADestino($email,$remitente){
-        //$destinatario = "arsuaga00@gmail.com"; 
-        $destinatario = $email;
-        $asunto = "INVITACION a Registro de GASEOSAS ARENBA"; 
+    function enviarMailADestino($email,$remitente,$idInvit,$emailInvitador){
+        //$id = base64_encode($remitente);
+        //$destinatario = "arsuaga00@gmail.com";
+        $invitador = $emailInvitador;
+        //$stringID = md5($remitente);
+        //$asunto = "INVITACION a Registro de GASEOSAS ARENBA"; 
         $cuerpo = ' 
         <html> 
         <head> 
            <title>Gaseosas Arenba</title> 
         </head> 
         <body> 
-        <h1>Hola!</h1> 
-        <p> 
-        <b>Bienvenido</b>.
-        <p>Ud. recibió este mensaje porque ha sido invitado para registrarse a la pagina de Gaseosas Arenba</p>
-        <p>Presione en el siguiente link:<a href="www.google.com">Google(hay que cambiarlo por el del registro de GArenba)</a></p>
-        </p> 
+        <h1>Hola!'.$email.'</h1><h3><b>Bienvenid@.</b></h3> 
+        <p><br>Ud. recibió este mensaje porque ha sido invitado por: '.$invitador.' para registrarse a la pagina de Gaseosas Arenba<br>
+        Presione en el siguiente link:<a href="http://localhost/Gaseosas_Arenba/Gaseosas_Arenba/public_html/php/usuario_registro_invitado.php?id='.$idInvit.'&email='.$email.'&invitador='.$remitente.'">Gaseosas Arenba Invitacion a Registrarse)</a></p> 
         </body> 
         </html> 
         '; 
@@ -24,7 +23,7 @@
         $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
 
         //dirección del remitente 
-        $headers .= "From: Arsuaga Jul <arsuagajulian@gmail.com>\r\n"; 
+        $headers .= "From: Arsuaga Julian <arsuagajulian@gmail.com>\r\n"; 
 
         /*//dirección de respuesta, si queremos que sea distinta que la del remitente 
         $headers .= "Reply-To: mariano@desarrolloweb.com\r\n"; 
@@ -38,6 +37,6 @@
         //direcciones que recibirán copia oculta 
         $headers .= "Bcc: pepe@pepe.com,juan@juan.com\r\n"; */
 
-        mail($destinatario,$asunto,$cuerpo,$headers);
+        mail($email,"INVITACION a Registro de GASEOSAS ARENBA",$cuerpo,$headers);
     }
 ?>

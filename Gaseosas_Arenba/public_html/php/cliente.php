@@ -166,6 +166,25 @@
             include('./desconexion.php');
         }*/
         
+        function getEmailUsuario($idUsu){
+            include ('./conexion.php');
+            try{
+                $stmt = $conn->prepare("SELECT email FROM cliente WHERE id_usuario=:id_usuario");
+                $stmt->bindParam(':id_usuario',$idUsu,PDO::PARAM_INT);
+
+                $stmt->execute();
+
+                $result = $stmt->fetch();
+                $email = $result['email'];
+                //print('<script>alert("hola");</script>');
+                return $email;
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+            // realizamos la desconexion de la BD
+            include ('./desconexion.php');
+        }
+        
         function getPuntosDeUsuario($idUsu){
             include ('./conexion.php');
             try{

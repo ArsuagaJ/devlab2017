@@ -1,0 +1,131 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+	<head>
+		<title>Gaseosas Arenba</title>
+		<!-- -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+                <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
+                <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
+                <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
+                <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+		<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+		
+                <script type="text/javascript" src="../js/usuario_registro.js"></script>
+                <link rel=stylesheet href="../css/style.css">
+		
+	</head>
+        <body class="bodyCliente">
+            
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Gaseosa Arenba</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="../php/index.php"><span class="glyphicon glyphicon-user"></span> iniciar sesion</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="is-Responsive">
+        <div class="col-sm-4">
+            <div class="form-group input-group">
+                <span class="input-group">Nombre</span>
+                <input class="form-control" type="text" name='nombre' id="nombre" pattern="[A-Za-z]{3,16}" title="solo se permiten letras, Máximo de caracteres 16" placeholder="se permite un solo nombre" required="true"/>
+                <p class="pError" id="pNombre"></p>		
+            </div>
+        
+            <div class="form-group input-group">
+                <span class="input-group">Apellido</span>
+                <input class="form-control" type="text" name='apellido' id="apellido" pattern="[A-Za-z]{3,30}" title="solo se permiten letras, Máximo de caracteres 30" placeholder="se permite dos apellidos" required="true"/>
+		<p class="pError" id="pApellido"></p>			
+            </div>
+        
+            <div class="form-group input-group">
+                <span class="input-group">DNI</span>
+                <input class="form-control" type="text" name='dni' id="dni" placeholder="ej:00.000.000" required="true"/>
+		<p class="pError" id="pDni"></p>			
+            </div>
+        
+            <div class="form-group input-group">
+                <span class="input-group">Telefono</span>
+                <input class="form-control" type="text" name='telefono' id="telefono" minlength="8" maxlength="10" title="solo se permite numeros, 8 o 10" placeholder="solo ingrese numeros" required="true"/>
+		<p class="pError" id="pTelefono"></p>			
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group input-group">
+                <span class="input-group">E-mail</span>
+                <input class="form-control" type="email" name='email' id="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="debe ingresar email" placeholder="ejemplo@gmail.com" required="true"/>
+		<p class="pError" id="pEmail"></p>			
+            </div>
+        
+            <div class="form-group input-group">
+                <span class="input-group">Provincia</span>
+                <input class="form-control" type="text" name='provincia' id="provincia" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Buenos Aires" required="true"/>
+		<p class="pError" id="pProvincia"></p>			
+            </div>
+        
+            <div class="form-group input-group">
+                <span class="input-group">Localidad</span>
+                <input class="form-control" type="text" name='localidad' id="localidad" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Monte Grande" required="true"/>
+		<p class="pError" id="pLocalidad"></p>			
+            </div>
+          
+            <div class="form-group input-group">
+                <span class="input-group">Direccion</span>
+                <input class="form-control" type="text" name='direccion' id="direccion" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder="Nombre y numero" required="true"/>
+		<p class="pError" id="pDireccion"></p>			
+            </div>
+        </div>
+    </div>
+      
+    
+        <div class="col-sm-4">
+            <div class="form-group input-group">
+                <span class="input-group">Usuario</span>
+                <input class="form-control" type="text" name='usuario' id="idUsuario" placeholder="usuario"/>
+		<p class="pError" id="pUsuario"></p>			
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group input-group">
+                <span class="input-group">Password</span>
+                <input class="form-control" type="password" name='password' id="idPassword" placeholder="password"/>
+		<p class="pError" id="pPassword"></p>		
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group input-group">
+                <span class="input-group">Confirmar password</span>
+                <input class="form-control" type="password" name='password1' id="idPassword1" placeholder="password"/>
+                <p class="pError" id="pPassword1"></p>		
+            </div>
+       </div>
+    </div>
+    <div class="row">    
+        <div class="col-sm-2">
+            <div class="form-group">
+                <button type="submit" class="btn btn-def btn-block" id="registro">Registrarse</button>
+            </div>
+        </div>       
+    </div>
+        </div>
+         
+            <p class="pError" id="pMensaje"></p>
+    
+        </body>
+</html>
