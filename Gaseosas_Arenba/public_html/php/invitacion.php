@@ -47,5 +47,21 @@
                 return $result; // retornamos los valores
             }
         }
+        
+        function guardarInvitado($idInvitado,$idInvitacion){
+            include('./conexion.php');
+            try{
+                $sql = "UPDATE invitacion SET id_invitado = :id_invitado    
+			WHERE id_invitacion = :id_invitacion";
+                $stmt = $conn->prepare($sql);                                  
+                $stmt->bindParam(':id_invitado', $idInvitado, PDO::PARAM_INT);
+                $stmt->bindParam(':id_invitacion', $idInvitacion, PDO::PARAM_INT);  
+                $stmt->execute();
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+            // realizamos la desconexion de la BD
+            include('./desconexion.php');
+        }
     }
 ?>

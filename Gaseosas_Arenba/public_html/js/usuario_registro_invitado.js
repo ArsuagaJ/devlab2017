@@ -291,11 +291,14 @@ $(document).ready(function(){
                         var intentos = 0;
                         var token = 0;
                         var validacion= 0;
-                        
 
                         // los siguientes valores son los que le pasamos al php con ajax que luego los recuperara con el nombre descriptivo
                         // que le hayamos puesto.. en este caso
                         // "nombre", "descrip","punt","img","estado"
+                        var parra = document.getElementById("ParraDatos");
+                        var idUsuarioInvitador = parseInt(parra.getAttribute("value"));
+                        var mailInvitador = parra.getAttribute("name");
+                        var idInvitacion = parra.getAttribute("text");
                         var parametros = {
                             "dni" : dni,
                             "telefono" : telefono,
@@ -307,12 +310,15 @@ $(document).ready(function(){
                             "intentos" : intentos,
                             "token" : token,
                             "validacion" : validacion,
-                            "idUsuario" : response
+                            "idUsuario" : response,
+                            "identifica" : idUsuarioInvitador,
+                            "emailInvitador" : mailInvitador,
+                            "idInvitacion" : idInvitacion
                         };
                         // generamos un ajax nuevo con los valores de los campos
                         $.ajax({
                             data:  parametros, // los datos que van a ser recuperados desde el php
-                            url:   '../php/cliente_registro.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+                            url:   '../php/cliente_registro_invitado.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
                             type:  'post',
                             success:  function (response) {
                                 console.log(response);
@@ -320,14 +326,9 @@ $(document).ready(function(){
                             }
                         }).done(function(respuesta){
                             $("#pMensaje").text("OK, se agregado correctamente el usuario");//fijarme si esta
-                            var parra = document.getElementById("ParraDatos");
-                            var identifica = parseInt(parra.getAttribute("value"));
-                            var mailInvitador = parra.getAttribute("name");
-                            var idInvitacion = parra.getAttribute("text");
-                            var idusu = {
-                                "identif" : identifica,
-                                "emailInvitador" : mailInvitador,
-                                "idInvitacion" : idInvitacion
+                            
+                            /*var idusu = {
+                                
                             };
                             $.ajax({
                                 data:  idusu, // los datos que van a ser recuperados desde el php
@@ -337,7 +338,7 @@ $(document).ready(function(){
                                     console.log(response);
                                     $("#pMensaje").text(response);    
                                 }
-                            });
+                            });*/
                         });
                       });
                     
