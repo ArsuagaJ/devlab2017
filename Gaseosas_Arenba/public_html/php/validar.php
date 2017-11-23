@@ -59,15 +59,21 @@ if(isset($_POST['login'])){
                    echo '<script> window.location="../php/representante_codigos_informados.php"; </script>';
                     break;
                 default:
-                    echo '<script> alert("Usuario o contraseña incorrectos DEFAULT.");</script>';
+                    /*echo '<script> alert("Usuario o contraseña incorrectos DEFAULT.");</script>';
+                    echo '<script> window.location="../php/index.php"; </script>';*/
                     echo '<script> window.location="../php/index.php"; </script>';
+                    $_SESSION["incorrecto"] = 'incorrecto';
+                    //echo '<p>Usuario y contraseña incorrectos</p>';
                     break;
                 }
             }
 	}
 	else{
-            echo '<script> alert("Usuario o contraseña incorrectos.");</script>';
+            /*echo '<script> alert("Usuario o contraseña incorrectos.");</script>';
+            echo '<script> window.location="../php/index.php"; </script>';*/
             echo '<script> window.location="../php/index.php"; </script>';
+            $_SESSION["incorrecto"] = 'incorrecto';
+            //echo '<p>Usuario y contraseña incorrectos</p>';
 	}
 }
 ?>	
