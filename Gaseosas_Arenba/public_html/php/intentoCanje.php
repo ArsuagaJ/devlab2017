@@ -46,6 +46,7 @@
         $idPrueba = $codigo->canjearClienteCodigo($idUsuario,$idCodigo,$code);
         $algo = $cliente->sumarPuntosCanje($idPrueba);
         array_push($respuesta,$algo);
+        $_SESSION['puntos'] = $cliente->getPuntosDeUsuario($idUsuario);
         //echo '<script>alert("Se rompio");</script>';
     } catch (PDOExecption $e ) {
         array_push($respuesta,array("resultado" => "nodata"));

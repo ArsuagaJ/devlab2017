@@ -46,6 +46,9 @@ $(document).ready(function(){
                 if(data[0].resultado === "ok"){
                     mostrarDivMensaje();
                     imprimirMensaje("Codigo procesado correctamente. Se sumaron 10 puntos a su cuenta.");
+                    //window.setInterval(location.href="../php/usuario_inicio.php",5000);
+                    window.location.replace("../php/usuario_inicio.php");
+                    $('#pCodigo').text('Codigo procesado correctamente. Se sumaron 10 puntos a su cuenta. Actualizando ...');
                     
                     //console.log(data[3]);
                     //console.log(data[4]);
