@@ -47,14 +47,14 @@ $(document).ready(function(){
         var bolProv = validarProvincia();
         
         if(bolEmail && bolTel && bolName && bolApe && bolLocal && bolDir && bolDni && bolProv){
-            var nombre = $("#inpBlockNombre").val();
-            var apellido = $("#inpBlockApellido").val();
-            var tel = $("#inpBlockTelefono").val();
-            var local = $("#inpBlockLocalidad").val();
-            var direcc = $("#inpBlockDireccion").val();
-            var prov = $("#inpBlockProvincia").val();
-            var dni = $("#inpBlockDNI").val();
-            var email = $("#inpBlockEmail").val();
+            var nombre = $("#nombre").val();
+            var apellido = $("#apellido").val();
+            var tel = $("#telefono").val();
+            var local = $("#localidad").val();
+            var direcc = $("#direccion").val();
+            var prov = $("#provincia").val();
+            var dni = $("#dni").val();
+            var email = $("#email").val();
             
             var data = {
                 "nombre" : nombre,
@@ -74,11 +74,12 @@ $(document).ready(function(){
                     $("#pMensaje").text("Procesando, espere por favor...");
                 },
                 success: function algo(data){
-                    console.log(data);
+                    //console.log(data);
                 }
             }).done(function(repuesta){
                 $("#pMensaje").text("Se han actualizado correctamente sus datos...");
-                console.log(repuesta);
+                console.log("Se han actualizado los datos de usuario.->UpdateClient");
+                window.location.replace("../php/usuario_cuenta.php");
             });
         }
         else{

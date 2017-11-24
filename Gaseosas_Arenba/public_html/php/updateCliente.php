@@ -24,12 +24,26 @@
     $cliente = new Cliente();
     $usuario = new Usuario();
     
-    $usuario->updateNombreYApellidoUsuario($idU,$nomb,$ape);
+    $id2 = $usuario->updateNombreYApellidoUsuario($idU,$nomb,$ape);
     //echo $ok;
+    $cliente->updateCliente($id2,$email,$tele,$loca,$dire,$provi,$dni);
     
+    $algo = $usuario->getUsuarioByID($id2); //tomamos los nuevos valores que se guardaron recien
+    $datos = $cliente->getDatosClienteById($id2); //de aca tambien
+    
+    $_SESSION['nombre'] = $algo['nombre'];
+    $_SESSION['apellido'] = $algo['apellido'];
+    $_SESSION['email'] = $datos['email'];
+    $_SESSION['telefono'] = $datos['telefono'];
+    $_SESSION['localidad'] = $datos['localidad'];
+    $_SESSION['direccion'] = $datos['direccion'];
+    $_SESSION['provincia'] = $datos['provincia'];
+    $_SESSION['dni'] = $datos['dni'];
+    
+    //echo '<script> window.location="./usuario_cuenta.php"; </script>';
     // llamamos al metodo INSERTAR del Objeto ListaCodigo
     //if($ok){
-      //  $cliente->updateCliente($idU,$email,$tele,$loca,$dire,$provi,$dni);
+      //  
     //}
     //$id,$fechaInicio,$fechaFin,$nombreArchivo,$descripcion,$estado ... asi se pasan los parametros para actualizar
 ?>

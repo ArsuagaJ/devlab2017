@@ -289,16 +289,16 @@
             return $result;
         }
         
-        function getProductos(){
+        function getDatosClienteById($id){
             
             include('conexion.php');
             
-            $sql = 'SELECT id_producto, nombre, descripcion, foto, puntos, estado FROM producto';
+            $sql = "SELECT dni,telefono, email, provincia, localidad, direccion FROM producto WHERE id_usuario=:id_usuario";
             //$statmt = $conn->prepare($sql); con esta funcion no me funciona...
-            $result = $conn->query($sql);
+            $result = $conn->prepare($sql);
+            $result->bindParam(':id_usuario',$id,PDO::PARAM_INT);
             // Extraer los valores de $result
-            $filas = $result->fetchAll();
-            
+            $filas = $result->fetch();
             return $filas; // retornamos los valores
             
         }
@@ -359,17 +359,17 @@
         }
                 
         
-        function updateCliente($idUserio,$email,$tel,$loc,$dir,$prov,$dni){
+        function updateCliente($idUsro,$email,$tel,$loc,$dir,$prov,$dni){
             include('./conexion.php');
             try{
                 $sql = "UPDATE `cliente`
-                    SET `email` = :email,
-                        `telefono` = :telefono,
-			`localidad` = :localidad,
-                        `direccion` = :direccion,
-                        `provincia` = :provincia,
-                        `dni` = :dni,
-			WHERE `id_usuario` = :id_usuario";
+                        SET `email` = :email,
+                            `telefono` = :telefono,
+                            `localidad` = :localidad,
+                            `direccion` = :direccion,
+                            `provincia` = :provincia,
+                            `dni` = :dni
+                        WHERE `id_usuario` = :id_usuario";
                 $stmt = $conn->prepare($sql);                                  
                 $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                 $stmt->bindParam(':telefono', $tel, PDO::PARAM_INT);
@@ -377,7 +377,7 @@
                 $stmt->bindParam(':direccion', $dir, PDO::PARAM_STR);
                 $stmt->bindParam(':provincia', $prov, PDO::PARAM_STR);
                 $stmt->bindParam(':dni', $dni, PDO::PARAM_INT);
-                $stmt->bindParam(':id_usuario', $idUserio, PDO::PARAM_INT);
+                $stmt->bindParam(':id_usuario', $idUsro, PDO::PARAM_INT);
                 $stmt->execute();
             }catch( PDOExecption $e ) { 
                 print "Error!: " . $e->getMessage() . "</br>"; 

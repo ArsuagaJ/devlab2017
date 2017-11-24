@@ -79,11 +79,11 @@
             include('./desconexion.php');
         }*/
         
-        function getUsuarioByID($id_usuario){
+        function getUsuarioByID($iduso){
             include './conexion.php';
 
             $stmt = $conn->prepare("SELECT id_usuario, usuario, id_rol, nombre, apellido, estado FROM usuario WHERE id_usuario=:id_usuario");
-            $stmt->bindParam(':id_usuario', $id_usuario);
+            $stmt->bindParam(':id_usuario', $iduso,PDO::PARAM_INT);
             
             $stmt->execute();
             
@@ -202,15 +202,23 @@
         
         function updateNombreYApellidoUsuario($idUsr,$nbre,$aido){
             include('./conexion.php');
+            /*$row = [
+                'id' => $idUsr,
+                'nombre' => $nbre,
+                'apellido' => $aido
+            ];
+            $sql = "UPDATE usuario SET nombre=:nombre, apellido=:apellido WHERE id_usuario=:id;";
+            $status = $conn->prepare($sql)->execute($row);*/
             try{
-                $sql = "UPDATE usuario SET nombre = :nombre,  
-			apellido = :apellido
-			WHERE id_usuario = :id_usuario";
-                $stmt = $conn->prepare($sql);                                  
-                $stmt->bindParam(':nombre', $nbre, PDO::PARAM_STR);
-                $stmt->bindParam(':apellido', $aido, PDO::PARAM_STR);
-                $stmt->bindParam(':id_usuario', $idUsr, PDO::PARAM_INT);
-                $stmt->execute();
+                $sql = "UPDATE `usuario` SET `nombre`=:nombre,  
+			`apellido`=:apellido
+			WHERE `id_usuario`=:idusr";
+                $stamt = $conn->prepare($sql);                                  
+                $stamt->bindParam(':nombre', $nbre, PDO::PARAM_STR);
+                $stamt->bindParam(':apellido', $aido, PDO::PARAM_STR);
+                $stamt->bindParam(':idusr', $idUsr, PDO::PARAM_STR);
+                $stamt->execute();
+                return $idUsr;
             }catch( PDOExecption $e ) { 
                 print "Error!: " . $e->getMessage() . "</br>"; 
             }
