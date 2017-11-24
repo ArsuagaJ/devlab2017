@@ -166,12 +166,12 @@
             include('./desconexion.php');
         }*/
         
-        function getClientePorId($idUsuario){
+        function getClientePorId($idUs){
             include ('./conexion.php');
             $result;
             try{
                 $stmt = $conn->prepare("SELECT `email`, `telefono`, `localidad`, `direccion`, `provincia`, `dni` FROM `cliente` WHERE id_usuario=:id_usuario");
-                $stmt->bindParam(':id_usuario',$idUsuario,PDO::PARAM_STR);
+                $stmt->bindParam(':id_usuario',$idUs);
 
                 $stmt->execute();
 
@@ -182,8 +182,9 @@
                 print "Error!: " . $e->getMessage() . "</br>"; 
             }
             // realizamos la desconexion de la BD
-            include ('./desconexion.php');
+            //include ('./desconexion.php');
             return $result;
+            include ("./desconexion.php");
         }
         
         function getEmailUsuario($idUsu){
@@ -357,6 +358,34 @@
             }
         }
                 
+        
+        function updateCliente($idUserio,$email,$tel,$loc,$dir,$prov,$dni){
+            include('./conexion.php');
+            try{
+                $sql = "UPDATE `cliente`
+                    SET `email` = :email,
+                        `telefono` = :telefono,
+			`localidad` = :localidad,
+                        `direccion` = :direccion,
+                        `provincia` = :provincia,
+                        `dni` = :dni,
+			WHERE `id_usuario` = :id_usuario";
+                $stmt = $conn->prepare($sql);                                  
+                $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+                $stmt->bindParam(':telefono', $tel, PDO::PARAM_INT);
+                $stmt->bindParam(':localidad', $loc, PDO::PARAM_STR);
+                $stmt->bindParam(':direccion', $dir, PDO::PARAM_STR);
+                $stmt->bindParam(':provincia', $prov, PDO::PARAM_STR);
+                $stmt->bindParam(':dni', $dni, PDO::PARAM_INT);
+                $stmt->bindParam(':id_usuario', $idUserio, PDO::PARAM_INT);
+                $stmt->execute();
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+            // realizamos la desconexion de la BD
+            include('./desconexion.php');
+            //UPDATE cliente SET email=, telefono=, localidad= ,direccion= ,puntos= ,intento_ingreso=, provincia= ,token= ,validacion= ,dni= WHERE id_usuario=
+        }
         //la funcion que sigue era de prueba
         /*function guardarDatos(){
             // incluimos el archivo de conexion con los datos y variables del mismo.

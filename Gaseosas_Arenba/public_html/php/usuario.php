@@ -200,6 +200,24 @@
             
         }
         
+        function updateNombreYApellidoUsuario($idUsr,$nbre,$aido){
+            include('./conexion.php');
+            try{
+                $sql = "UPDATE usuario SET nombre = :nombre,  
+			apellido = :apellido
+			WHERE id_usuario = :id_usuario";
+                $stmt = $conn->prepare($sql);                                  
+                $stmt->bindParam(':nombre', $nbre, PDO::PARAM_STR);
+                $stmt->bindParam(':apellido', $aido, PDO::PARAM_STR);
+                $stmt->bindParam(':id_usuario', $idUsr, PDO::PARAM_INT);
+                $stmt->execute();
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+            // realizamos la desconexion de la BD
+            include('./desconexion.php');
+        }
+        
     }
  
 ?>

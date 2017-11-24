@@ -89,6 +89,17 @@
             return $result;
         }
         
+        function getProductosActivos(){
+            include './conexion.php';            
+            $stmt = $conn->prepare("SELECT `id_producto`, `nombre`, p.descripcion as 'descripcion', `foto`, `puntos`, ep.descripcion AS 'estado' FROM `producto` AS P INNER JOIN estado_producto as ep ON p.estado=ep.id_estado WHERE p.estado = '0'");
+            
+            $stmt->execute();
+            
+            $result = $stmt->fetchAll();
+            
+            return $result;
+        }
+        
         function getProductosByNameOrDescript($nomb){
             include './conexion.php';            
             $stmt = $conn->prepare("SELECT id_producto, nombre, descripcion, foto, puntos, estado FROM producto WHERE nombre LIKE ? OR descripcion LIKE ?");
