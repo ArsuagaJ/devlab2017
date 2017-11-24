@@ -1,30 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="jquery-3.2.1.min.js"> </script>
-	
-
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
-                <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
-                <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
-                <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
-                <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-		<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-        
-        <script type="text/javascript" src="../js/usuario_cuenta.js"></script>
-	<link rel="stylesheet" href="../css/usuario_estilo.css">
-    <!-- esto es para cuando hay internechi ->
-    <!-- Latest compiled and minified CSS -->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-
-    <!-- Optional theme -->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
-
-    <!-- Latest compiled and minified JavaScript -->
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
-   <title>Mi Cuenta</title> 
-  </head>
+    <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/usuario_cuenta.js"></script>
+    <link rel="stylesheet" href="../css/usuario_estilo.css">
+    <title>Mi Cuenta</title> 
+</head>
 	<body>
 	<div class="main">
 	<nav class="navbar navbar-inverse" role="navigation">
@@ -76,18 +60,45 @@
 	<div class="container">
 	
 	<div id="datos">
-			<label class="especial">Apellido</label><br>
-			<label class="especial">Nombre</label><br>
-			<label class="especial">DNI</label><br>
-                        <label class="especial">Telefono</label><br>
-			<label class="especial">E-mail</label><br>
-			<label class="especial">Provincia</label><br>
-                        <label class="especial">Localidad</label><br>
-			<label class="especial">Direccion</label><br>
-
+            <div class="row">
+                <div class="col-sm-4 form-group">
+                    <label class="especial">Apellido:</label>
+                    <input type="text" id="inpBlockApellido" disabled value=<?php echo $_SESSION['apellido'];?> ><br>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label class="especial">Nombre:</label>
+                    <input type="text" id="inpBlockNombre" disabled value=<?php echo $_SESSION['nombre'];?> ><br>
+                </div>
+                <div class="col-sm-4 form-group">
+                    <label class="especial">DNI:</label>
+                    <input type="text" id="inpBlockDNI" disabled value=<?php echo $_SESSION['dni'];?> ><br>
+                </div>        
+                <div class="col-sm-4 form-group">
+                    <label class="especial">Telefono:</label>
+                    <input type="text" id="inpBlockTelefono" disabled value=<?php echo $_SESSION['telefono'];?> ><br>
+                </div>        
+                <div class="col-sm-4 form-group">
+                    <label class="especial">E-mail:</label>
+                    <input type="text" id="inpBlockEmail" disabled value=<?php echo $_SESSION['email'];?> ><br>
+                </div>        
+                <div class="col-sm-4 form-group">
+                    <label class="especial">Provincia:</label>
+                    <input type="text" id="inpBlockProvincia" disabled value=<?php echo $_SESSION['provincia'];?> ><br>
+                </div>        
+                <div class="col-sm-4 form-group">
+                    <label class="especial">Localidad:</label>
+                    <input type="text" id="inpBlockLocalidad" disabled value=<?php echo $_SESSION['localidad'];?> ><br>
+                </div>        
+                <div class="col-sm-4 form-group">
+                    <label class="especial">Direccion:</label>
+                    <input type="text" id="inpBlockDireccion" disabled value=<?php echo $_SESSION['direccion'];?> ><br>
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" id="editar" class="btn" >Editar</button><br><br>
+                </div>
+            </div>
 	</div>
 		
-		<button type="button" id="editar" class="btn" >Editar</button><br><br>
 		
 		 <!--Formulario para ingresar y seleccionar los datos solicitados -->
                  <div id="formulario" style='display:none;'>
