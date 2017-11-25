@@ -74,10 +74,11 @@ position: absolute;
   }
   
 h1 {
-        font-family: Comic Sans MS;
+        font-family: Georgia, "Times New Roman", Times, serif;
+	text-shadow:#AA 2px 0px ;
         
-        font-size: 30px;
-        color: #000000; 
+        font-size: 40px;
+        color: #003300; 
 
     }
   
@@ -110,11 +111,13 @@ h1 {
     padding-bottom: 0px;
     padding-top: 0px;
 }
-.h2{
+.clase1{
     color: #ffffff;
     font-family: Comic Sans MS;
-    font-size: 15px;
+    font-size: 20px;
     text-align: center;
+    color: #000000;
+    font-weight: bold;
 }
 
 .list-group-item.active
