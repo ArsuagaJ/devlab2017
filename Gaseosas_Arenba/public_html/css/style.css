@@ -24,28 +24,9 @@ background-color: lightgray;
 }
 
 .bodyIndex{
-   
-margin: 20px;
-
-background: #ffffff;
-
-color: black;
-/* Ubicación de la imagen */
-background-image: url(../imgs/gaseosas.jpg);
-/* Nos aseguramos que la imagen de fondo este centrada vertical y
-horizontalmente en todo momento */
-background-position: center center;
-/* La imagen de fondo no se repite */
-background-repeat: no-repeat;
-/* La imagen de fondo está fija en el viewport, de modo que no se mueva cuando
-la altura del contenido supere la altura de la imagen. */
-background-attachment: fixed;
-/* La imagen de fondo se reescala cuando se cambia el ancho de ventana
-del navegador */
-background-size: cover;
-/* Fijamos un color de fondo para que se muestre mientras se está
-cargando la imagen de fondo o si hay problemas para cargarla*/
-background-color: lightgray;
+background-image: url(../fotos/fondo.jpg);
+/*-webkit-gradient:linear, 0% 0%, 0% 100%, from(#000000), to(#ffffff);
+background: #00987b;*/
 }
 
 div.well{
@@ -82,30 +63,42 @@ padding: 10px;
 position: absolute;                 
 }
 
-
-.navbar-inverse { 
-  background-color: #814676; 
+/*stilo de barra de menu*/
+.navbar { 
+  background-color: #deedf1; 
                 
-  border-color: #080808; 
+ 
+  
+ 
+      
+  }
+  
+h1 {
+        font-family: Comic Sans MS;
+        
+        font-size: 30px;
+        color: #000000; 
+
+    }
   
   /*font-size: 250px;*/
    
   /*font-family: Comic Sans MS;*/
-} 
+ 
 .input-group-addon{
     
-    background-color: #3e1756;
+    background-color: #51bf87;
     
-    border-color: #080808;
+    border-color: #51bf87;
 }
 
-.btn{
+/*.btn{
     background-color: #3e1756;
     
     border-color: #080808;
     
     color: white;
-}
+}*/
 .glyphicon{
     
     color: white;
@@ -117,7 +110,12 @@ position: absolute;
     padding-bottom: 0px;
     padding-top: 0px;
 }
-
+.h2{
+    color: #ffffff;
+    font-family: Comic Sans MS;
+    font-size: 15px;
+    text-align: center;
+}
 
 .list-group-item.active
 {
@@ -138,4 +136,49 @@ table{
 th{
     text-align: center;
     align-content: center;
+}
+
+ .btn{
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 300;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn-fresh {
+    color: #fff;
+    background-color: #51bf87;
+    border-bottom: 2px solid #41996c;
+}
+
+.btn {
+    margin: 4px;
+    box-shadow: 1px 1px 5px #888888;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px;
 }
