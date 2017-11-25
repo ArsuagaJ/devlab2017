@@ -177,8 +177,24 @@
         
         function getListadosActivosSinCanjes($ec){ // funcion que retorna toda la lista de codigos que ninguno de los codigos relacionados a esas listas esten canjeados
             include('./conexion.php');
-            $statmt = $conn->prepare("SELECT lc.id_lista_codigo, lc.fecha_inicio,lc.fecha_fin,lc.nombre_archivo,lc.descripcion,lc.estado, max(c.estado_canje) as ec FROM codigo c INNER JOIN lista_codigo lc on c.id_lista_codigo = lc.id_lista_codigo group by lc.id_lista_codigo,lc.fecha_inicio,lc.fecha_fin,lc.nombre_archivo,lc.descripcion,lc.estado having ec=:ec");
+            $statmt = $conn->prepare("SELECT lc.id_lista_codigo, lc.fecha_inicio,lc.fecha_fin,lc.nombre_archivo,lc.descripcion,lc.estado, max(c.estado_canje) "
+                    . "as ec FROM codigo c INNER JOIN lista_codigo lc on c.id_lista_codigo = lc.id_lista_codigo group by lc.id_lista_codigo,"
+                    . "lc.fecha_inicio,lc.fecha_fin,lc.nombre_archivo,lc.descripcion,lc.estado having ec=:ec");
             $statmt->bindParam(':ec', $ec);
+            $statmt->execute(); 
+            
+            $listados_activos = $statmt->fetchAll();
+            return $listados_activos;
+            //include('./desconexion.php');
+        }
+        
+        
+        function getListaCodigosCanjeados(){ // 
+            include('./conexion.php');
+            $statmt = $conn->prepare("SELECT lista_codigo.id_lista_codigo as idListaCodigo, lista_codigo.fecha_inicio, lista_codigo.fecha_fin, "
+                    . "COUNT(codigo.id_lista_codigo) as cantidadCodigos ,(SELECT COUNT(codigo.estado_canje) FROM codigo WHERE codigo.estado_canje"
+                    . " = 1 AND idListaCodigo = codigo.id_lista_codigo) as codigosCanjeados FROM lista_codigo, codigo WHERE "
+                    . "lista_codigo.id_lista_codigo = codigo.id_lista_codigo AND lista_codigo.estado = 0 GROUP BY lista_codigo.id_lista_codigo");
             $statmt->execute(); 
             
             $listados_activos = $statmt->fetchAll();
