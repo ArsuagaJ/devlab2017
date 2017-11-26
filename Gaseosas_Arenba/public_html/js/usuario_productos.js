@@ -179,6 +179,7 @@ function vaciarCampos(){
 }
 
 function armarGrilla(objetoJSON){
+    console.log(objetoJSON);
     var grilla   = document.getElementById("grilla");
     //var tbody = tabla.tBodies[0];//Crea un elemento <table>
 

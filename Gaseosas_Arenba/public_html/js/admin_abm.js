@@ -56,7 +56,6 @@ $(document).ready(function(){
         id = botonModif.getAttribute("id");//obtenemos el id referente a la fila mencionada
         var spli = id.split("-"); // lo separamos para obtener el numero de id del boton
         id = parseInt(spli[1]);
-        alert(id);
         //alert(boton.getAttribute("id"));
         // obtenemos cada uno de los valores referentes de la fila que tomamos..
         usuario = celdas[0].firstChild.nodeValue;

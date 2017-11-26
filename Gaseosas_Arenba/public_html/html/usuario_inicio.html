@@ -141,51 +141,50 @@
 	
 		<label class="pull-center">Cantidad Total de</label>
 		<label class="pull-center">Puntos: <?php echo ($_SESSION['puntos']);?></label><br><br>
-	<button type="button" id="botonCod" class="boton" >Ingresar Codigo</button><br><br>
+	<button type="button" id="botonCod" class="btn btn-info">Ingresar Codigo</button><br><br>
 	<div id="divCodigo" style='display:none;'>
-			<label> Codigo</label>
+			<label>Codigo</label>
 			<input type="text" name="codigo" id="inpCodigo" minlength="2" maxlength="6" title="maximo 6 caracteres" placeholder="codigo alfanumerico" required="true"> <br>
 			<p class="pError" id="pCodigo"></p><br>
-			<input type="button" name="enviarCod" id="enviarCod" value="Guardar">
-			<input type="button" name="cancelarCod" id="cancelarCod" value="cancelar"><br><br>
+			<input class="btn btn-info" type="button" name="enviarCod" id="enviarCod" value="Guardar">
+			<input class="btn btn-info" type="button" name="cancelarCod" id="cancelarCod" value="cancelar"><br><br>
 	</div>
-	
-	<button type="button" id="invitarAmi" class="boton">Invitar un amigo</button><br><br>
+        <hr size="30">
+	<button type="button" id="invitarAmi" class="btn btn-info">Invitar un amigo</button><br><br>
 	<div id="divInvitar" style='display:none;'>	
 		<label> E-mail</label>
 		<input type="email" name="email" id="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="debe ingresar email" placeholder="ejemplo@gmail.com" required="true"> <br>
 		<p class="pError" id="pEmail"></p>
-                <p class="alert alert-success" id="okEmail"></p><br>
-		<input type="button" name="enviarEmail" id="enviarEmail" value="enviar">
-		<input type="button" name="cancelarEmail" id="cancelarEmail" value="cancelar"><br>
+		<input  class="btn btn-info" type="button" name="enviarEmail" id="enviarEmail" value="enviar">
+		<input  class="btn btn-info" type="button" name="cancelarEmail" id="cancelarEmail" value="cancelar"><br>
 	</div>
-        
-        <div class="row">
-                <div class="col-sm-12">
-                    <div class="alert alert-info alert-dismissible hidden form-group" role="alert" id="divMensaje">
-                        <button type="button" class="close" data-dismiss="alert" id="btnCerrarAlerta">&times;</button>
-                        <p id="pMensaje"><strong></strong></p>
+	</div>
+	</div>
+             <div id="modalMensaje" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Contenido del Modal-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">¡Gracias por invitar!</h3>
+                      </div>
+                      <div class="modal-body">
+                          <p id="pMensaje"></p>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-info" type="button" id="btnModalBajaConfirmar" data-dismiss="modal">Aceptar</button>
+                      </div>
                     </div>
-                </div>
+                  </div>
             </div>
-	
-	</div>
-	</div>
-  </div>
             
-            <!-- div del mensaje -->
-        <!--<div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="alert alert-info alert-dismissible hidden form-group" role="alert" id="divMensaje">
-                        <button type="button" class="close" data-dismiss="alert" id="btnCerrarAlerta">&times;</button>
-                        <p id="pMensaje"><strong></strong></p>
-                    </div>
-                </div>
-            </div>
-        </div>-->
+  </div>
+               
+
 	
 	</div>
+     
 	
 </body>
 </html>

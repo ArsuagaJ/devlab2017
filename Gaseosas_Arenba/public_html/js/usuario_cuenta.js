@@ -15,7 +15,6 @@ $(document).ready(function(){
 	$('#editar').hide();
 	$('#botones').toggle();
         modificarDatos(nombreUsuario,apellidoUsuario,telUsuario,localUsuario,direccUsuario,provUsuario,dniUsuario,emailUsuario);
-        alert(nombreUsuario);
     });
     
     $('#cancelar').click(function() {
@@ -24,7 +23,6 @@ $(document).ready(function(){
 	$('#editar').toggle();
 	$('#botones').hide();
         modificarDatos(nombreUsuario,apellidoUsuario,telUsuario,localUsuario,direccUsuario,provUsuario,dniUsuario,emailUsuario);
-        alert(apellidoUsuario);
         limpiarCampos();
     }); 
         
@@ -35,7 +33,8 @@ $(document).ready(function(){
     $('#dni').keyup(function(){
         this.value = (this.value + "").replace(/[^^0-9]/g,'');
     });
-        
+
+    
     $('#guardar').click(function() {
 	var bolEmail = validarEmail();
 	var bolTel = validarTelefono();
@@ -46,7 +45,10 @@ $(document).ready(function(){
         var bolDni = validarDni();
         var bolProv = validarProvincia();
         
-        if(bolEmail && bolTel && bolName && bolApe && bolLocal && bolDir && bolDni && bolProv){
+        
+     if(bolEmail && bolTel && bolName && bolApe && bolLocal && bolDir && bolDni && bolProv){
+     
+           
             var nombre = $("#nombre").val();
             var apellido = $("#apellido").val();
             var tel = $("#telefono").val();
@@ -81,15 +83,18 @@ $(document).ready(function(){
                 console.log("Se han actualizado los datos de usuario.->UpdateClient");
                 window.location.replace("../php/usuario_cuenta.php");
             });
-        }
-        else{
-            alert("fallo");
-        }
-    }); 
+      
+          
+   
+      }else{
+             event.preventDefault();  
+            // tu codigo aqui
+          }
+      
+    });  
 });
 
 function modificarDatos(nombreUsuario,apellidoUsuario,telUsuario,localUsuario,direccUsuario,provUsuario,dniUsuario,emailUsuario){
-    alert("nombre");
     $("#nombre").attr("value",nombreUsuario);
     $("#apellido").attr("value",apellidoUsuario);
     $("#telefono").attr("value",telUsuario);
@@ -140,7 +145,7 @@ function validarTelefono(){
 	var texto=$('#telefono').val();
 	if (texto==""){
 			$('#pTelefono').text('debe ingresar el telefono');
-			return false;
+                        return false;
 		}
 		else if(texto.length==8 || texto.length==10) { 
 			$('#pTelefono').text(' ');

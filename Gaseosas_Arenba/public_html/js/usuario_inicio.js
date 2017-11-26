@@ -95,14 +95,16 @@ $(document).ready(function(){
                             //alert("procesando");funcion procesando
                         },
                         success: function (){
+                            
                             console.log("Email de invitacion enviado");
-                            mostrarDivMensaje();
-                            imprimirMensaje("Se ha enviado el email de invitacion...");
+                          
 
                         }
-                    }).done(function(){
-                        console.log("Email de invitacion enviado");
-                        $('#okEmail').text('Se ha enviado el email de invitacion...');
+                    }).done(function(data){
+                          $('#modalMensaje').modal('show');
+                           imprimirMensaje("Se ha enviado el email de invitacion");
+                        //console.log("Email de invitacion enviado");
+                        //$('#okEmail').text('Se ha enviado el email de invitacion...');
                     });
                 }
                 if(respuesta[0].resultado === "no"){

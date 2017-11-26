@@ -45,7 +45,7 @@
                                                   <p class="text-left"><strong>Bienvenido:</strong></p>
                                                   <p class="text-left"><strong><?php echo ($_SESSION['nombre'].' '.$_SESSION['apellido']);?></strong></p>
                                                   <p class="text-left small">ROL: <?php $id = $_SESSION['rol']; if($id == 3){echo('Cliente');}?></p>
-
+                                                  <a href="../php/cambiarPassword.php"><p class="text-left small">Cambiar contraseña</p></a>
                                               </div>
                                           </div>
                                       </div>
@@ -98,71 +98,276 @@
                 </div>
             </div>
 	</div>
+      <form class="well form-horizontal" action=" " method="post" id="formulario" style='display:none;'>
+                   <fieldset>
+
+                   <!-- Form Name -->
+                   <legend>Mis Datos</legend>
+
+                   <!-- Text input-->
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Nombre</label>  
+                     <div class="col-md-4 inputGroupContainer">
+                     <div class="input-group">
+                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                     <input class="form-control" type="text" name="nombre" id="nombre" pattern="[A-Za-z]{3,16}" title="solo se permiten letras, Máximo de caracteres 16" placeholder="se permite un solo nombre" required="true">
+                     </div>
+                            <p class="pError" id="pNombre"></p>
+                     </div>
+                   </div>
+
+                   <!-- Text input-->
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label" >Apellido</label> 
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group ">
+                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                     <input class="form-control" type="text" name="apellido" id="apellido" pattern="[A-Za-z]{3,30}" title="solo se permiten letras, Máximo de caracteres 30" placeholder="se permite dos apellidos" required="true"> 
+                      </div>
+                           <p class="pError" id="pApellido"></p> 
+                     </div>
+                   </div>
+                   
+                   <!-- Text input-->
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">DNI</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group ">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                     <input class="form-control" type="number" name="dni" id="dni" title="solo se permiten numeros" placeholder="ej:00.000.000" required="true">
+                       
+                       </div>
+                         <span class="help-block" id="pDni"></span>
+                   </div>
+                   </div>
+
+                   <!-- Text input-->
+                          <div class="form-group">
+                     <label class="col-md-4 control-label">E-mail</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                     <input class="form-control" type="email" name="email" id="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="debe ingresar email" placeholder="ejemplo@gmail.com" required="true">
+                       </div>
+                           <p class="pError" id="pEmail"></p>  
+                     </div>
+                   </div>
+
+
+                   <!-- Text input-->
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Telefono #</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                           <input class="form-control" type="number" name="telefono" id="telefono" minlength="8" maxlength="10" title="solo se permite numeros, 8 o 10" placeholder="Solo ingrese numeros" required="true">                 
+                       </div>
+                           <p class="pError" id="pTelefono"></p> 
+                     </div>
+                   </div>
+
+                   <!-- Text input-->
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Direccion</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                     <input class="form-control" type="text" name="direccion" id="direccion" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder="Nombre y numero" required="true"> 
+                       </div>
+                           <p class="pError" id="pDireccion"></p>
+                     </div>
+                   </div>
+
+                   <!-- Text input-->
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Localidad</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                     <input class="form-control" type="text" name="localidad" id="localidad" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Monte Grande" required="true">
+                       </div>
+                           <p class="pError" id="pLocalidad"></p>  
+                     </div>
+                   </div>
+
+                   <!-- Select Basic -->
+
+                   <div class="form-group"> 
+                     <label class="col-md-4 control-label">Provincia</label>
+                       <div class="col-md-4 selectContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                       <select name="provincia" id="provincia" class="form-control selectpicker" >
+                         <option value="">Selecciona tu Provincia</option>
+                             <option>Buenos Aires </option>
+                             <option>C.A.B.A </option>
+                             <option>Catamarca </option>
+                             <option>Chaco </option>
+                             <option>Chubut </option>
+                             <option>Córdoba </option>
+                             <option>Corrientes </option>
+                             <option>Entre Ríos </option>
+                             <option>Formosa </option>
+                             <option>Jujuy </option>
+                             <option>La Pampa </option>
+                             <option>La Rioja </option>
+                             <option>Mendoza </option>
+                             <option>Misiones </option>
+                             <option>Neuquén </option>
+                             <option>Río Negro </option>
+                             <option>Salta </option>
+                             <option>San Juan </option>
+                             <option>San Luis </option>
+                             <option>Santa Cruz </option>
+                             <option>Santa Fe </option>
+                             <option>Santiago del Estero </option>
+                             <option>Tierra del Fuego </option>
+                             <option>Tucumán </option>                 
+                       </select>
+                     </div>
+                   </div>
+                   </div>
+                  <!-- radio checks -->
+                    <div class="form-group">
+                                           <label class="col-md-4 control-label">Desea Cambiar la Contraseña</label>
+                                           <div class="col-md-4">
+                                               <div class="radio">
+                                                   <label>
+                                                       <input type="radio" name="hosting" value="si" /> Si
+                                                   </label>
+                                               </div>
+                                               <div class="radio">
+                                                   <label>
+                                                       <input type="radio" name="hosting" value="no" /> No
+                                                   </label>
+                                               </div>
+                                           </div>
+                                       </div>
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Nuevo Password</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                     <input class="form-control" type="password" name='password' id="idPassword" placeholder="Nuevo password">
+                       </div>
+                           <p class="pError" id="pPassword"></p>
+                     </div>
+                   </div>
+                   
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Repetir Password</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                     <input class="form-control" type="password" name='password1' id="idPassword1" placeholder="Repita el password">
+                       </div>
+                           <p class="pError" id="pPassword1"></p>
+                     </div>
+                   </div>
+
+                   <!-- Button -->
+                   <div class="form-group">
+                     <label class="col-md-4 control-label"></label>
+                     <div class="col-md-4">
+                       <button type="button" id="guardar" class="btn btn-info" >Guardar <span class="glyphicon glyphicon-floppy-open"></span></button>
+                     </div>
+                      <div class="col-md-4">
+                       <button type="button" id="cancelar" class="btn btn-info" >Cancelar <span class="glyphicon glyphicon-floppy-remove"></span></button>
+                     </div>
+                   </div>
+
+                   </fieldset>
+                   </form>
 		
 		
 		 <!--Formulario para ingresar y seleccionar los datos solicitados -->
-                 <div id="formulario" style='display:none;'>
+               <!--  <div id="formulario" style='display:none;'>
                     <div class="col-sm-4">
-                        <div class="form-group input-group">
+                        
 				<label> Nombre </label><br>
 				<input type="text" name="nombre" id="nombre" pattern="[A-Za-z]{3,16}" title="solo se permiten letras, Máximo de caracteres 16" placeholder="se permite un solo nombre" required="true">
 				<p class="pError" id="pNombre"></p>
-			</div>
+			
                     </div>
                     <div class="col-sm-4">
-                        <div class="form-group input-group">
+                        
 				<label> Apellido</label><br>
 				<input type="text" name="apellido" id="apellido" pattern="[A-Za-z]{3,30}" title="solo se permiten letras, Máximo de caracteres 30" placeholder="se permite dos apellidos" required="true"><br>
 				<p class="pError" id="pApellido"></p>
-                        </div>
+                        
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group input-group">
+                    <div class="col-sm-4 ">
+                     
                                 <label> DNI</label><br>
 				<input type="number" name="dni" id="dni" title="solo se permiten numeros" placeholder="ej:00.000.000" required="true"><br>
 				<p class="pError" id="pDni"></p>
-                        </div>
+                       
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group input-group">
+                    <div class="col-sm-4 ">
+                       
                                 <label> Telefono</label><br>
 				<input type="number" name="telefono" id="telefono" minlength="8" maxlength="10" title="solo se permite numeros, 8 o 10" placeholder="solo ingrese numeros" required="true"> <br>
 				<p class="pError" id="pTelefono"></p>
-			</div>
+			
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group input-group">
+                    <div class="col-sm-4 ">
+                        
                                 <label> E-mail</label><br>
 				<input type="email" name="email" id="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="debe ingresar email" placeholder="ejemplo@gmail.com" required="true"> <br>
 				<p class="pError" id="pEmail"></p>
-			</div>
+			
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group input-group">
+                    <div class="col-sm-4 ">
+                        
                                 <label> Provincia</label><br>
 				<input type="text" name="provincia" id="provincia" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Buenos Aires" required="true"> <br>
 				<p class="pError" id="pProvincia"></p>
-			</div>
+			
                     </div>
                     <div class="col-sm-4">
-                        <div class="form-group input-group">
+                       
 				<label> Localidad</label><br>
 				<input type="text" name="localidad" id="localidad" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Monte Grande" required="true"> <br>
 				<p class="pError" id="pLocalidad"></p>
-			</div>
+			
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group input-group">
+                    <div class="col-sm-4 ">
+                     
                                 <label> Direccion</label><br>
 				<input type="text" name="direccion" id="direccion" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder="Nombre y numero" required="true"> <br>
-				<p class="pError" id="pDireccion"></p><br>
-			</div>
+				<p class="pError" id="pDireccion"></p>
+			
                     </div>
+                     
+                     <div class="row">
+                    <div class="col-sm-4 ">
+                       
+                            <label>Nuevo Password</label><br>
+                            <input class="form-control" type="password" name='password' id="idPassword" placeholder="Nuevo password"><br>
+				<p class="pError" id="pDireccion"></p>
+                            <p class="pError" id="pPassword"></p>
+                      
+                    </div>
+                    <div class="col-sm-4">
+                       
+                            <label>Confirmar password</label><br>
+                            <input class="form-control" type="password" name='password1' id="idPassword1" placeholder="Repita el password"> <br>
+                            <p class="pError" id="pPassword1"></p><br> 
+     
+                    </div> 
                 </div>     
-		<div id="botones" style='display:none;'>
+		<div id="botones" class="col-sm-4" style='display:none;'>
 			<input class="btn" type="button" name="guardar" id="guardar" value="Guardar">
 			<input class="btn" type="submit" name="cancelar" id="cancelar" value="cancelar">
 		</div>
+               </div>-->
 	</div>
             <div class="container">
             <div class="row">
