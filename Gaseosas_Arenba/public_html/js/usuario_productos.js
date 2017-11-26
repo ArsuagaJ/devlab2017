@@ -42,6 +42,8 @@ $(document).ready(function(){
         });
     });
     
+    //comentario para DANIEL
+    
     $("#modalCanjear").on('show.bs.modal', function (e) {
         
         vaciarCacheDeDatos(parent,contenedor,botonCanje);
