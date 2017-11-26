@@ -75,6 +75,18 @@
             include('./desconexion.php');
         }*/
         
+        function getPuntosDeProductoPorId($id_produc){
+            include './conexion.php';
+
+            $stmt = $conn->prepare("SELECT puntos FROM producto WHERE id_producto=:id_producto");
+            $stmt->bindParam(':id_producto', $id_produc);
+            
+            $stmt->execute();
+            
+            $result = $stmt->fetch();
+            return $result;
+        }
+        
         function getProductoByID($id_producto){
             include './conexion.php';
 

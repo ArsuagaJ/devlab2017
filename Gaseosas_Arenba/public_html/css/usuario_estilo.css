@@ -91,9 +91,40 @@ p{
   }
   
   .btn{
+      background:#2E8B57;
     background-color: #3e1756;
     
     border-color: #080808;
     
     color: white;
 }
+
+
+div.img{
+  display:table;
+}
+div.img img{
+ margin:0;
+ padding:0;
+}
+div.img span{
+ line-height:normal;
+ font-size:14px;
+ display:table-caption;
+ margin:0;
+ background:#2E8B57;
+ color:white;
+ font-style:italic;
+ padding:5px;
+ text-align:center;
+}
+/*.item {
+      display: block;
+      position: center block;
+      width: 300px;
+      height: 300px;
+      /*background-image: url('https://placeholdit.imgix.net/~text?txtsize=33&txt=350×150&w=350&h=150');*/
+      /*background-position: center;
+      background-repeat: non-repeat;
+      background-size: cover;
+}*/

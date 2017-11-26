@@ -293,7 +293,7 @@
             
             include('conexion.php');
             
-            $sql = "SELECT dni,telefono, email, provincia, localidad, direccion FROM producto WHERE id_usuario=:id_usuario";
+            $sql = "SELECT dni,telefono, email, provincia, localidad, direccion, puntos FROM producto WHERE id_usuario=:id_usuario";
             //$statmt = $conn->prepare($sql); con esta funcion no me funciona...
             $result = $conn->prepare($sql);
             $result->bindParam(':id_usuario',$id,PDO::PARAM_INT);

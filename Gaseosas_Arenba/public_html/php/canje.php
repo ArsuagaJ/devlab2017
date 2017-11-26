@@ -32,5 +32,26 @@
             }
             // realizamos la desconexion de la BD
             include ('./desconexion.php');
-    }}
-   ?>
+        }
+        
+        function realizarCanje($idUsuo,$idProduto,$fecha){
+            $idUsuo = (int)$idUsuo;
+            $idProduto = (int)$idProduto;
+            include('./conexion.php');
+            try{
+                //preparamos la consulta insert
+                $statmt = $conn->prepare("INSERT INTO `canje`(`id_usuario`, `id_producto`, `fecha`) VALUES ('$idUsuo','$idProduto','$fecha')");
+                $statmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);       
+                $statmt->bindParam(':id_usuario', $$idUsuo, PDO::PARAM_INT);
+                $statmt->bindParam(':id_producto', $idProduto, PDO::PARAM_INT);
+                $conn->beginTransaction(); 
+                $statmt->execute(); 
+                $conn->commit();
+                return true;
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+        }
+    
+    }
+?>
