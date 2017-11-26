@@ -128,34 +128,10 @@ $(document).ready(function(){
     var imagen = "";
     var botonModif;
     var id;
-
-    $("#modalModificar").on('show.bs.modal', function (e) {
-        
-        // lo siguiente funciona. lo tome de la web pero no lo entiendo mucho..
-        vaciarCacheDeDatos();
-        
-        var row = $(e.relatedTarget).parent().parent();
-        var celdas= row.children();
-        
-        botonModif = celdas[5].firstChild;
-        id = botonModif.getAttribute("id");//obtenemos el id referente a la fila mencionada
-        var spli = id.split("-"); // lo separamos para obtener el numero de id del boton
-        id = parseInt(spli[1]);
-        //alert(boton.getAttribute("id"));
-        // obtenemos cada uno de los valores referentes de la fila que tomamos..
-        nombreProducto = celdas[0].firstChild.nodeValue;
-        descProducto = celdas[1].firstChild.nodeValue;
-        puntos = celdas[2].firstChild.nodeValue;
-        imagen = celdas[3].firstChild.getAttribute("src");// tomamos el valor de la ruta de la imagen
-        //imagen = celdas[3].firstChild.nodeValue;  // lo dividimos para obtener el nombre
-        //imagen = spli[2]; // reasignamos la variable nombre
-        $("#imgSalida").attr("src",imagen);
-        $("#inpNombreProducto").attr("value",nombreProducto);
-        $("#inpPuntos").attr("value", parseInt(puntos));
-        $("#txtDescripcion").text(descProducto);
-        
-        
-        //cargarDatos(nombreProducto,descProducto,imagen,puntos); // no me funciona esta funcion
+    var row = null;
+    var celdas= null;
+    
+    //cargarDatos(nombreProducto,descProducto,imagen,puntos); // no me funciona esta funcion
         $("#btnModalModificarConfirmar").click(function(){
             //*****************************************************************************************
             /* tengo que seguir modificando esto para que pueda actualizar correctamente el producto */
@@ -167,7 +143,7 @@ $(document).ready(function(){
             
             if(isNaN(puntos)){
                 mostrarMensajeModal("No se ha ingresado un numero correcto en el campo de PUNTOS DE CANJE");
-                alert("no es un numero");
+                //alert("no es un numero");
                 event.preventDefault();
             }else{
                 var parametros = {
@@ -180,6 +156,7 @@ $(document).ready(function(){
                     data:  parametros, // los datos que van a ser recuperados desde el php
                     url:   '../php/updateProducto.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
                     type:  'post',
+                    cache: false,
                     beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
                         imprimirMensaje("Actualizando el producto, aguarde unos instantes...");
                     },
@@ -197,6 +174,31 @@ $(document).ready(function(){
                 });;
             }
         });
+
+    $("#modalModificar").on('show.bs.modal', function (e) {
+        // lo siguiente funciona. lo tome de la web pero no lo entiendo mucho..
+        vaciarCacheDeDatos();
+        
+        row = $(e.relatedTarget).parent().parent();
+        celdas= row.children();
+    
+        botonModif = celdas[5].firstChild;
+        id = botonModif.getAttribute("id");//obtenemos el id referente a la fila mencionada
+        var spli = id.split("-"); // lo separamos para obtener el numero de id del boton
+        id = parseInt(spli[1]);
+        //alert(boton.getAttribute("id"));
+        // obtenemos cada uno de los valores referentes de la fila que tomamos..
+        nombreProducto = celdas[0].firstChild.nodeValue;
+        descProducto = celdas[1].firstChild.nodeValue;
+        puntos = celdas[2].firstChild.nodeValue;
+        imagen = celdas[3].firstChild.getAttribute("src");// tomamos el valor de la ruta de la imagen
+        //imagen = celdas[3].firstChild.nodeValue;  // lo dividimos para obtener el nombre
+        //imagen = spli[2]; // reasignamos la variable nombre
+        $("#imgSalida").attr("src",imagen);
+        $("#inpNombreProducto").attr("value",nombreProducto);
+        $("#inpPuntos").attr("value", parseInt(puntos));
+        $("#txtDescripcion").text(descProducto);
+        console.log(nombreProducto);
     });
     
     $('#modalModificar').on('hidden.bs.modal', function (e) {
@@ -222,6 +224,7 @@ $(document).ready(function(){
                 data:  idPhp, // los datos que van a ser recuperados desde el php
                 url:   '../php/deleteProducto.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
                 type:  'post',
+                cache: false,
                 beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
                     imprimirMensaje("Dando de baja el producto, aguarde unos instantes...");
                 },

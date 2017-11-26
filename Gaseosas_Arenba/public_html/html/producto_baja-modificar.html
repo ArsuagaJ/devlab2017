@@ -31,12 +31,23 @@ and open the template in the editor.
                   <span class="icon-bar"></span>                        
                 </button>
                 <a class="navbar-brand" href="#">Gaseosas Arenba</a>
-                <ul class="nav navbar-nav navbar-left">
-                    <li><a href="../php/codigo_agregar.php">Agregar Listado de Codigo</a></li>
-                  <li><a href="../php/codigo_baja-modificar.php">Baja/Modificar Listado de Codigo</a></li>
-                  <li><a href="../php/producto_agregar.php">Agregar Producto</a></li>
-                  <li><a href="#">Baja/Modificar Producto</a></li>
-                  <!--<li><a href="./producto_modificar">Modificar Producto</a></li>-->
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">ABM Codigos<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="../php/codigo_agregar.php">Alta</a></li>
+                        <li><a href="../php/codigo_baja-modificar.php" class="active">Baja / Modificacion</a></li>
+                      </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">ABM Productos<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="../php/producto_agregar.php">Alta</a></li>
+                        <li><a href="../php/producto_baja-modificar.php" class="active">Baja / Modificacion</a></li>
+                      </ul>
+                    </li>
                 </ul>
               </div>
                 <div class="collapse navbar-collapse" id="ac_datosUsuario">

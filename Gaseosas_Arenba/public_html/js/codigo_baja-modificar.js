@@ -222,7 +222,7 @@ function realizarBusqueda(){
             //alert(respuesta);
             if(respuesta[0].resultado === "nodata"){ // si la consulta devuelve vacia, mostramos un mensaje correspondiente
                 mostrarDivMensaje();
-                $("#pMensaje").text("No hay registros con esos datos");
+                $("#pMensaje").text("No hay registros activos con Codigos sin Canjear");
             }
             if (respuesta[0].resultado === "ok"){ // si tenemos al menos 1 registro, generamos la tabla con los registros devueltos por el server
                 //console.log(respuesta);
