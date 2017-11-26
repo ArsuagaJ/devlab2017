@@ -22,7 +22,7 @@ and open the template in the editor.
     
     <body>
         <!--navbar del titulo de la pagina -->
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar">
             <div class="container-fluid">
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -85,12 +85,19 @@ and open the template in the editor.
                     <span class="input-group-addon">Buscar</span>
                     <input id="filtrar" type="text" class="form-control" placeholder="Ingrese el nombre o descripcion del producto a buscar...">
                 </div>-->
-                <div class="input-group inner-addon left-addon">
+                <div class="col-sm-11 col-xs-10">
+                    <label id="filtro" class="sr-only" for="filtrar">Buscar...</label>
+                    <input id="filtrar" type="text" class="form-control" placeholder="Ingrese nombre o descripcion del producto a buscar y presione ENTER o Haga click en el siguiente icono..." autofocus>
+                </div>
+                <div class="col-sm-1 col-xs-2">
+                    <button type="button" class="btn btn-primary" id="btnFiltroBuscar"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </div>
+                <!--<div class="input-group inner-addon left-addon">
                     <input id="filtrar" type="text" class="form-control" placeholder="Ingrese el nombre o descripcion del producto a buscar..." autofocus/>
                     <span class="input-group-addon">
-                        <button id="btnFiltroBuscar" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-search"></i></button>
+                        <button id="btnFiltroBuscar" class="btn btn-info btn-sm btn-xs"><i class="glyphicon glyphicon-search"></i></button>
                     </span>
-                </div>
+                </div>-->
             </div>
 
             <div class="row">
@@ -119,7 +126,7 @@ and open the template in the editor.
                 <!-- creamos el div de la paginacion -->
                 <div class="col-md-12 text-center form-group">
                     <!-- creamos la lista para que puedan visualizarse los numeros de paginacion -->
-                  <ul class="pagination pagination-lg pager" id="myPager">
+                <ul class="pagination pagination-lg pager" id="myPager">
                       <!-- luego llamamos desde jquery al elemento de lista 'myPager' -->
                       <li><a href="#" class="prev_link" style="display: none;">«</a></li><li class="active"><a href="#" class="page_link active">1</a></li><li class=""><a href="#" class="page_link">2</a></li><li><a href="#" class="page_link">3</a></li><li><a href="#" class="next_link">»</a></li></ul>
                 </div>

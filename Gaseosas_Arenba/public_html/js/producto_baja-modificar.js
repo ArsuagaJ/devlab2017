@@ -108,7 +108,7 @@ $(document).ready(function(){
     Luego llamamos al selector de nombre 'myPager' y mostramos los controles necesarios para ejecutarlo */
     $('#tblTablaOculta').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
   
-    $('#filtrar').keyup(function(e) {
+    $("#filtrar").keyup(function(e) {
         if(e.keyCode === 13) {
             vaciarTabla();
             ocultarMensaje();
