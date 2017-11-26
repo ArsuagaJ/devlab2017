@@ -95,8 +95,7 @@
         function getUsuarioByName($nomb){
             include './conexion.php';
 
-            $stmt = $conn->prepare("SELECT usuario, R.nombre as 'id_rol', U.nombre, U.apellido, U.estado FROM usuario U INNER JOIN rol R ON U.id_rol=R.id_rol WHERE U.nombre LIKE ?");
-            
+            $stmt = $conn->prepare("SELECT usuario, R.nombre as 'id_rol', U.nombre, U.apellido, U.estado, U.id_usuario as 'id_usuario' FROM usuario U INNER JOIN rol R ON U.id_rol=R.id_rol WHERE U.nombre LIKE ?");
             $stmt->bindValue(1,"%{$nomb}%", PDO::PARAM_STR);
     
             $stmt->execute();
@@ -106,25 +105,13 @@
             return $result;
         }
         
-       /* function getUsuarioByName1($nomb){
-            include './conexion.php';
-
-            $stmt = $conn->prepare("SELECT us.`id_usuario`, us.`usuario`, us.`password`, us.`nombre`, us.`apellido`, us.`estado`, rol.`id_rol`, rol.`nombre` FROM `usuario` us , `rol` WHERE us.id_rol = rol.id_rol nombre LIKE ?");
-            $stmt->bindValue(1,"%{$nomb}%", PDO::PARAM_STR);
-    
-            $stmt->execute();
-            
-            $result = $stmt->fetchAll();
-            
-            return $result;
-        }*/
-        
          
-        function getUsuarioByNameOrRol($nomb){
+        function getUsuarioByNameOrRol($nomb,$rol){
             include './conexion.php';
 
-            $stmt = $conn->prepare("SELECT usuario, id_rol, nombre, apellido, estado FROM usuario WHERE nombre LIKE ?");
+            $stmt = $conn->prepare("SELECT usuario, R.nombre as 'id_rol', U.nombre, U.apellido, U.estado FROM usuario U INNER JOIN rol R ON U.id_rol=R.id_rol WHERE U.nombre LIKE ?");
             $stmt->bindValue(1,"%{$nomb}%", PDO::PARAM_STR);
+            $stmt->bindParam(':rol',$rol,PDO::PARAM_STR);
    
            
             $stmt->execute();
@@ -186,13 +173,6 @@
             $lastId = $stmt->fetchColumn();
             $ultimoId = $lastId;
             echo $ultimoId;
-            /*}else{
-                echo '<script>';
-                echo 'console.log("No funca")';
-                echo '</script>';
-                
-                echo (filter_input_array($_POST));
-            }*/
             
             
             // realizamos la desconexion de la BD
@@ -219,6 +199,29 @@
                 $stamt->bindParam(':idusr', $idUsr, PDO::PARAM_STR);
                 $stamt->execute();
                 return $idUsr;
+            }catch( PDOExecption $e ) { 
+                print "Error!: " . $e->getMessage() . "</br>"; 
+            }
+            // realizamos la desconexion de la BD
+            include('./desconexion.php');
+        }
+        
+        function updateUsuario($id,$usio,$nombe,$aellido,$password){
+            
+            $pass = md5($password);
+            echo($password);
+            include('./conexion.php');
+
+            try{
+                $sql = "UPDATE `usuario` SET `usuario`=:usuario,`nombre`=:nombre,`apellido`=:apellido,`password`=:password WHERE `id_usuario`=:idusr";
+                $stamt = $conn->prepare($sql);
+                $stamt->bindParam(':usuario', $usio, PDO::PARAM_STR);
+                $stamt->bindParam(':nombre', $nombe, PDO::PARAM_STR);
+                $stamt->bindParam(':apellido', $aellido, PDO::PARAM_STR);
+                $stamt->bindParam(':password', $pass, PDO::PARAM_STR);
+                $stamt->bindParam(':idusr', $id, PDO::PARAM_INT);
+                $stamt->execute();
+                return $id;
             }catch( PDOExecption $e ) { 
                 print "Error!: " . $e->getMessage() . "</br>"; 
             }

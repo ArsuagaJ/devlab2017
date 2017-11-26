@@ -36,11 +36,88 @@ $(document).ready(function(){
         apellido = celdas[3].firstChild.nodeValue;
         cargarDatos(nombreUsuario,rolUsuario,nombre,apellido);
     });
+     var usuario = "";
+    var nombre = "";
+    var apellido = "";
+    var password1 = "";
+    var password2 = "";
+    var botonModif;
+    var id;
+    
+        $("#modalModificar").on('show.bs.modal', function (e) {//funcion activa modal
+        //console.log("hola");
+        // lo siguiente funciona. lo tome de la web pero no lo entiendo mucho..
+        //vaciarCacheDeDatos();
+        
+        var row = $(e.relatedTarget).parent().parent();
+        var celdas= row.children();
+        
+        botonModif = celdas[4].firstChild;
+        id = botonModif.getAttribute("id");//obtenemos el id referente a la fila mencionada
+        var spli = id.split("-"); // lo separamos para obtener el numero de id del boton
+        id = parseInt(spli[1]);
+        alert(id);
+        //alert(boton.getAttribute("id"));
+        // obtenemos cada uno de los valores referentes de la fila que tomamos..
+        usuario = celdas[0].firstChild.nodeValue;
+        nombre = celdas[2].firstChild.nodeValue;
+        apellido = celdas[3].firstChild.nodeValue;
+        //imagen = celdas[3].firstChild.nodeValue;  // lo dividimos para obtener el nombre
+        //imagen = spli[2]; // reasignamos la variable nombre
+        $("#inpUsuario").attr("value",usuario);
+        $("#inpNombre").attr("value",nombre);
+        $("#inpApellido").attr("value",apellido);
+        
+        
+        //cargarDatos(nombreProducto,descProducto,imagen,puntos); 
+        $("#btnModalModificarConfirmar").click(function(){ //manda las m,odificaciones del modal
+ 
+            
+            usuario = $("#inpUsuario").val();
+            nombre = $("#inpNombre").val();
+            apellido = $("#inpApellido").val();
+            password1 = $("#inpPassword").val();
+            password2 = $("#inpRepetirPassword").val();
+
+            if(!(password1 === password2)){
+                mostrarMensajeModal("Los password no son iguales");
+                event.preventDefault();
+            }else{
+                var parametros = {
+                    "nombreUsuario" : usuario,
+                    "nombre" : nombre,
+                    "apellido" : apellido,
+                    "password" : password1,
+                    "id" : id
+
+                };
+                $.ajax({
+                    data:  parametros, // los datos que van a ser recuperados desde el php
+                    url:   '../php/updateUsuario.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+                    type:  'post',
+                    beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
+                        imprimirMensaje("Actualizando el producto, aguarde unos instantes...");
+                    },
+                    success: function resultado(respuestaPHP){
+                        imprimirMensaje("Se ha actualizado correctamente el usuario"+ usuario);
+                    }
+                }).done(function(result){
+                    if(result === 0){
+                        alert("rrorr");
+                    }
+                    mostrarDivMensaje();
+                    imprimirMensaje("Se ha actualizado correctamente los datos");
+                    console.log("Actualizacion de producto Procesado Correctamente");
+                    //console.log(result);
+                });;
+            }
+        });
+    });
     // tengo que agregarlo aca para que lo tome en todas las filas...
 
-    $("#btnModalModificar").click(function(){
-       /* cargarDatosDeFila();*/
-    });
+    /*$("#btnModalModificar").click(function(){
+        cargarDatosDeFila();
+    });*/
     
     // luego de dar boton "CONFIRMAR se da de baja el usuario y se quita de la lista
     var boton = $("#btnModalBajaConfirmar");
@@ -73,7 +150,6 @@ function realizarBusqueda(){
    
          
     var parametros = {
-        //"nameDescrip" : rex.test($(this).text())
         "nameDescrip" : valorABuscar,
         "rol" : rol
         
@@ -84,14 +160,12 @@ function realizarBusqueda(){
         type:  'get'
          
         }).done(function(respuesta){
-            alert(respuesta);
             if(respuesta[0].resultado === "nodata"){
                 mostrarDivMensaje();
                 $("#pMensaje").text("No hay registros con esos datos");
             }
             if (respuesta[0].resultado === "ok") {
-                console.log(JSON.stringify(respuesta));
-                //mostramos la tabla si existe coincidencia
+               // console.log(JSON.stringify(respuesta));
                 $("#tblTablaOculta").removeClass("hidden");
                 $("#tblTablaOculta").addClass("visible-block");
                 $('.buscar tr').show();
@@ -102,14 +176,6 @@ function realizarBusqueda(){
             }
         });
 }
-//se utiliza en el modal del modificar datos
-/*
-function cargarDatos(strUsuario,strRol,strNombre,strApellido){
-    $("#inpUsua").attr("value",strNombre);
-    $("#txtDescripcion").text(strDescripcion);
-    $("#inpPuntos").attr("value",parseInt(strCantidadPuntos));
-    $("#inpPuntos").attr("value",parseInt(strCantidadPuntos));
-}*/
 
 function cargarDatosDeFila(){
     var usuario = "";
@@ -125,13 +191,13 @@ function cargarDatosDeFila(){
         id_rol = celdas[1].firstChild.nodeValue;
         nombre = celdas[2].firstChild.nodeValue;
         apellido = celdas[3].firstChild.nodeValue;
-        alert(apellido);
         cargarDatos(usuario,id_rol,nombre,apellido);
     });
 }
 
 function generarTabla(objetoJSON){
     
+    console.log(objetoJSON);
     var tabla   = document.getElementById("tblTablaOculta");
     var tbody = tabla.tBodies[0];//Crea un elemento <table>
 
@@ -153,7 +219,7 @@ function generarTabla(objetoJSON){
         var botonModificar = document.createElement("button");
         var iconoModifi = document.createElement("i");
         botonModificar.className = "btn btn-warning";
-        botonModificar.setAttribute("id","btnModalModificar");
+        botonModificar.setAttribute("id","btnModalModificar-"+objetoJSON[i].id_usuario);
         botonModificar.setAttribute("data-toggle","modal");
         botonModificar.setAttribute("data-target","#modalModificar");
         iconoModifi.className = "glyphicon glyphicon-pencil";
@@ -190,15 +256,27 @@ function generarTabla(objetoJSON){
  
         tbody.appendChild(hilera); //agrega la hilera al final de la tabla
     }
-    //body.appendChild(tabla); //appends <table> en el elemento <body>
-    //tabla.setAttribute("border", "2"); //modifica el atributo "border" de la tabla y lo fija a "2";
-    
-    // estos 2 atributos no funcionan.
-    /*tabla.title("Datos del Formulario WEB");
-    tabla.style.background = "lightblue"; // este atributo no funciona.*/
-    //actualizarTabla();
 }
 
-/*function actualizarTabla(){
-    $("tblTablaOculta").addClass("table table-hover table-striped table-bordered hidden");
-}*/
+function mostrarDivMensaje(){
+    $("#divMensaje").removeClass("hidden");
+    $("#divMensaje").addClass("visible-block");
+}
+
+function mostrarMensajeModal(strMensaje){
+    $("#parMensajeModal").text(strMensaje);
+}
+
+function imprimirMensaje(strMensaje){
+    $("#pMensaje").text(strMensaje);
+}
+
+
+   /*$('#modalModificar').on('hidden.bs.modal', function (e) {
+        vaciarTabla();
+        vaciarCacheDeDatos();
+        realizarBusqueda(); // actualizamos la tabla para que apliquen los cambios
+    });*/
+    
+   
+    

@@ -25,7 +25,8 @@
                 'id_rol' => $row['id_rol'],
                 'nombre' => $row['nombre'],
                 'apellido' => $row['apellido'],
-                'estado' => $row['estado']
+                'estado' => $row['estado'],
+                'id_usuario' => $row['id_usuario']
             );
             // agregamos el array de la fila al array general '$respuesta' que se devolvera como objeto JSON
             array_push($respuesta,$datos);
