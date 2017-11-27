@@ -48,7 +48,7 @@ $(document).ready(function(){
             url:   '../php/getCodigosPorLista.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
             type:  'get',
             beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
-                imprimirMensaje("Dando de baja el archivo de códigos, aguarde unos instantes...");
+                imprimirMensaje("Mostrando códigos, aguarde unos instantes...");
             }
         }).done(function(result){
             $("#txtVistaDescripcion").text(result[1]);

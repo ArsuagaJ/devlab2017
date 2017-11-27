@@ -191,10 +191,7 @@
         
         function getListaCodigosCanjeados(){ // 
             include('./conexion.php');
-            $statmt = $conn->prepare("SELECT lista_codigo.id_lista_codigo as idListaCodigo, lista_codigo.fecha_inicio, lista_codigo.fecha_fin, "
-                    . "COUNT(codigo.id_lista_codigo) as cantidadCodigos ,(SELECT COUNT(codigo.estado_canje) FROM codigo WHERE codigo.estado_canje"
-                    . " = 1 AND idListaCodigo = codigo.id_lista_codigo) as codigosCanjeados FROM lista_codigo, codigo WHERE "
-                    . "lista_codigo.id_lista_codigo = codigo.id_lista_codigo AND lista_codigo.estado = 0 GROUP BY lista_codigo.id_lista_codigo");
+            $statmt = $conn->prepare("SELECT lista_codigo.id_lista_codigo as idListaCodigo, lista_codigo.fecha_inicio, lista_codigo.fecha_fin, COUNT(codigo.id_lista_codigo) as cantidadCodigos ,(SELECT COUNT(codigo.estado_canje) FROM codigo WHERE codigo.estado_canje = 1 AND idListaCodigo = codigo.id_lista_codigo) as codigosCanjeados FROM lista_codigo, codigo WHERE lista_codigo.id_lista_codigo = codigo.id_lista_codigo AND lista_codigo.estado = 0 GROUP BY lista_codigo.id_lista_codigo");
             $statmt->execute(); 
             
             $listados_activos = $statmt->fetchAll();
