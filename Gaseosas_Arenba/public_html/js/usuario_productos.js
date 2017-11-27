@@ -224,7 +224,7 @@ function agregarDiv(objetoJSON,i,fila){
     var nombreBtnModalCanjear = "btnModalCanjear-"+objetoJSON[i].id;
         
     var botonCanjear = document.createElement("button");
-    botonCanjear.className = "btn btn-info btn-sm col-sm-4";
+    botonCanjear.className = "btn btn-info btn-sm col-sm-3";
     botonCanjear.setAttribute("id",nombreBtnModalCanjear);
     botonCanjear.setAttribute("data-toggle","modal");
     botonCanjear.setAttribute("data-target","#modalCanjear");
@@ -251,7 +251,7 @@ function agregarDiv(objetoJSON,i,fila){
         
     var textoFoto1 = document.createTextNode(nombreProducto1);
     //var textoFoto2 = document.createTextNode(nombreProducto2);
-    var textPieFoto1 = document.createTextNode("Puntos Necesarios para Canjear: "+puntos1);
+    var textPieFoto1 = document.createTextNode("Puntos Necesarios de Canje: "+puntos1);
     //var textPieFoto2 = document.createTextNode("Puntos Necesarios para Canjear: "+puntos2);
         
     tituloFoto1.appendChild(textoFoto1);
