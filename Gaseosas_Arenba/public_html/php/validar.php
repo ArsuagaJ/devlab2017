@@ -1,5 +1,23 @@
 <?php
 	session_start(); 
+        if(isset($_SESSION['rol'])){
+            $rol = $_SESSION['rol'];
+            $rol = (int)$rol;
+            switch ($rol) {
+                case 1:
+                    echo '<script> window.location="../php/admin_abm.php"; </script>';
+                    break;
+                case 2:
+                    echo '<script> window.location="../php/codigo_agregar.php"; </script>';
+                    break;
+                case 3:
+                    echo '<script> window.location="../php/usuario_inicio.php"; </script>';
+                    break;
+                case 4:
+                    echo '<script> window.location="../php/representante_codigos_informados.php"; </script>';
+                    break;
+            }
+        }
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,6 +29,8 @@
 </head>
 <body>
 <?php
+
+
 include './conexion.php';
 include './usuario.php';   
 $usuario = filter_input(INPUT_POST,'usuario');
