@@ -63,11 +63,95 @@
     </div>
   </div>
 </nav>
-             <div>
-                <label><h3>Buscar Usuario</h3></label>
-            </div>
+
+<form class="well form-horizontal" action=" " method="post" id="formulario">
+                   <fieldset>
+
+                   <legend>Nuevo Usuario</legend>
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Usuario</label>  
+                     <div class="col-md-4 inputGroupContainer">
+                     <div class="input-group">
+                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                     <input class="form-control" type="text" id="inpNombreUsuario" name="nombreUsuario" pattern="[A-Za-z]{3,16}" title="solo se permiten letras, Máximo de caracteres 16" placeholder="se permite un solo nombre" required="true">
+                     </div>
+                            <p class="pError" id="pUsuario"></p>
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Nombre</label> 
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group ">
+                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                     <input class="form-control" type="text" id="txtNombre" name="strNombre" pattern="[A-Za-z]{3,16}" title="solo se permiten letras, Máximo de caracteres 16" placeholder="Se permite un solo nombre" required="true"> 
+                      </div>
+                           <p class="pError" id="pNombre"></p> 
+                     </div>
+                   </div>
+                   
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Apellido</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group ">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                     <input class="form-control" type="number" id="txtApellido" name="strApellido"  pattern="[A-Za-z]{3,30}" title="solo se permiten letras, Máximo de caracteres 30" placeholder="se permite dos apellidos" required="true">
+                       </div>
+                         <span class="help-block" id="pApellido"></span>
+                   </div>
+                   </div>
+
+                          <div class="form-group"> 
+                     <label class="col-md-4 control-label">Rol</label>
+                       <div class="col-md-4 selectContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                       <select name="txtRol" id="txtRol" class="form-control selectpicker" >
+                         <option value="">Rol</option>
+                             <option>Empleado</option>
+                             <option>Representante</option>
+                             <option>Administrador</option>                
+                       </select>
+                     </div>
+                   </div>
+                   </div>
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Password</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                           <input class="form-control" type="password" id="txtPassword" name="passwordUsuario" placeholder="Ingrese el Password">                 
+                       </div>
+                           <p class="pError" id="pPassword"></p> 
+                     </div>
+                   </div>
+                   
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Repetir Password</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                           <input class="form-control" type="password" id="txtPassword1" name="passwordUsuario1" placeholder="Ingrese el Password">                 
+                       </div>
+                           <p class="pError" id="pPassword1"></p> 
+                     </div>
+                   </div>
+     
+                   <!-- Button -->
+                   <div class="form-group">
+                     <label class="col-md-4 control-label"></label>
+                     <div class="col-md-2">
+                       <button type="button" id="btnAgregarUsuario" class="btn btn-info" >Registrarse <span class="glyphicon glyphicon-floppy-open"></span></button>
+                     </div>
+                            <p class="pError" id="pMensaje"></p>
+                   </div>
+
+                   </fieldset>
+</form>
 	
-<div class="form-group row">
+<!--<div class="form-group row">
            
             
             <div class="col-md-2">
@@ -112,9 +196,7 @@
         </div>
             <div>
                     <button type="button" id="btnAgregarUsuario" class="btn">Crear</button>
-            </div>
+            </div>-->
             
-
-            
-
+        </body>
 </html>
