@@ -14,9 +14,6 @@
 	<nav class="navbar navbar-inverse" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
         </button>
     </div>
     <div class="navbar-collapse collapse">
@@ -58,53 +55,108 @@
     </div>
 	</nav>
 	<div class="container">
-	
-	<div id="datos">
-            <div class="row">
-                <div class="col-sm-4 form-group">
-                    <label class="especial">Nombre:</label>
-                    <input type="text" id="inpBlockNombre" disabled value=<?php echo $_SESSION['nombre'];?> ><br>
-                </div>
-                <div class="col-sm-4 form-group">
-                    <label class="especial">Apellido:</label>
-                    <input type="text" id="inpBlockApellido" disabled value=<?php echo $_SESSION['apellido'];?> ><br>
-                </div>
-                <div class="col-sm-4 form-group">
-                    <label class="especial">DNI:</label>
-                    <input type="text" id="inpBlockDNI" disabled value=<?php echo $_SESSION['dni'];?> ><br>
-                </div>        
-                <div class="col-sm-4 form-group">
-                    <label class="especial">Telefono:</label>
-                    <input type="text" id="inpBlockTelefono" disabled value=<?php echo $_SESSION['telefono'];?> ><br>
-                </div>        
-                <div class="col-sm-4 form-group">
-                    <label class="especial">E-mail:</label>
-                    <input type="text" id="inpBlockEmail" disabled value=<?php echo $_SESSION['email'];?> ><br>
-                </div>        
-                <div class="col-sm-4 form-group">
-                    <label class="especial">Provincia:</label>
-                    <input type="text" id="inpBlockProvincia" disabled value=<?php echo $_SESSION['provincia'];?> ><br>
-                </div>        
-                <div class="col-sm-4 form-group">
-                    <label class="especial">Localidad:</label>
-                    <input type="text" id="inpBlockLocalidad" disabled value=<?php echo $_SESSION['localidad'];?> ><br>
-                </div>        
-                <div class="col-sm-4 form-group">
-                    <label class="especial">Direccion:</label>
-                    <input type="text" id="inpBlockDireccion" disabled value=<?php echo $_SESSION['direccion'];?> ><br>
-                </div>
-                <div class="col-sm-4">
-                    <button type="button" id="editar" class="btn" >Editar</button><br><br>
-                </div>
-            </div>
-	</div>
-      <form class="well form-horizontal" action=" " method="post" id="formulario" style='display:none;'>
+            
+            <form class="well form-horizontal" action=" " method="post" id="datos" >
                    <fieldset>
 
-                   <!-- Form Name -->
                    <legend>Mis Datos</legend>
 
-                   <!-- Text input-->
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Nombre</label>  
+                     <div class="col-md-4 inputGroupContainer">
+                     <div class="input-group">
+                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                     <input class="form-control" type="text" id="inpBlockNombre" disabled value=<?php echo $_SESSION['nombre'];?> >
+                     </div>
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label" >Apellido</label> 
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group ">
+                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                     <input class="form-control" type="text" id="inpBlockApellido" disabled value=<?php echo $_SESSION['apellido'];?>> 
+                      </div>
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">DNI</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group ">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                      <input class="form-control" type="text" id="inpBlockDNI" disabled value=<?php echo $_SESSION['dni'];?> >
+                      </div>
+                   </div>
+                   </div>
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">E-mail</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                     <input class="form-control" type="text" id="inpBlockEmail" disabled value=<?php echo $_SESSION['email'];?> >
+                       </div> 
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Telefono #</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                           <input class="form-control" type="text" id="inpBlockTelefono" disabled value=<?php echo $_SESSION['telefono'];?> >                
+                       </div> 
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Direccion</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                     <input class="form-control" type="text" id="inpBlockDireccion" disabled value=<?php echo $_SESSION['direccion'];?> >
+                       </div>
+                     </div>
+                   </div>
+
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Localidad</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                     <input class="form-control" type="text" id="inpBlockLocalidad" disabled value=<?php echo $_SESSION['localidad'];?> >
+                       </div> 
+                     </div>
+                   </div>
+                   
+                   <div class="form-group">
+                     <label class="col-md-4 control-label">Provincia</label>  
+                       <div class="col-md-4 inputGroupContainer">
+                       <div class="input-group">
+                           <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                     <input class="form-control" type="text" id="inpBlockProvincia" disabled value=<?php echo $_SESSION['provincia'];?> >
+                       </div>
+                     </div>
+                   </div>
+
+                   <!-- Button -->
+                   <div class="form-group">
+                     <label class="col-md-4 control-label"></label>
+                     <div class="col-md-4">
+                       <button type="button" id="editar" class="btn btn-info" >>Editar <span class="glyphicon glyphicon-pencil"></span></button>
+                     </div>
+                   </div>
+
+                   </fieldset>
+             </form>
+	
+	
+        <form class="well form-horizontal" action=" " method="post" id="formulario" style='display:none;'>
+                   <fieldset>
+
+                   <legend>Mis Datos</legend>
 
                    <div class="form-group">
                      <label class="col-md-4 control-label">Nombre</label>  
@@ -117,8 +169,6 @@
                      </div>
                    </div>
 
-                   <!-- Text input-->
-
                    <div class="form-group">
                      <label class="col-md-4 control-label" >Apellido</label> 
                        <div class="col-md-4 inputGroupContainer">
@@ -130,21 +180,17 @@
                      </div>
                    </div>
                    
-                   <!-- Text input-->
-
                    <div class="form-group">
                      <label class="col-md-4 control-label">DNI</label>  
                        <div class="col-md-4 inputGroupContainer">
                        <div class="input-group ">
                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                      <input class="form-control" type="number" name="dni" id="dni" title="solo se permiten numeros" placeholder="ej:00.000.000" required="true">
-                       
                        </div>
                          <span class="help-block" id="pDni"></span>
                    </div>
                    </div>
 
-                   <!-- Text input-->
                           <div class="form-group">
                      <label class="col-md-4 control-label">E-mail</label>  
                        <div class="col-md-4 inputGroupContainer">
@@ -155,9 +201,6 @@
                            <p class="pError" id="pEmail"></p>  
                      </div>
                    </div>
-
-
-                   <!-- Text input-->
 
                    <div class="form-group">
                      <label class="col-md-4 control-label">Telefono #</label>  
@@ -170,8 +213,6 @@
                      </div>
                    </div>
 
-                   <!-- Text input-->
-
                    <div class="form-group">
                      <label class="col-md-4 control-label">Direccion</label>  
                        <div class="col-md-4 inputGroupContainer">
@@ -183,8 +224,6 @@
                      </div>
                    </div>
 
-                   <!-- Text input-->
-
                    <div class="form-group">
                      <label class="col-md-4 control-label">Localidad</label>  
                        <div class="col-md-4 inputGroupContainer">
@@ -195,8 +234,6 @@
                            <p class="pError" id="pLocalidad"></p>  
                      </div>
                    </div>
-
-                   <!-- Select Basic -->
 
                    <div class="form-group"> 
                      <label class="col-md-4 control-label">Provincia</label>
@@ -260,7 +297,6 @@
                      </div>
                    </div>
                    
-
                    <div class="form-group">
                      <label class="col-md-4 control-label">Repetir Password</label>  
                        <div class="col-md-4 inputGroupContainer">
@@ -275,99 +311,17 @@
                    <!-- Button -->
                    <div class="form-group">
                      <label class="col-md-4 control-label"></label>
-                     <div class="col-md-4">
+                     <div class="col-md-2">
                        <button type="button" id="guardar" class="btn btn-info" >Guardar <span class="glyphicon glyphicon-floppy-open"></span></button>
                      </div>
-                      <div class="col-md-4">
+                      <div class="col-md-2">
                        <button type="button" id="cancelar" class="btn btn-info" >Cancelar <span class="glyphicon glyphicon-floppy-remove"></span></button>
                      </div>
                    </div>
 
                    </fieldset>
-                   </form>
-		
-		
-		 <!--Formulario para ingresar y seleccionar los datos solicitados -->
-               <!--  <div id="formulario" style='display:none;'>
-                    <div class="col-sm-4">
-                        
-				<label> Nombre </label><br>
-				<input type="text" name="nombre" id="nombre" pattern="[A-Za-z]{3,16}" title="solo se permiten letras, Máximo de caracteres 16" placeholder="se permite un solo nombre" required="true">
-				<p class="pError" id="pNombre"></p>
-			
-                    </div>
-                    <div class="col-sm-4">
-                        
-				<label> Apellido</label><br>
-				<input type="text" name="apellido" id="apellido" pattern="[A-Za-z]{3,30}" title="solo se permiten letras, Máximo de caracteres 30" placeholder="se permite dos apellidos" required="true"><br>
-				<p class="pError" id="pApellido"></p>
-                        
-                    </div>
-                    <div class="col-sm-4 ">
-                     
-                                <label> DNI</label><br>
-				<input type="number" name="dni" id="dni" title="solo se permiten numeros" placeholder="ej:00.000.000" required="true"><br>
-				<p class="pError" id="pDni"></p>
-                       
-                    </div>
-                    <div class="col-sm-4 ">
-                       
-                                <label> Telefono</label><br>
-				<input type="number" name="telefono" id="telefono" minlength="8" maxlength="10" title="solo se permite numeros, 8 o 10" placeholder="solo ingrese numeros" required="true"> <br>
-				<p class="pError" id="pTelefono"></p>
-			
-                    </div>
-                    <div class="col-sm-4 ">
-                        
-                                <label> E-mail</label><br>
-				<input type="email" name="email" id="email" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="debe ingresar email" placeholder="ejemplo@gmail.com" required="true"> <br>
-				<p class="pError" id="pEmail"></p>
-			
-                    </div>
-                    <div class="col-sm-4 ">
-                        
-                                <label> Provincia</label><br>
-				<input type="text" name="provincia" id="provincia" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Buenos Aires" required="true"> <br>
-				<p class="pError" id="pProvincia"></p>
-			
-                    </div>
-                    <div class="col-sm-4">
-                       
-				<label> Localidad</label><br>
-				<input type="text" name="localidad" id="localidad" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder=" ejemplo: Monte Grande" required="true"> <br>
-				<p class="pError" id="pLocalidad"></p>
-			
-                    </div>
-                    <div class="col-sm-4 ">
-                     
-                                <label> Direccion</label><br>
-				<input type="text" name="direccion" id="direccion" pattern="[A-Za-z]{3,30}" title="Máximo de caracteres 30" placeholder="Nombre y numero" required="true"> <br>
-				<p class="pError" id="pDireccion"></p>
-			
-                    </div>
-                     
-                     <div class="row">
-                    <div class="col-sm-4 ">
-                       
-                            <label>Nuevo Password</label><br>
-                            <input class="form-control" type="password" name='password' id="idPassword" placeholder="Nuevo password"><br>
-				<p class="pError" id="pDireccion"></p>
-                            <p class="pError" id="pPassword"></p>
-                      
-                    </div>
-                    <div class="col-sm-4">
-                       
-                            <label>Confirmar password</label><br>
-                            <input class="form-control" type="password" name='password1' id="idPassword1" placeholder="Repita el password"> <br>
-                            <p class="pError" id="pPassword1"></p><br> 
-     
-                    </div> 
-                </div>     
-		<div id="botones" class="col-sm-4" style='display:none;'>
-			<input class="btn" type="button" name="guardar" id="guardar" value="Guardar">
-			<input class="btn" type="submit" name="cancelar" id="cancelar" value="cancelar">
-		</div>
-               </div>-->
+        </form>
+
 	</div>
             <div class="container">
             <div class="row">
