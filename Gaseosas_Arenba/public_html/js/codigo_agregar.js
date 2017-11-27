@@ -49,6 +49,7 @@ $(document).ready(function(){
 
                             var descrip = $("#txtDescript").val();
                             var rutaArchivo = respuesta[1]; // en el indice 1 esta la ruta recuperada del php
+                            alert(rutaArchivo);
                             var estado = true;
 
                             var parametros = {
@@ -82,7 +83,7 @@ $(document).ready(function(){
                                             imprimirMensaje("Guardando Codigos..."); // mensaje mientras se van agregando los codigos..
                                         }
                                     }).done(function(result){
-                                        alert(result);
+                                        //alert(result);
                                         if(result === 0){
                                             alert("rrorr");
                                         }

@@ -59,6 +59,17 @@
             }
         }*/
         
+        function getCodigosPorIdLista($idLista){
+            include('./conexion.php');
+            $statmt = $conn->prepare("SELECT `codigo`, `estado_canje` FROM `codigo` WHERE id_lista_codigo =:idList");
+            $statmt->bindParam(':idList', $idLista,PDO::PARAM_INT);
+            $statmt->execute(); 
+            
+            $codigos = $statmt->fetchAll();
+            return $codigos;
+            //include('./desconexion.php');
+        }
+        
         function canjearClienteCodigo($idCliente,$idCode,$code){
             include('./conexion.php');
             $booll = 1;
