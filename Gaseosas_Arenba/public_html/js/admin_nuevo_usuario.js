@@ -1,6 +1,122 @@
+function limpiarCampos(){
+    document.getElementById("pUsuario").innerHTML="";
+    document.getElementById("pNombre").innerHTML="";
+    document.getElementById("pApellido").innerHTML="";
+    document.getElementById("pPassword").innerHTML="";
+    document.getElementById("pPassword1").innerHTML="";
+    
+    document.getElementById("inpNombreUsuario").value="";
+    document.getElementById("txtNombre").value="";
+    document.getElementById("txtApellido").value="";  
+    document.getElementById("txtRol").value="";
+    document.getElementById("txtPassword").value="";
+    document.getElementById("txtPassword1").value="";
+}
+
+function validarUsuario(){
+	var texto=$('#inpNombreUsuario').val(); 
+		var reg =/^[^a-zA-Z0-9]{3,16}$/;
+		var aux= texto.split(" ");
+		if (texto==""){
+			$('#pNombre').text('Debe ingresar el usuario');
+                        return false;
+		}
+		else if(aux.length != 1) { 
+			$('#pNombre').text('El usuario debe tener una palabra');
+                        return false;
+		}
+		else if(reg.test(texto)) { 
+			$('#pNombre').text(' ');
+			return true;
+		} else {
+			$('#pNombre').text('Usuario invalido');
+                        return false;
+	}	
+}
+
+function validarNombre(){
+	var texto=$('#txtNombre').val(); 
+		var reg =/^[a-zA-z]{3,16}$/;
+		var aux= texto.split(" ");
+		if (texto==""){
+			$('#pNombre').text('Debe ingresar el nombre');
+                        return false;
+		}
+		else if(aux.length != 1) { 
+			$('#pNombre').text('El nombre debe tener una palabra ');
+                        return false;
+		}
+		else if(reg.test(texto)) { 
+			$('#pNombre').text(' ');
+			return true;
+		} else {
+			$('#pNombre').text('Nombre invalido');
+                        return false;
+	}	
+}
+function validarApellido(){
+	var texto=$('#txtApellido').val(); 
+		var reg =/^[a-zA-z]{3,30}$/;
+		if (texto == ""){
+			$('#pApellido').text('Debe ingresar el apellido');
+                        return false;
+		}
+		else if(reg.test(texto)) { 
+			$('#pApellido').text(' ');
+                        return true;			
+		} else {
+			$('#pApellido').text('Apellido invalido');
+                        return false;
+	}	
+}
+
+function validarContra(){
+    //Utilizamos una expresion regular 
+    var texto=$('#txtPassword').val(); 
+    var reg =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/; 
+    if (texto===""){
+            $('#pPassword').text('Debe ingresar contraseña');
+            return false;
+    }
+    else if(reg.test(texto)) { 
+            $('#pPassword').text(' ');
+            return true;
+    } else {
+            $('#pPassword').text('Contraseña invalida');
+            return false;
+        }   
+}
+
+function validarContra1(){    
+    var texto=$('#txtPassword').val();
+    var texto1=$('#txtPassword1').val();
+    if (texto1===""){
+            $('#pPassword1').text('Debe ingresar contraseña');
+            return false;
+    }
+    else if(texto===texto1) { 
+            $('#pPassword1').text(' ');
+            return true;
+    } else {
+            $('#pPassword1').text('las contraseñas no coinciden, intente de nuevo');
+            return false;
+        }
+}
+
+
+
 $(document).ready(function(){
     
     $("#btnAgregarUsuario").click(function(){
+        //Utilizamos una expresion regular 
+                var var1 = validarUsuario();
+		var var2 = validarNombre();
+		var var3 = validarApellido();
+                var var4 = validarContra();
+                var var5 = validarContra1();
+                
+                
+      if (var1 & var2 & var3 & var4& var5){
    
         
         $("#divMensaje").removeClass("hidden");
@@ -51,6 +167,7 @@ $(document).ready(function(){
             }).done(function(respuesta){
                // $("#pMensaje").text("OK, se agregado correctamente el archivo");
             });
+            }
           });
         });       
    
