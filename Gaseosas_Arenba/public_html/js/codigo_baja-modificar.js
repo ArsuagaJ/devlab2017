@@ -28,7 +28,38 @@ $(document).ready(function(){
     var fechaInicio = "";
     var fechaFin = "";
     var botonModif;
+    var botonVista;
     var id;
+    
+    $("#modalVista").on('show.bs.modal', function (e) {
+        var row = $(e.relatedTarget).parent().parent();
+        var celdas= row.children();
+        
+        botonVista = celdas[5].firstChild;
+        id = botonVista.getAttribute("id").substr(-2,2);//obtenemos el id referente a la fila mencionada
+        id = parseInt(id);
+        console.log(id);
+        var parametro = {
+            "id" : id
+        };
+        // generamos un ajax nuevo con los valores de los campos que se guardaran en la tabla "lista de codigos"
+        $.ajax({
+            data:  parametro, // los datos que van a ser recuperados desde el php
+            url:   '../php/getCodigosPorLista.php', // llamamos al php para insertar los datos en este caso con los parametros que le pasemos
+            type:  'get',
+            beforeSend: function procesandoArchivo() { // todavia no entiendo por que llamamos a la funcion "insertar()" que creo que deberia ser la del php, pero bueno...
+                imprimirMensaje("Dando de baja el archivo de códigos, aguarde unos instantes...");
+            }
+        }).done(function(result){
+            $("#txtVistaDescripcion").text(result[1]);
+            /*if(result === 0){
+                alert("rrorr");
+            }*/
+            mostrarCodigos(result);
+            console.log("Mostrando Codigos en PopUp");
+            //console.log(result);
+        });;
+    });
     
     $("#modalBaja").on('show.bs.modal', function (e) {
         var row = $(e.relatedTarget).parent().parent();
@@ -51,9 +82,9 @@ $(document).ready(function(){
                         imprimirMensaje("Dando de baja el archivo de códigos, aguarde unos instantes...");
                     }
                 }).done(function(result){
-                    if(result === 0){
+                    /*if(result === 0){
                         alert("rrorr");
-                    }
+                    }*/
                     imprimirMensaje("Se ha dado de baja correctamente el archivo de codigos");
                     console.log("Archivo Procesado Correctamente(BAJA DE ARCHIVO)");
                     //console.log(result);
@@ -75,10 +106,11 @@ $(document).ready(function(){
         var row = $(e.relatedTarget).parent().parent();
         var celdas= row.children();
         
-        botonModif = celdas[5].firstChild;
+        botonModif = celdas[5].firstChild.nextSibling; // con esto obtenemos el "siguiente hermano" del primero, o sea, el boton modificar
         id = botonModif.getAttribute("id");//.substr(-2,2);//obtenemos el id referente a la fila mencionada
         var spli = id.split("-");
         id = parseInt(spli[1]);
+        
 
         //alert(boton.getAttribute("id"));
         // obtenemos cada uno de los valores referentes de la fila que tomamos..
@@ -125,9 +157,9 @@ $(document).ready(function(){
                         imprimirMensaje("Actualizando archivo de códigos, aguarde unos instantes...");
                     }
                 }).done(function(result){
-                    if(result === 0){
+                    /*if(result === 0){
                         alert("rrorr");
-                    }
+                    }*/
                     imprimirMensaje("Se ha actualizado correctamente el archivo de codigos"+rutaArchivo);
                     console.log("Archivo Procesado Correctamente");
                     //console.log(result);
@@ -170,7 +202,7 @@ function cargarDatosDeFila(){
         estado = celdas[1].firstChild.nodeValue;
         fechaInicio = celdas[2].firstChild.nodeValue;
         fechaFin = celdas[3].firstChild.nodeValue;
-        alert(nombreLista);
+        //alert(nombreLista);
         cargarDatos(nombreLista,descLista,estado,fechaInicio,fechaFin);
     });
 }
@@ -238,6 +270,18 @@ function vaciarTabla(){
     $("#tblTablaOculta tbody tr").remove();
 }
 
+function mostrarCodigos(objetoJSON){
+
+    var longitud = Object.keys(objetoJSON).length;
+    var string = "";
+    var temp = 0;
+    var estad = "";
+    for (var i = 1; i < longitud; i++) {
+        string = string+objetoJSON[i].codigo+", ";
+    }
+    $("#txtVistaDescripcion").text(string);
+}
+
 function generarTabla(objetoJSON){
     
     var tabla   = document.getElementById("tblTablaOculta");
@@ -259,18 +303,30 @@ function generarTabla(objetoJSON){
         var split = nombreListado.split("/"); // separamos la ruta completa de acceso a los listados
         nombreListado = split[2]; // establecemos solo el nombre para mostrar en la tabla
         var descripcListado = objetoJSON[i].descripcion;
-        var estado
+        var estado;
         if(objetoJSON[i].estado === "0"){
-            estado ="Activo"
+            estado ="Activo";
         }else
         {
-            estado = "Inactivo"
+            estado = "Inactivo";
         };
         var fechaInicio = objetoJSON[i].fechaInicio;
         var fechaFin = objetoJSON[i].fechaFin;
         
         var nombreBtnModalModificar = "btnModalModificar-"+objetoJSON[i].id;//+i; esto no me estaria funcionando
         var nombreBtnModalDarBaja = "btnModalDarBaja-"+objetoJSON[i].id;//+i; esto tapoco me estaria funcando
+        var nombreBtnModalVista = "btnModalVista-"+objetoJSON[i].id;//+i; esto tapoco me estaria funcando
+        
+        var botonVista = document.createElement("button");
+        var iconoVista = document.createElement("i");
+        botonVista.className = "btn btn-info";
+        botonVista.setAttribute("id",nombreBtnModalVista);
+        botonVista.setAttribute("data-toggle","modal");
+        botonVista.setAttribute("data-target","#modalVista");
+        botonVista.setAttribute("title","Ver Codigos de esta lista");
+        iconoVista.className = "glyphicon glyphicon-eye-open";
+
+        botonVista.appendChild(iconoVista);
         
         var botonModificar = document.createElement("button");
         var iconoModifi = document.createElement("i");
@@ -278,6 +334,7 @@ function generarTabla(objetoJSON){
         botonModificar.setAttribute("id",nombreBtnModalModificar);
         botonModificar.setAttribute("data-toggle","modal");
         botonModificar.setAttribute("data-target","#modalModificar");
+        botonModificar.setAttribute("title","Modificar datos de la lista");
         iconoModifi.className = "glyphicon glyphicon-pencil";
 
         botonModificar.appendChild(iconoModifi);
@@ -288,6 +345,7 @@ function generarTabla(objetoJSON){
         botonBaja.setAttribute("id",nombreBtnModalDarBaja);
         botonBaja.setAttribute("data-toggle","modal");
         botonBaja.setAttribute("data-target","#modalBaja");
+        botonBaja.setAttribute("title","Dar de baja la lista");
         iconoBaja.className = "glyphicon glyphicon-remove";
 
         botonBaja.appendChild(iconoBaja);
@@ -303,6 +361,7 @@ function generarTabla(objetoJSON){
         celda3.appendChild(textoCelda3);
         celda4.appendChild(textoCelda4);
         celda5.appendChild(textoCelda5);
+        celda6.appendChild(botonVista);
         celda6.appendChild(botonModificar);
         celda6.appendChild(botonBaja);
             

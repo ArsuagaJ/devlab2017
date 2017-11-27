@@ -82,10 +82,10 @@ $(document).ready(function(){
                                             imprimirMensaje("Guardando Codigos..."); // mensaje mientras se van agregando los codigos..
                                         }
                                     }).done(function(result){
-                                        alert(result);
-                                        if(result === 0){
+                                        //alert(result);
+                                        /*if(result === 0){
                                             alert("rrorr");
-                                        }
+                                        }*/
                                         imprimirMensaje("Se han agregado correctamente los codigos");
                                         console.log("Archivo Procesado Correctamente");
                                         //console.log(result);

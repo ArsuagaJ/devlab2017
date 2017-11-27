@@ -164,9 +164,9 @@ $(document).ready(function(){
                         imprimirMensaje("Se ha actualizado correctamente el producto"+nombreProducto);
                     }
                 }).done(function(result){
-                    if(result === 0){
+                    /*if(result === 0){
                         alert("rrorr");
-                    }
+                    }*/
                     mostrarDivMensaje();
                     imprimirMensaje("Se ha actualizado correctamente el producto"+nombreProducto);
                     console.log("Actualizacion de producto Procesado Correctamente");
@@ -333,7 +333,7 @@ function cargarDatosDeFila(){
         nombreProducto = celdas[0].firstChild.nodeValue;
         descProducto = celdas[1].firstChild.nodeValue;
         totalPuntos = celdas[2].firstChild.nodeValue;
-        alert(nombreProducto);
+        //alert(nombreProducto);
         cargarDatos(nombreProducto,descProducto,totalPuntos);
     });
 }
