@@ -157,9 +157,9 @@ $(document).ready(function(){
                         imprimirMensaje("Actualizando archivo de códigos, aguarde unos instantes...");
                     }
                 }).done(function(result){
-                    if(result === 0){
+                    /*if(result === 0){
                         alert("rrorr");
-                    }
+                    }*/
                     imprimirMensaje("Se ha actualizado correctamente el archivo de codigos"+rutaArchivo);
                     console.log("Archivo Procesado Correctamente");
                     //console.log(result);
@@ -202,7 +202,7 @@ function cargarDatosDeFila(){
         estado = celdas[1].firstChild.nodeValue;
         fechaInicio = celdas[2].firstChild.nodeValue;
         fechaFin = celdas[3].firstChild.nodeValue;
-        alert(nombreLista);
+        //alert(nombreLista);
         cargarDatos(nombreLista,descLista,estado,fechaInicio,fechaFin);
     });
 }

@@ -37,3 +37,7 @@ td:hover,th:hover{
     background-color: skyblue;
     /*font-size: 20px;*/
 }
+
+.navbar { 
+  background-color: #deedf1; 
+}

@@ -347,7 +347,7 @@ $(document).ready(function(){
                     
                                         
                 }else{
-                    alert("nonoononono");
+                    $("#pMensaje").text("Debe completar correctamente los campos");//fijarme si esta
                 }
 
 	}); 
