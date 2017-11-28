@@ -1,87 +1,59 @@
 <!--colores: violeta: 5e3b74 violeta mas claro:9b4b7f  letras de botella: Segoe Print Bold -->
 <!DOCTYPE html>
-<html>
-<head>
-   
+<html >
+<head >
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
-                <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
-                <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
-                <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
-                <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-		<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-        <script type="text/javascript" src="../js/usuario_inicio.js"></script>
-        <link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/usuario_estilo.css">
-    <!-- esto es para cuando hay internechi ->
-    <!-- Latest compiled and minified CSS -->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-
-    <!-- Optional theme -->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
-
-    <!-- Latest compiled and minified JavaScript -->
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+    <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/usuario_inicio.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/usuario_estilo.css">
    <title>Inicio</title> 
-  </head>
-	<body>
-	<div class="main">
-	<nav class="navbar navbar-inverse" role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-    </div>
-    <div class="navbar-collapse collapse">
+</head>
+    <body class="bodyLala" >
+	
+        <div class="main">
+	
+            <nav class="navbar navbar-responsive" role="navigation">
+        <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-center">
-            <li><a class="navbar-brand" href="#">Gaseosas Arenba</a></li>
-            <li><a href="./usuario_inicio.php">Inicio</a></li>
-            <li><a href="./usuario_productos.php">Productos</a></li>
-            <li><a href="./usuario_cuenta.php">Mi Cuenta</a></li>
+            
+            <li ><a class="miClase" href="./usuario_inicio.php">Inicio</a></li>
+            <li ><a class="miClase" href="./usuario_productos.php">Productos</a></li>
+            <li ><a class="miClase" href="./usuario_cuenta.php">Mi Cuenta</a></li>
 	</ul>	
-		
-        
         <div class="collapse navbar-collapse" id="ac_datosUsuario">
-                <!--<ul class="nav navbar-nav navbar-right">
-                  <li><a href="#" title="Empleado XXXX"><span class="glyphicon glyphicon-user"></span>EmpleadoXXX</a></li>
-                </ul>-->
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                  <span class="glyphicon glyphicon-user"></span> 
-                                  <strong>Usuario: <?php echo($_SESSION['usuario']);?></strong>
-                                  <span class="glyphicon glyphicon-chevron-down"></span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                  <li>
-                                      <div class="navbar-login">
-                                          <div class="row">
-                                              <div class="col-lg-8">
-                                                  <p class="text-left"><strong>Bienvenido:</strong></p>
-                                                  <p class="text-left"><strong><?php echo ($_SESSION['nombre'].' '.$_SESSION['apellido']);?></strong></p>
-
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </li>
-                </ul>
-                        <li><a href="../php/logout.php"><span class="glyphicon glyphicon-share-alt"></span><strong>Salir</strong></a></li>
-                </ul>
-                  
-              </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> 
+                        <strong>Usuario: <?php echo($_SESSION['usuario']);?></strong>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong>Bienvenido:</strong></p>
+                                        <p class="text-left"><strong><?php echo ($_SESSION['nombre'].' '.$_SESSION['apellido']);?></strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <li><a href="../php/logout.php"><span class="glyphicon glyphicon-share-alt"></span><strong class="miLista">Salir</strong></a></li>
+            </ul>
+        </div>
     </div>
 	</nav>
-	<div class="container">
-		
-		<div class="row">
-		<div class="col-sm-9">
-		
-		<div class="panel panel-danger">
+	<div class="container">	
+            <div class="row">
+            <div class="col-sm-9">
+            <div class="panel panel-danger">
         <div class="maindd">
             <h3 class="panel-title alert alert-info label-info">Nuestros Productos</h3>
-        
         <div class="panel-body">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -91,17 +63,14 @@
         <li data-target="#myCarousel" data-slide-to="2"></li>
 		<li data-target="#myCarousel" data-slide-to="3"></li>
     </ol>
-
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-        <div class="item active">
-            
+        <div class="item active">   
 			<img src="../imgs/botella_naranja1.png" alt="">
             <div class="carousel-caption">
                 <p class="botella">Naranja de 2 1/4 Litros</p>
             </div>
         </div>
-  
         <div class="item">
             <img src="../imgs/botella_lima.png" alt="">
             <div class="carousel-caption">
@@ -139,8 +108,8 @@
 	</div>
 	<div class="col-sm-3">
 	
-		<label class="pull-center">Cantidad Total de</label>
-		<label class="pull-center">Puntos: <?php echo ($_SESSION['puntos']);?></label><br><br>
+         <br><label class="puntos">Cantidad Total </label><br>
+		<label class="puntos">de puntos: <?php echo ($_SESSION['puntos']);?></label><br><br>
 	<button type="button" id="botonCod" class="btn btn-info">Ingresar Codigo</button><br><br>
 	<div id="divCodigo" style='display:none;'>
 			<label>Codigo</label>
@@ -180,11 +149,6 @@
             </div>
             
   </div>
-               
-
-	
 	</div>
-     
-	
 </body>
 </html>

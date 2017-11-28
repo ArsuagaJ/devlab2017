@@ -1,112 +1,81 @@
-p{
-	font-family: emmasophia;
-	text-shadow:#AAA 2px 2px 2px;
-	color: #000000;
-	font-size: 14px;
-	}
+.navbar { 
+  background-color: #006666;
+}
+
+.navbar-brand{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    text-shadow:#AA 2px 0px ;
+    font-size: 40px;
+    color: #000000; 
+}
+
 .pError{
 	font-family: Georgia, "Times New Roman", Times, serif;
 	text-shadow:#AAA 2px 2px 2px;
 	color: #FF0000;
 	font-size: 14px;
-	}
+}
 	
-.botella{
-	font-family: Georgia, "Times New Roman", Times, serif;
-	text-shadow:#AAA 2px 2px 2px;
-	color: #000000;
-	font-size: 20px;
-	
-	}
 .especial{
-	font-family: emmasophia;
-	
+	font-family: emmasophia;	
 	color: #000000;
 	font-size: 20px;
-	
-	}
+}
 
-	
-/*.navbar{
-        
-		text-align: center;
-		background-color: #814676;
-		 border: #814676;
-}*/
-	
-.boton_1{
-    text-decoration: none;
-    padding: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-family: helvetica;
-    font-weight: 300;
-    font-size: 25px;
-
-    color: #006505;
-    background-color: #82b085;
-    border-radius: 15px;
-    border: 3px double #006505;
-  }
-  
-  .miParrafo{
-	font-family: Georgia, "Times New Roman", Times, serif;
-	text-shadow:#AAA 2px 2px 2px;
-	color: #006666;
-	font-size: 40px;
-	}
-	
-	.salir{
+.salir{
     text-decoration: none;
     font-family: helvetica;
     font-weight: 300;
     font-size: 18px;
     background-color: #814676;
-    border: 3px double #814676;
-   
-  }
-  
+    border: 3px double #814676;   
+}
+ 
+ /* color de fondo de la pagina */
  .main {
-
-    background-color:#FFFFFF;
+    background-color:#dddddd;
 } 
 
 .maindd {
-
-    background-color:#f0f0f0;
+    background-color:#006666;
 } 
-  
-  .boton{
-    text-decoration: none;
-   
-    font-family: emmasophia;
-    font-weight: 300;
-    font-size: 24px;
-	color: #ffffff;
-	text-shadow:#AAA 0px 0px 0px;
-    background-color: #9b4b7f;
-    border-radius: 5px;
-    border: 3px double #974578;
-   
-  }
-  
-  .btn{
-      background:#2E8B57;
-    background-color: #3e1756;
-    
-    border-color: #080808;
-    
-    color: white;
+
+.label-info {
+    background-color:#EEEEEE;
+} 
+.puntos{
+    font-family: kristen ITC;
+    color: #00cc00;
+    font-size: 18px;    
 }
 
+.miClase{
+     font-family: Hercules;
+     color: #FFFFFF;
+     font-size: 20px;
+}
+   
+.botella{
+     font-family: Georgia;
+     color: #000000;
+     font-size: 20px;
+}
+.btn{
+    background:#006666;
+    background-color: #006666;
+    border-color: #006666;
+    color: white;
+}
 
 div.img{
   display:table;
 }
+
 div.img img{
  margin:0;
  padding:0;
 }
+
 div.img span{
  line-height:normal;
  font-size:14px;
@@ -118,13 +87,7 @@ div.img span{
  padding:5px;
  text-align:center;
 }
-/*.item {
-      display: block;
-      position: center block;
-      width: 300px;
-      height: 300px;
-      /*background-image: url('https://placeholdit.imgix.net/~text?txtsize=33&txt=350×150&w=350&h=150');*/
-      /*background-position: center;
-      background-repeat: non-repeat;
-      background-size: cover;
-}*/
+
+.bodyLala {
+    background-color:#dddddd;
+} 
