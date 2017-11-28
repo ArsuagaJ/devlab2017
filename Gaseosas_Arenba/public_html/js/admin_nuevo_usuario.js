@@ -1,3 +1,6 @@
+function imprimirMensaje(strMensaje){
+    $("#pMensaje").text(strMensaje);
+}
 function limpiarCampos(){
     document.getElementById("pUsuario").innerHTML="";
     document.getElementById("pNombre").innerHTML="";
@@ -15,21 +18,21 @@ function limpiarCampos(){
 
 function validarUsuario(){
 	var texto=$('#inpNombreUsuario').val(); 
-		var reg =/^[^a-zA-Z0-9]{3,16}$/;
+		var reg =/^[a-zA-Z0-9]{3,16}$/;
 		var aux= texto.split(" ");
 		if (texto==""){
-			$('#pNombre').text('Debe ingresar el usuario');
+			$('#pUsuario').text('Debe ingresar el usuario');
                         return false;
 		}
 		else if(aux.length != 1) { 
-			$('#pNombre').text('El usuario debe tener una palabra');
+			$('#pUsuario').text('El usuario debe tener una palabra');
                         return false;
 		}
 		else if(reg.test(texto)) { 
-			$('#pNombre').text(' ');
+			$('#pUsuario').text(' ');
 			return true;
 		} else {
-			$('#pNombre').text('Usuario invalido');
+			$('#pUsuario').text('Usuario invalido');
                         return false;
 	}	
 }
@@ -114,10 +117,8 @@ $(document).ready(function(){
 		var var3 = validarApellido();
                 var var4 = validarContra();
                 var var5 = validarContra1();
-                
-                
-      if (var1 & var2 & var3 & var4& var5){
-   
+                 
+      if (var1 && var2 && var3 && var4 && var5){
         
         $("#divMensaje").removeClass("hidden");
         $("#divMensaje").addClass("visible-block");
@@ -161,10 +162,12 @@ $(document).ready(function(){
                 url:  ruta,
                 type:  'post',
                 success:  function (response) {
-                    console.log(response);
                    // $("#pMensaje").text(response);    
                 }
+                
             }).done(function(respuesta){
+                imprimirMensaje("Se ha creado con exito el nuevo usuario");
+                $('#modalVista').modal('show');
                // $("#pMensaje").text("OK, se agregado correctamente el archivo");
             });
             }
