@@ -87,6 +87,7 @@ $(document).ready(function(){
                                             alert("rrorr");
                                         }*/
                                         imprimirMensaje("Se han agregado correctamente los codigos");
+                                        
                                         console.log("Archivo Procesado Correctamente");
                                         //console.log(result);
                                     });
@@ -94,6 +95,7 @@ $(document).ready(function(){
                             }).done(function(respuesta){
                                 console.log(respuesta);
                                 imprimirMensaje("OK, se agregado correctamente el archivo");
+                                $('#modalMensaje').modal('show');
                                 //console.log(respuesta);
                             });
                         }

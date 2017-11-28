@@ -79,6 +79,22 @@
             include('./desconexion.php');
         }*/
         
+        function existUserByName($nombreUser){
+            include('./conexion.php');
+            
+            $sql = 'SELECT usuario FROM usuario WHERE usuario=:user';
+            $statm = $conn->prepare($sql);
+            $statm->bindParam(':user',$nombreUser,PDO::PARAM_STR);
+            //$statmt = $conn->prepare($sql); con esta funcion no me funciona...
+            $result = $statm->execute();
+            // Extraer los valores de $result
+            //$filas = $result->fetchAll();
+            
+            if($statm->rowCount($result) > 0){
+                return $result; // retornamos los valores
+            }
+        }
+             
         function getUsuarioByID($iduso){
             include './conexion.php';
 

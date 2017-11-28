@@ -17,8 +17,19 @@ function limpiarCampos(){
 }
 
 function validarUsuario(){
+    var user;
+    
 	var texto=$('#inpNombreUsuario').val(); 
-		var reg =/^[a-zA-Z0-9]{3,16}$/;
+        var param = {
+            "strUser" : texto
+        };
+        $.ajax({
+            type: 'post',
+            data: param,
+            url: '../php/getExisteUsuario.php'
+        }).done(function (data){
+            if(data[0].resultado === "ok"){
+                var reg =/^[a-zA-Z0-9]{3,16}$/;
 		var aux= texto.split(" ");
 		if (texto==""){
 			$('#pUsuario').text('Debe ingresar el usuario');
@@ -34,7 +45,13 @@ function validarUsuario(){
 		} else {
 			$('#pUsuario').text('Usuario invalido');
                         return false;
-	}	
+                }	
+            }else{
+                $('#pUsuario').text('El usuario ya existe');
+                return false;
+            }
+        });
+		
 }
 
 function validarNombre(){

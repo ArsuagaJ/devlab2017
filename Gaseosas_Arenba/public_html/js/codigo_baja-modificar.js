@@ -97,6 +97,8 @@ $(document).ready(function(){
         vaciarTabla();
         realizarBusqueda(); // actualizamos la tabla para que apliquen los cambios
         vaciarCacheDeDatos();
+        imprimirMensaje("Se ha dado de baja correctamente el archivo de codigos");
+        $('#modalMensaje').modal('show');
     });
     
     $("#modalModificar").on('show.bs.modal', function (e) {
