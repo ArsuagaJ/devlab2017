@@ -12,7 +12,7 @@
 </head>
 	<body>
             <div class="main">
-	<nav class="navbar navbar-inverse" role="navigation">
+	<nav class="navbar" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         </button>
@@ -32,7 +32,7 @@
                     <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                   <span class="glyphicon glyphicon-user"></span> 
-                                  <strong>Usuario: <?php echo($_SESSION['usuario']);?></strong>
+                                  <strong><?php echo($_SESSION['usuario']);?></strong>
                                   <span class="glyphicon glyphicon-chevron-down"></span>
                               </a>
                               <ul class="dropdown-menu">
@@ -42,8 +42,6 @@
                                               <div class="col-lg-8">
                                                   <p class="text-left"><strong>Bienvenido:</strong></p>
                                                   <p class="text-left"><strong><?php echo ($_SESSION['nombre'].' '.$_SESSION['apellido']);?></strong></p>
-                                                  <p class="text-left small">ROL: <?php $id = $_SESSION['rol']; if($id == 3){echo('Cliente');}?></p>
-                                                  <a href="../php/cambiarPassword.php"><p class="text-left small">Cambiar contraseña</p></a>
                                               </div>
                                           </div>
                                       </div>
@@ -146,7 +144,7 @@
                    <div class="form-group">
                      <label class="col-md-4 control-label"></label>
                      <div class="col-md-4">
-                       <button type="button" id="editar" class="btn btn-info" >>Editar <span class="glyphicon glyphicon-pencil"></span></button>
+                       <button type="button" id="editar" class="btn btn-info" >Editar <span class="glyphicon glyphicon-pencil"></span></button>
                      </div>
                    </div>
 
