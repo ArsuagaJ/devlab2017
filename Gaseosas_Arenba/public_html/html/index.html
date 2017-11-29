@@ -8,25 +8,51 @@
         <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
         <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
-        <link rel=stylesheet href="../css/style.css">
+        <link rel=stylesheet href="../css/styleIndex.css">
     </head>
     <body class="bodyIndex">
-<nav class="navbar navbar-responsive">
-  <div class="container text-center">
-    <div class="navbar-header ">
+<nav class="navbar">
+    <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
         <h1 class="text-center"> Gaseosas Arenba</h1>
     </div>
   </div>
 </nav>
-    <div class="row">
-    <div class="col-sm-12 col-md-10">
-        <p class="text-center"><span>Unite a nuestra comunidad. Se unos de 
-                los primeros en ganar nuestros fabulosos premios</span></p>	
+
+        <div class="container">
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <img id="profile-img" class="profile-img-card" src="../fotos/login.jpg" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form id="loginForm" method="post" action="../php/validar.php" class="form-signin">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="text" name='usuario' id="idUsuario" class="form-control" placeholder="Usuario" required autofocus>
+                <div id="mensaje1" class="oculto">El campo usuario se encuentra vacio</div>
+                <input type="password" name='password' id="idPassword" class="form-control" placeholder="Password" required>
+                <div id="mensaje2" class="oculto">El campo password se encuentra vacio o es incorrecto</div>
+                <div class="text-center">
+                    <p class="pError"><?php if(isset($_SESSION['incorrecto'])){echo 'Usuario o contraseña incorrectos';}?></p>
+                </div>
+                <button type="submit" name="login" class="btn btn-lg btn-primary btn-block btn-signin">Iniciar sesión</button>
+            </form><!-- /form -->
+            <div class="text-center">
+                <a class="clase1" href="../php/usuario_registro.php">Registrate ahora</a>
+                </div>
+                <div class="text-center">
+                <p class="text-center"><span>Unite a nuestra comunidad. Se unos de 
+                los primeros en ganar nuestros fabulosos premios</span></p>
+            </div>
+            
+        </div><!-- /card-container -->
     </div>
-    </div>
+        
+        <!-- /container -->
 <!--<form id="formulario" class="form-horizontal" role="form">-->
-  <div class="row">
+ <!-- <div class="row">
     <div class="Absolute-Center is-Responsive">
+         <div class="card card-container">
         
       <div class="col-sm-12 col-md-10 col-md-offset-1">
         <form id="loginForm" method="post" action="../php/validar.php" >
@@ -52,6 +78,7 @@
           </div>
         </form>        
       </div>  
+         </div>
     </div>    
-  </div>
+  </div>-->
 </html>
