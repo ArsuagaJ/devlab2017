@@ -23,67 +23,69 @@ and open the template in the editor.
     </head>
     
     <body class="bodyLala">
-        <!--navbar del titulo de la pagina -->
-        <nav class="navbar navbar-responsive" role="navigation">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>                        
-                </button>
-                <span class="navbar-brand navbar-inverse gaseosas" title="Bienvenido al sitio web de Gaseosas Arenba">Gaseosas Arenba</span>
-                
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                      <a class="dropdown-toggle miClase" data-toggle="dropdown" href="#">ABM Codigos<span class="caret"></span></a>
-                      <ul class="dropdown-menu miClase">
-                        <li><a href="../php/codigo_agregar.php">Alta</a></li>
-                        <li><a href="../php/codigo_baja-modificar.php" class="active">Baja / Modificacion</a></li>
-                      </ul>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                      <a class="dropdown-toggle miClase" data-toggle="dropdown" href="#">ABM Productos<span class="caret"></span></a>
-                      <ul class="dropdown-menu miClase">
-                        <li><a href="../php/producto_agregar.php">Alta</a></li>
-                        <li><a href="../php/producto_baja-modificar.php" class="active">Baja / Modificacion</a></li>
-                      </ul>
-                    </li>
-                </ul>
-              </div>
-              <div class="collapse navbar-collapse" id="ac_datosUsuario">
-                <!--<ul class="nav navbar-nav navbar-right">
-                  <li><a href="#" title="Empleado XXXX"><span class="glyphicon glyphicon-user"></span>EmpleadoXXX</a></li>
-                </ul>-->
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                              <a href="#" class="dropdown-toggle miClase2" data-toggle="dropdown">
-                                  <span class="glyphicon glyphicon-user"></span> 
-                                  <strong><?php echo($_SESSION['usuario']);?></strong>
-                                  <span class="glyphicon glyphicon-chevron-down"></span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                  <li>
-                                      <div class="navbar-login">
-                                          <div class="row">
-                                              <div class="col-lg-8">
-                                                  <p class="text-left"><strong>Bienvenido:</strong></p>
-                                                  <p class="text-left"><strong><?php echo ($_SESSION['nombre'].' '.$_SESSION['apellido']);?></strong></p>
-                                                  <p class="text-left small">ROL: <?php $id = $_SESSION['rol']; if($id == 2){echo('Empleado');}?></p>
+        <div class="menu-list">
+            <!--navbar del titulo de la pagina -->
+            <nav class="navbar navbar-responsive" role="navigation">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>                        
+                    </button>
+                    <span class="navbar-brand navbar-inverse gaseosas" title="Bienvenido al sitio web de Gaseosas Arenba">Gaseosas Arenba</span>
 
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                          <a class="dropdown-toggle miClase" data-toggle="dropdown" href="#">ABM Codigos<span class="caret"></span></a>
+                          <ul class="dropdown-menu miClase">
+                            <li><a href="../php/codigo_agregar.php">Alta</a></li>
+                            <li><a href="../php/codigo_baja-modificar.php" class="active">Baja / Modificacion</a></li>
+                          </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                          <a class="dropdown-toggle miClase" data-toggle="dropdown" href="#">ABM Productos<span class="caret"></span></a>
+                          <ul class="dropdown-menu miClase">
+                            <li><a href="../php/producto_agregar.php">Alta</a></li>
+                            <li><a href="../php/producto_baja-modificar.php" class="active">Baja / Modificacion</a></li>
+                          </ul>
+                        </li>
+                    </ul>
+                  </div>
+                  <div class="collapse navbar-collapse" id="ac_datosUsuario">
+                    <!--<ul class="nav navbar-nav navbar-right">
+                      <li><a href="#" title="Empleado XXXX"><span class="glyphicon glyphicon-user"></span>EmpleadoXXX</a></li>
+                    </ul>-->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                                  <a href="#" class="dropdown-toggle miClase2" data-toggle="dropdown">
+                                      <span class="glyphicon glyphicon-user"></span> 
+                                      <strong><?php echo($_SESSION['usuario']);?></strong>
+                                      <span class="glyphicon glyphicon-chevron-down"></span>
+                                  </a>
+                                  <ul class="dropdown-menu">
+                                      <li>
+                                          <div class="navbar-login">
+                                              <div class="row">
+                                                  <div class="col-lg-8">
+                                                      <p class="text-left"><strong>Bienvenido:</strong></p>
+                                                      <p class="text-left"><strong><?php echo ($_SESSION['nombre'].' '.$_SESSION['apellido']);?></strong></p>
+                                                      <p class="text-left small">ROL: <?php $id = $_SESSION['rol']; if($id == 2){echo('Empleado');}?></p>
+
+                                                  </div>
                                               </div>
                                           </div>
-                                      </div>
-                                  </li>
-                </ul>
-                        <li><a class="miClase2" href="../php/logout.php">Salir <span class="glyphicon glyphicon-share-alt"></span></a></li>
-                </ul>
-                  
-              </div>
-            </div>
-        </nav>
+                                      </li>
+                    </ul>
+                            <li><a class="miClase2" href="../php/logout.php">Salir <span class="glyphicon glyphicon-share-alt"></span></a></li>
+                    </ul>
+
+                  </div>
+                </div>
+            </nav>
+        </div>
         
         <nav>
             <div class="container">

@@ -1,3 +1,3 @@
 <?php
-    include("../html/usuario_registro_invitado.html");
+    include("../html/usuario_registro.html");
 ?>

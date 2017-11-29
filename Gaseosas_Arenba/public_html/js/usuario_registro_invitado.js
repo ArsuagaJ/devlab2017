@@ -218,23 +218,45 @@ function validarProvincia(){
 }
 
 function validarUsuario(){
-     //Utilizamos una expresion regular 
-    var texto=$('#idUsuario').val(); 
-    var reg =/^[a-zA-Z\s0-9]*$/; 
-    var aux = texto.split(" ");
-    if (texto===""){
-            $('#pUsuario').text('debe ingresar usuario');
-            event.preventDefault();
-            return false;
-    }
-    else if(reg.test(texto) & aux.length === 1 & (texto.length > 6 & texto.length < 16)) { 
-            $('#pUsuario').text(' ');
-            return true;
-    } else {
-            $('#pUsuario').text('usuario invalido');
-            event.preventDefault();
+    var user;
+    
+	var texto=$('#inpNombreUsuario').val();
+        if (texto===""){
+            $('#pUsuario').text('Este campo no puede quedar en blanco');
             return false;
         }
+        var param = {
+            "strUser" : texto
+        };
+        $.ajax({
+            type: 'post',
+            data: param,
+            url: '../php/getExisteUsuario.php'
+        }).done(function (data){
+            if(data[0].resultado === "ok"){
+                var reg =/^[a-zA-Z0-9]{3,16}$/;
+		var aux= texto.split(" ");
+		if (texto==""){
+			$('#pUsuario').text('Debe ingresar el usuario');
+                        return false;
+		}
+		else if(aux.length != 1) { 
+			$('#pUsuario').text('El usuario debe tener una palabra');
+                        return false;
+		}
+		else if(reg.test(texto)) { 
+			$('#pUsuario').text(' ');
+			return true;
+		} else {
+			$('#pUsuario').text('Usuario invalido');
+                        return false;
+                }	
+            }else{
+                $('#pUsuario').text('El usuario ya existe');
+                return false;
+            }
+        });
+		
 }
 
 $(document).ready(function(){
