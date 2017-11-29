@@ -18,22 +18,26 @@
 		
 	</head>
 	<body>
-<nav class="navbar">
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">                    
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+          <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span><!--rosario lta-->
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
-      <span class="navbar-brand navbar-inverse gaseosas" title="Bienvenido al sitio web de Gaseosas Arenba">Gaseosas Arenba</span>
-
+      <h4>Gaseosas Arenba</h4>
+ 
     </div>
-     
+   
     <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-      <li><a class="miClase" href="../php/admin_abm.php">Buscar Usuario</a></li>
-      <li class="active"><a class="miClase" href="../php/admin_nuevo_usuario.php">Nuevo Usuario</a></li>
+        <ul class="nav navbar-nav">
+      <li ><a class="miClase2"  href="../php/admin_abm.php">Buscar Usuario</a></li>
+      <li ><a class="miClase2"  href="../php/admin_nuevo_usuario.php">Nuevo Usuario</a></li>
     </ul>
       <ul class="nav navbar-nav navbar-right">
-         <li class="dropdown">
+          <li class="dropdown">
                     <a href="#" class="dropdown-toggle miClase2" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 
                         <strong><?php echo($_SESSION['usuario']);?></strong>
@@ -45,14 +49,13 @@
                                 <div class="row">
                                     <div class="col-lg-8">
                                         <p class="text-left"><strong><?php echo ($_SESSION['nombre'].' '.$_SESSION['apellido']);?></strong></p>
-                                        <p class="text-left small">ROL: <?php $id = $_SESSION['rol']; if($id == 1){echo('Empleado');}?></p>
+                                        <p class="text-left small">ROL: <?php $id = $_SESSION['rol']; if($id == 1){echo('Administrador');}?></p>
                                       
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li>    
       </ul>
-         </li>
               <li><a class="miClase2" href="../php/logout.php">Salir <span class="glyphicon glyphicon-share-alt"></span></a></li>
       </ul>
     </div>

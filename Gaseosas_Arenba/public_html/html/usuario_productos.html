@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
@@ -14,44 +15,47 @@
   </head>
 	<body class="bodyLala">
 	
-	<nav class="navbar navbar-responsive" role="navigation">
-            <span class="navbar-brand navbar-inverse gaseosas" title="Bienvenido al sitio web de Gaseosas Arenba">Gaseosas Arenba</span>
-   
-    <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-center">
-            <li><a class="miClase" href="./usuario_inicio.php">Inicio</a></li>
-            <li><a class="miClase" href="./usuario_productos.php">Productos</a></li>
-            <li><a class="miClase" href="./usuario_cuenta.php">Mi Cuenta</a></li>
-	</ul>	
-	<div class="collapse navbar-collapse" id="ac_datosUsuario">
-                <!--<ul class="nav navbar-nav navbar-right">
-                  <li><a href="#" title="Empleado XXXX"><span class="glyphicon glyphicon-user"></span>EmpleadoXXX</a></li>
-                </ul>-->
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                              <a href="#" class="dropdown-toggle miClase2" data-toggle="dropdown">
-                                  <span class="glyphicon glyphicon-user"></span> 
-                                  <strong><?php echo($_SESSION['usuario']);?></strong>
-                                  <span class="glyphicon glyphicon-chevron-down"></span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                  <li>
-                                      <div class="navbar-login">
-                                          <div class="row">
-                                              <div class="col-lg-8">
-                                                  <p class="text-left"><strong>Bienvenido:</strong></p>
-                                                  <p class="text-left"><strong><?php echo ($_SESSION['nombre'].' '.$_SESSION['apellido']);?></strong></p>
-
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </li>
-                </ul>
-                        <li><a class="miClase2" href="../php/logout.php">Salir <span class="glyphicon glyphicon-share-alt"></span></a></li>
-                </ul>
-                  
-              </div>
+	<nav class="navbar navbar-default navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar">
+          <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span><!--rosario lta-->
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h4>Gaseosas Arenba</h4>
+ 
     </div>
+   
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+      <li ><a class="miClase2" href="./usuario_inicio.php">Inicio</a></li>
+            <li ><a class="miClase2" href="./usuario_productos.php">Productos</a></li>
+            <li ><a class="miClase2" href="./usuario_cuenta.php">Mi Cuenta</a></li>
+    </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+                    <a href="#" class="dropdown-toggle miClase2" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> 
+                        <strong><?php echo($_SESSION['usuario']);?></strong>
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong><?php echo ($_SESSION['nombre'].' '.$_SESSION['apellido']);?></strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>    
+      </ul>
+              <li><a class="miClase2" href="../php/logout.php">Salir <span class="glyphicon glyphicon-share-alt"></span></a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
             <nav>
             <div class="container">
