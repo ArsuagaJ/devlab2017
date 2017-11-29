@@ -87,6 +87,12 @@ and open the template in the editor.
               </div>-->
             </div>
         </nav>
+        
+        <nav>
+            <div class="container">
+                <h1 class="navbar-inverse miClase2 text-center"><span>Modificación de Productos</span></h1><br>
+            </div>
+        </nav>
 
         <div class="container">
             <div class="form-group">
@@ -99,7 +105,7 @@ and open the template in the editor.
                 </div>-->
                 <div class="col-sm-11 col-xs-10">
                     <label id="filtro" class="sr-only" for="filtrar">Buscar...</label>
-                    <input id="filtrar" type="text" class="form-control" placeholder="Ingrese nombre o descripcion del producto a buscar y presione ENTER o Haga click en el siguiente icono..." autofocus>
+                    <input id="filtrar" type="text" class="form-control" placeholder="Ingrese nombre o descripción del producto a buscar y presione ENTER o Haga click en el siguiente icono..." autofocus>
                 </div>
                 <div class="col-sm-1 col-xs-2">
                     <button type="button" class="btn btn-info" id="btnFiltroBuscar">Buscar <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
@@ -120,7 +126,7 @@ and open the template in the editor.
                       <thead>
                        <tr>
                         <th>Nombre</th>
-                        <th>Descripcion</th>
+                        <th>Descripción</th>
                         <th>Cant. Puntos</th>
                         <th>Foto</th>
                         <th>Estado</th>
@@ -169,35 +175,43 @@ and open the template in the editor.
         </div>
         
         <!-- Modal -->
-                <div id="modalBajaProducto" class="modal fade" role="dialog">
+                <div id="modalBajaProducto" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
                   <div class="modal-dialog">
 
                     <!-- Contenido del Modal-->
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Baja de Producto</h3>
+                      <div class="modal-header navbar">
+                        <button type="button" class="close miClase" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title miClase">Baja de Producto</h3>
                       </div>
                       <div class="modal-body">
                           <p>Esta seguro de dar de baja el producto?</p>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" id="btnModalBajaCancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" id="btnModalBajaConfirmar" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+                          <div class="row">
+                              <div class="col-sm-12">
+                                <div class="col-sm-2 pull-right">
+                                  <button type="button" id="btnModalBajaCancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                </div>
+                                <div class="col-sm-2 pull-right">
+                                  <button type="button" id="btnModalBajaConfirmar" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+                                </div>
+                              </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                </div>
         
         <!-- Modal -->
-                <div id="modalModificar" class="modal fade" role="dialog">
+                <div id="modalModificar" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
                   <div class="modal-dialog">
 
                     <!-- Contenido del Modal-->
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Modificar Producto</h3>
+                      <div class="modal-header navbar">
+                        <button type="button" class="close miClase" data-dismiss="modal">&times;</button>
+                        <h2 class="modal-title miClase">Modificar Producto</h2>
                       </div>
                       <div class="modal-body">
                           <!--<p>Esta seguro de dar de baja el producto?</p>-->
@@ -250,8 +264,16 @@ and open the template in the editor.
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="btnModalModificarCancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="button" id="btnModalModificarConfirmar" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <div class="col-sm-2 pull-right">
+                                    <button type="button" id="btnModalModificarCancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                </div>
+                                <div class="col-sm-2 pull-right">
+                                    <button type="button" id="btnModalModificarConfirmar" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+                                </div>
+                              </div>
+                            </div>
                         </div>
                       </div>
                     </div>

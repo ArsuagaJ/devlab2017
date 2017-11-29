@@ -132,7 +132,7 @@ $(document).ready(function(){
     var celdas= null;
     
     //cargarDatos(nombreProducto,descProducto,imagen,puntos); // no me funciona esta funcion
-        $("#btnModalModificarConfirmar").click(function(){
+        $("#btnModalModificarConfirmar").click(function(e){
             //*****************************************************************************************
             /* tengo que seguir modificando esto para que pueda actualizar correctamente el producto */
             //*****************************************************************************************
@@ -141,11 +141,13 @@ $(document).ready(function(){
             nombreProducto = $("#inpNombreProducto").val();
             descProducto = $("#txtDescripcion").val();
             
-            if(isNaN(puntos)){
+            if(isNaN(puntos) || puntos === ''){
                 mostrarMensajeModal("No se ha ingresado un numero correcto en el campo de PUNTOS DE CANJE");
                 //alert("no es un numero");
                 event.preventDefault();
+                console.log("Hola NAN");
             }else{
+                console.log("Hola");
                 var parametros = {
                     "puntos" : puntos,
                     "nombre" : nombreProducto,
@@ -161,14 +163,14 @@ $(document).ready(function(){
                         imprimirMensaje("Actualizando el producto, aguarde unos instantes...");
                     },
                     success: function resultado(respuestaPHP){
-                        imprimirMensaje("Se ha actualizado correctamente el producto"+nombreProducto);
+                        imprimirMensaje("Se ha actualizado correctamente el producto: "+nombreProducto);
                     }
                 }).done(function(result){
                     /*if(result === 0){
                         alert("rrorr");
                     }*/
                     mostrarDivMensaje();
-                    imprimirMensaje("Se ha actualizado correctamente el producto"+nombreProducto);
+                    imprimirMensaje("Se ha actualizado correctamente el producto: "+nombreProducto);
                     console.log("Actualizacion de producto Procesado Correctamente");
                     //console.log(result);
                 });;

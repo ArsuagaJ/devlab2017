@@ -87,6 +87,7 @@ $(document).ready(function(){
                     }*/
                     imprimirMensaje("Se ha dado de baja correctamente el archivo de codigos");
                     console.log("Archivo Procesado Correctamente(BAJA DE ARCHIVO)");
+                    $('#modalMensaje').modal('show');
                     //console.log(result);
                 });;
         });
@@ -97,8 +98,7 @@ $(document).ready(function(){
         vaciarTabla();
         realizarBusqueda(); // actualizamos la tabla para que apliquen los cambios
         vaciarCacheDeDatos();
-        imprimirMensaje("Se ha dado de baja correctamente el archivo de codigos");
-        $('#modalMensaje').modal('show');
+        //imprimirMensaje("Se ha dado de baja correctamente el archivo de codigos");
     });
     
     $("#modalModificar").on('show.bs.modal', function (e) {

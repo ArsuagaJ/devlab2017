@@ -91,6 +91,12 @@ and open the template in the editor.
             </div>
         </nav>
         
+        <nav>
+            <div class="container">
+                <h1 class="navbar-inverse miClase2 text-center"><span>Modificación de Listado de Códigos</span></h1><br>
+            </div>
+        </nav>
+        
         <div class="container">
             <div class="row">
                 <div class="col-sm-10">
@@ -191,13 +197,13 @@ and open the template in the editor.
             </div>
         
         <!-- Modal Vista -->
-        <div id="modalVista" class="modal fade" role="dialog">
+        <div id="modalVista" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
             <div class="modal-dialog">
                 <!-- Contenido del Modal-->
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Codigos Activos en esta Lista</h3>
+                    <div class="modal-header navbar">
+                        <button type="button" class="close miClase" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title miClase">Codigos Activos en esta Lista</h3>
                     </div>
                     <div class="modal-body">
                         <div class="col-sm-12">
@@ -212,33 +218,41 @@ and open the template in the editor.
         </div>
         
         <!-- Modal Baja -->
-        <div id="modalBaja" class="modal fade" role="dialog">
+        <div id="modalBaja" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
             <div class="modal-dialog">
                 <!-- Contenido del Modal-->
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Baja de Listado de Codigo</h3>
+                    <div class="modal-header navbar">
+                        <button type="button" class="close miClase" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title miClase">Baja de Listado de Codigo</h3>
                     </div>
                     <div class="modal-body">
                         <p>Esta seguro de dar de baja el listado de codigos seleccionado?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="btnModalBajaCancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" id="btnModalBajaConfirmar" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+                        <div class="row">
+                              <div class="col-sm-12">
+                                <div class="col-sm-2 pull-right">
+                                    <button type="button" id="btnModalBajaCancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                </div>
+                                <div class="col-sm-2 pull-right">
+                                    <button type="button" id="btnModalBajaConfirmar" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+                                </div>
+                              </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- Modal -->
-        <div id="modalModificar" class="modal fade" role="dialog">
+        <div id="modalModificar" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
             <div class="modal-dialog">
                 <!-- Contenido del Modal-->
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Modificar Listado de Codigos</h3>
+                    <div class="modal-header navbar">
+                        <button type="button" class="close miClase" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title miClase">Modificar Listado de Codigos</h3>
                     </div>
                     <div class="modal-body">
                         <!-- div campos a cambiar -->
@@ -313,8 +327,16 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="btnModalModificarCancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" id="btnModalModificarConfirmar" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+                        <div class="row">
+                              <div class="col-sm-12">
+                                <div class="col-sm-2 pull-right">
+                                    <button type="button" id="btnModalModificarCancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                </div>
+                                <div class="col-sm-2 pull-right">
+                                    <button type="button" id="btnModalModificarConfirmar" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+                                </div>
+                              </div>
+                        </div>
                     </div>
                 </div>
             </div>
