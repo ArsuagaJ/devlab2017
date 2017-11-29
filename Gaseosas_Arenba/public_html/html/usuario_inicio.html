@@ -1,7 +1,10 @@
-<!--colores: violeta: 5e3b74 violeta mas claro:9b4b7f  letras de botella: Segoe Print Bold -->
 <!DOCTYPE html>
 <html >
 <head >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- el siguiente META es para que se visualicen los caracteres ESPAÑOLES -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
     <script type="text/javascript" src="../bootstrap/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="../bootstrap/jquery.min.js"></script>
@@ -9,22 +12,29 @@
     <script type="text/javascript" src="../js/usuario_inicio.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/usuario_estilo.css">
+    <script type="text/javascript" src="../js/menu.js"></script>
+    <link rel="stylesheet" href="../css/menu.css">
    <title>Inicio</title> 
 </head>
     <body class="bodyLala" >
-	
         <div class="main">
-	
-            <nav class="navbar navbar-responsive" role="navigation">
-                <span class="navbar-brand navbar-inverse gaseosas" title="Bienvenido al sitio web de Gaseosas Arenba">Gaseosas Arenba</span>
-        <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-center">
+                
+            <header>
+		        
+            <div class="menu_bar">
+			<a href="#" class="bt-menu"></span>Menu</a>
+		</div>
+            
+            <nav >
+                <p class="navbar-brand navbar-inverse gaseosas" id="pArenba">Gaseosas Arenba</p>
+        
+        <ul >
             <li ><a class="miClase" href="./usuario_inicio.php">Inicio</a></li>
-            <li ><a class="miClase" href="./usuario_productos.php">Productos</a></li>
-            <li ><a class="miClase" href="./usuario_cuenta.php">Mi Cuenta</a></li>
-	</ul>	
-        <div class="collapse navbar-collapse" id="ac_datosUsuario">
-            <ul class="nav navbar-nav navbar-right">
+            <li ><a  class="miClase" href="./usuario_productos.php">Productos</a></li>
+            <li ><a  class="miClase" href="./usuario_cuenta.php">Mi Cuenta</a></li>
+		
+        <div  id="ac_datosUsuario">
+           
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle miClase2" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 
@@ -43,20 +53,21 @@
                             </div>
                         </li>
                     </ul>
-                    <li><a class="miClase2" href="../php/logout.php">Salir <span class="glyphicon glyphicon-share-alt"></span></a></li>
+                    <li class="miClase2"><a href="../php/logout.php">Salir <span class="glyphicon glyphicon-share-alt"></span></a></li>
             </ul>
         </div>
-    </div>
+    
 	</nav>
-            
-	<div class="container">	
+    </header>
+                
+            <section>
             <div class="row">
             <div class="col-sm-9">
-            <div class="panel panel-danger">
+            <div class="panel panel-danger" >
         <div class="maindd">
             <h3 class="panel-title alert alert-info label-info">Nuestros Productos</h3>
-        <div class="panel-body">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="panel-body" >
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" >
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -64,11 +75,10 @@
         <li data-target="#myCarousel" data-slide-to="2"></li>
 		<li data-target="#myCarousel" data-slide-to="3"></li>
     </ol>
-    <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">   
 			<img src="../imgs/botella_naranja1.png" alt="">
-            <div class="carousel-caption">
+            <div class="carousel-caption" >
                 <p class="botella">Naranja de 2 1/4 Litros</p>
             </div>
         </div>
@@ -148,8 +158,8 @@
                     </div>
                   </div>
             </div>
-            
+       </section>     
   </div>
-	</div>
+	
 </body>
 </html>
