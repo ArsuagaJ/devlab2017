@@ -17,6 +17,7 @@
 		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
 		<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 		<link rel=stylesheet href="../css/style.css">
+                <link rel="stylesheet" href="../css/usuario_estilo.css">
                 <script src="../js/representante_productos_canjeados.js" type="text/javascript"></script>
 		
 	</head>
@@ -29,13 +30,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Gaseosas Arenba</a>
+      <span class="navbar-brand navbar-inverse gaseosas" title="Bienvenido al sitio web de Gaseosas Arenba">Gaseosas Arenba</span>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes<span class="caret"></span></a>
-          <ul class="dropdown-menu">
+          <a class="dropdown-toggle miClase" data-toggle="dropdown" href="#">Reportes<span class="caret"></span></a>
+          <ul class="dropdown-menu miClase">
             <li><a href="../php/representante_codigos_informados.php">Codigos informados</a></li>
             <li><a href="../php/representante_productos_canjeados.php" class="active">Productos Canjeados</a></li>
           </ul>
@@ -44,9 +45,9 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle miClase2" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 
-                        <strong> Usuario</strong>
+                        <strong><?php echo($_SESSION['usuario']);?></strong>
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -55,7 +56,7 @@
                                 <div class="row">
                                     <div class="col-lg-8">
                                         <p class="text-left"><strong><?php echo ($_SESSION['nombre'].' '.$_SESSION['apellido']);?></strong></p>
-                                        <p class="text-left small">ROL: <?php $id = $_SESSION['rol']; if($id == 4){echo('Representante');}?></p>
+                                        <p class="text-left small"><?php $id = $_SESSION['rol']; if($id == 4){echo('Representante');}?></p>
                                       
                                     </div>
                                 </div>
@@ -65,7 +66,7 @@
           
         
       </ul>
-              <li><a href="../php/logout.php"><span class="glyphicon glyphicon-share-alt"></span><strong>Salir</strong></a></li>
+              <li><a class="miClase2" href="../php/logout.php">Salir <span class="glyphicon glyphicon-share-alt"></span></a></li>
       </ul>
     </div>
   </div>

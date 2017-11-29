@@ -12,16 +12,16 @@
     <script type="text/javascript" src="../js/usuario_productos.js"></script>
     <title>Productos</title> 
   </head>
-	<body>
+	<body class="bodyLala">
 	
-	<nav class="navbar navbar-inverse" role="navigation">
+	<nav class="navbar navbar-responsive" role="navigation">
+            <span class="navbar-brand navbar-inverse gaseosas" title="Bienvenido al sitio web de Gaseosas Arenba">Gaseosas Arenba</span>
    
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-center">
-            <li><a class="navbar-brand" href="#">Gaseosas Arenba</a></li>
-            <li><a href="./usuario_inicio.php">Inicio</a></li>
-            <li><a href="./usuario_productos.php">Productos</a></li>
-            <li><a href="./usuario_cuenta.php">Mi Cuenta</a></li>
+            <li><a class="miClase" href="./usuario_inicio.php">Inicio</a></li>
+            <li><a class="miClase" href="./usuario_productos.php">Productos</a></li>
+            <li><a class="miClase" href="./usuario_cuenta.php">Mi Cuenta</a></li>
 	</ul>	
 	<div class="collapse navbar-collapse" id="ac_datosUsuario">
                 <!--<ul class="nav navbar-nav navbar-right">
@@ -29,9 +29,9 @@
                 </ul>-->
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                              <a href="#" class="dropdown-toggle miClase2" data-toggle="dropdown">
                                   <span class="glyphicon glyphicon-user"></span> 
-                                  <strong>Usuario: <?php echo($_SESSION['usuario']);?></strong>
+                                  <strong><?php echo($_SESSION['usuario']);?></strong>
                                   <span class="glyphicon glyphicon-chevron-down"></span>
                               </a>
                               <ul class="dropdown-menu">
@@ -47,7 +47,7 @@
                                       </div>
                                   </li>
                 </ul>
-                        <li><a href="../php/logout.php"><span class="glyphicon glyphicon-share-alt"></span><strong>Salir</strong></a></li>
+                        <li><a class="miClase2" href="../php/logout.php">Salir <span class="glyphicon glyphicon-share-alt"></span></a></li>
                 </ul>
                   
               </div>
