@@ -217,26 +217,11 @@ function validarProvincia(){
 	}	
 }
 
-function validarUsuario(){
-    var user;
-    
-	var texto=$('#inpNombreUsuario').val();
-        if (texto===""){
-            $('#pUsuario').text('Este campo no puede quedar en blanco');
-            return false;
-        }
-        var param = {
-            "strUser" : texto
-        };
-        $.ajax({
-            type: 'post',
-            data: param,
-            url: '../php/getExisteUsuario.php'
-        }).done(function (data){
-            if(data[0].resultado === "ok"){
+function usuarioValido(){
+    var texto1=$('#idUsuario').val();
                 var reg =/^[a-zA-Z0-9]{3,16}$/;
-		var aux= texto.split(" ");
-		if (texto==""){
+		var aux= texto1.split(" ");
+		if (texto1=="") {
 			$('#pUsuario').text('Debe ingresar el usuario');
                         return false;
 		}
@@ -244,19 +229,45 @@ function validarUsuario(){
 			$('#pUsuario').text('El usuario debe tener una palabra');
                         return false;
 		}
-		else if(reg.test(texto)) { 
+		else if(reg.test(texto1)) { 
 			$('#pUsuario').text(' ');
-			return true;
+			return validarUsuario();
+                      
 		} else {
 			$('#pUsuario').text('Usuario invalido');
                         return false;
                 }	
+            
+}
+function validarUsuario(){
+    var user;
+    var respuesto;
+    
+	var texto=$('#idUsuario').val(); 
+        var param = {
+            "strUser" : texto
+        };
+        $.ajax({
+            async:false,// no es lo correcto pero funciona ATR
+            type: 'post',
+            data: param,
+            url: '../php/getExisteUsuario.php',
+            success: function(data){
+            console.log(data[0].resultado);
+            if(data[0].resultado === "ok"){
+               respuesto = true;
+               
             }else{
                 $('#pUsuario').text('El usuario ya existe');
                 return false;
+            
             }
-        });
-		
+                
+        }
+    });
+
+     return respuesto;
+     
 }
 
 $(document).ready(function(){
