@@ -53,6 +53,35 @@ function validarFechaMayorActual(fecha){
     return false;
 }
 
+// la siguiente funcion FUNCIONA de 10, esta OK funcionando correcto
+function validarFechaHastaMayorDesde(fechaDesde,fechaHasta){
+    var splitDesde = fechaDesde.split("-"); // dividimos el string de fechas por guiones (como viene del browser)
+    var splitHasta = fechaHasta.split("-"); // dividimos el string de fechas por guiones (como viene del browser)
+    if(splitDesde.length != 3 || splitHasta.length != 3){ // si no tiene unicamente 3 partes, decimos que es falso
+        console.log("no se ingreso una fecha de la forma correcta");
+        return false;
+    }else{
+        var hoy = new Date(); // instanciamos un nuevo objeto DATE con la fecha de hoy para hacer las comparaciones
+	var stringFechaDesde = splitDesde[0]+"/"+splitDesde[1]+"/"+splitDesde[2]; // armamos el string para generar un nuevo objeto DATE para comparar fecha mayor a actual
+        var stringFechaHasta = splitHasta[0]+"/"+splitHasta[1]+"/"+splitHasta[2]; // armamos el string para generar un nuevo objeto DATE para comparar fecha mayor a actual
+        //var stringFecha = split[2]+"/"+split[1]+"/"+split[0];
+        //console.log("tipo string?: "+typeof(stringFecha));
+        var fechaIngresadaDesde = new Date(stringFechaDesde);
+        var fechaIngresadaHasta = new Date(stringFechaHasta);
+        // Comparamos solo las fechas => no las horas!!
+        hoy.setHours(0,0,0,0);  // Lo iniciamos a 00:00 horas
+
+        if (fechaIngresadaDesde <= fechaIngresadaHasta) {
+            console.log("0k, se valido correctamente");
+          return true;
+        }
+        else {
+          console.log("Error de ingreso de fechas");
+        }
+    }
+    return false;
+}
+
 /*function validaFechaMayorActual(fecha){
     var actual = getFechaActual();
     var actSplit = actual.split("/");
